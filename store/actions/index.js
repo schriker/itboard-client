@@ -1,0 +1,1 @@
+export { fetchTitle } from './title'
