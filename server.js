@@ -10,10 +10,10 @@ app
   .then(() => {
     const server = express()
 
-    // server.get('/', (req, res) => {
-    //   const actualPage = '/index'
-    //   app.render(req, res, actualPage)
-    // })
+    server.get('/', (req, res) => {
+      const actualPage = '/index'
+      app.render(req, res, actualPage)
+    })
 
     server.get('/offer/:id', (req, res) => {
       const actualPage = '/offer'
