@@ -1,1 +1,1 @@
-export const SET_TITLE = 'SET_TITLE'
+// List of actions names

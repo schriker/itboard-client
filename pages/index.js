@@ -1,36 +1,28 @@
 import React from 'react'
+import Link from 'next/link'
 import { connect } from 'react-redux'
-import Head from 'next/head'
-import * as actions from '../store/actions/index'
+import Layout from '../components/Layout'
 
 class Index extends React.Component {
 
   static async getInitialProps ({ reduxStore }) {
-    await reduxStore.dispatch(actions.fetchTitle())
+    // Fecth offers here
+    // await reduxStore.dispatch(actions.fetchTitle())
     return {}
 }
 
   render() {
     return (
-      <div>
-        <Head>
-          <title>{this.props.pageTitle}</title>
-        </Head>
-        {this.props.pageTitle}
-        <button onClick={() => this.props.changeTitle()}>Test</button>
-      </div>
+      <Layout>
+        <Link as="/offer/2" href="/offer?id=2"><a>Offer pages</a></Link>
+        Test
+      </Layout>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  pageTitle: state.title.pageTitle
+  
 })
 
-const mapDispatchToProps = dispatch => {
-  return {
-    changeTitle: () => dispatch(actions.fetchTitle())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Index)
+export default connect(mapStateToProps)(Index)

@@ -1,15 +1,13 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import title from './reducers/title'
+// Import redicers here
 
 const initialState = {
-  title: {
-    pageTitle: 'Old Title'
-  }
+  // Initial store
 }
 
 const rootReducer = combineReducers({
-  title
+  // Reducers goes here
 })
 
 export function initializeStore (state = initialState) {
