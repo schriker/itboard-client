@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { connect } from 'react-redux'
-import Layout from '../components/Layout'
+import Layout from '../components/layout/Layout'
 
 class Index extends React.Component {
 
@@ -12,8 +12,15 @@ class Index extends React.Component {
 }
 
   render() {
+
+    const layoutSetings = {
+      meta: {
+      },
+      withSidebar: true
+    }
+
     return (
-      <Layout>
+      <Layout { ...layoutSetings }>
         <Link as="/offer/2" href="/offer?id=2"><a>Offer pages</a></Link>
         Test
       </Layout>
