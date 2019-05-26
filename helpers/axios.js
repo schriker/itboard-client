@@ -1,8 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'https://itboardapi.herokuapp.com/',
-  // baseURL: 'http://localhost:8080/',
+  baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/' : 'https://itboardapi.herokuapp.com/',
   withCredentials: true
 })
 
