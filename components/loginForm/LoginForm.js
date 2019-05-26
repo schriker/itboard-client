@@ -1,6 +1,8 @@
 import { withFormik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import Link from 'next/link'
+import { connect } from 'react-redux'
+import { userLogin } from '../../store/actions/index'
 
 const LoginForm = ({ errors, touched }) => {
   return (
@@ -47,12 +49,20 @@ const formikOptions = {
     email: '',
     password: ''
   }),
-  handleSubmit: (values) => {
-    console.log(values)
+  handleSubmit: (values, { props }) => {
+    props.login(values)
   },
   validateOnBlur: true,
   validateOnChange: false,
   validationSchema
 }
 
-export default withFormik(formikOptions)(LoginForm)
+const mapStateToProps = (state) => ({
+
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  login: (values) => dispatch(userLogin(values))
+})
+
+export default connect(null, mapDispatchToProps)(withFormik(formikOptions)(LoginForm))
