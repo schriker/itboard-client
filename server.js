@@ -22,6 +22,11 @@ app
       app.render(req, res, actualPage, queryParams)
     })
 
+    server.get('/login', (req, res) => {
+      const actualPage = '/login'
+      app.render(req, res, actualPage)
+    })
+
     server.get('*', (req, res) => {
       return handle(req, res)
     })

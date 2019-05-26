@@ -12,7 +12,7 @@ const Header = () => {
           <a className="btn btn--yellow">Create Offer</a>
         </Link>
         <span> - or - </span>
-        <Link href="/create-offer">
+        <Link href="/login">
           <a className="btn btn--blue"><i className="far fa-user"></i>Login</a>
         </Link>
       </div>

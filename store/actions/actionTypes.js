@@ -1,1 +1,1 @@
-// List of actions names
+export const SET_LANGUAGES = 'SET_LANGUAGES'

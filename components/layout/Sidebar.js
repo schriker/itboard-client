@@ -1,112 +1,52 @@
-const Sidebar = () => {
+import { connect } from 'react-redux'
+import { setLanguages } from '../../store/actions/index'
+import SidebarItem from '../sidebar/SidebarItem'
+import { languagesArr as languages } from '../../helpers/languages'
 
-  const languages = [
-    {
-      name: 'JavaScript',
-      color: ''
-    },
-    {
-      name: 'Java',
-      color: ''
-    },
-    {
-      name: 'HTML',
-      color: ''
-    },
-    {
-      name: 'CSS',
-      color: ''
-    },
-    {
-      name: 'PHP',
-      color: ''
-    },
-    {
-      name: 'Ruby',
-      color: ''
-    },
-    {
-      name: 'Python',
-      color: ''
-    },
-    {
-      name: '.Net',
-      color: ''
-    },
-    {
-      name: 'Scala',
-      color: ''
-    },
-    {
-      name: 'C',
-      color: ''
-    },
-    {
-      name: 'Android',
-      color: ''
-    },
-    {
-      name: 'iOS',
-      color: ''
-    },
-    {
-      name: 'Tester',
-      color: ''
-    },
-    {
-      name: 'Game Dev',
-      color: ''
-    },
-    {
-      name: 'Security',
-      color: ''
-    },
-    {
-      name: 'Blockchain',
-      color: ''
-    },
-    {
-      name: 'Data',
-      color: ''
-    },
-    {
-      name: 'Golang',
-      color: ''
-    },
-    {
-      name: 'DevOps',
-      color: ''
-    },
-    {
-      name: 'UI/UX',
-      color: ''
-    },
-    {
-      name: 'Project Manager',
-      color: ''
-    },
-  ]
+const Sidebar = (props) => {
+
+  const onClickHandler = (isSelected, language) => {
+    isSelected ? removeLanguage(language) : addLanguage(language)
+  }
+
+  const addLanguage = (language) => {
+    const languages = [
+      ...props.filters.language,
+      language.toLowerCase()
+    ]
+    props.setLanguage(languages)
+  }
+
+  const removeLanguage = (language) => {
+    const languages = props.filters.language.filter(item => item !== language.toLowerCase())
+    props.setLanguage(languages)
+  }
 
   return (
     <aside>
       <i className="far fa-file-code"></i>
+      {/* Icons are slow render in FF temp solution to hide thath cross being loaded */}
+      <i className="fas fa-times hide"></i>
       <ul>
-        {languages.map(item => (
-            <li key={item.name}>{item.name}</li>
-          ))
+        {languages.map(item => {
+          const isSelected = props.filters.language.includes(item.name.toLowerCase())
+          return (
+              <SidebarItem isSelected={isSelected} item={item} onClickHandler={onClickHandler} key={item.name}/>
+            )
+          })
         }
       </ul>
       <style jsx>{`
         aside {
           position: relative;
           background-color: #08294f;
-          width: 100%;
+          width: 280px;
           color: #fff;
           grid-area: sidebar;
           padding-top: 30px;
           overflow-y: hidden;
         }
-        i {
+        aside > i:first-of-type {
           top: -65px;
           left: 0;
           transform: rotate(-15deg);
@@ -115,21 +55,27 @@ const Sidebar = () => {
           color: #0c2d55;
           z-index: 0;
         }
+        .hide {
+          position: absolute;
+          opacity: 0;
+          visibility: none;
+        }
         ul {
           position: relative;
           z-index: 1;
-        }
-        li {
-          padding: 7px 15px 7px 50px;
-          margin-bottom: 10px;
-        }
-        li:hover {
-          background-color: #113661;
-          cursor: pointer;
+          margin-bottom: 80px;
         }
         `}</style>
     </aside>
   )
 }
 
-export default Sidebar
+const mapStateToProps = (state) => ({
+  filters: state.offers.filters
+})
+
+const mapDispatchToProps = (disptach) => ({
+  setLanguage: (language) => disptach(setLanguages(language)) 
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

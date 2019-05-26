@@ -1,13 +1,13 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-// Import redicers here
+import offersReducer from './reducers/offers'
 
 const initialState = {
   // Initial store
 }
 
 const rootReducer = combineReducers({
-  // Reducers goes here
+   offers: offersReducer
 })
 
 export function initializeStore (state = initialState) {

@@ -1,6 +1,11 @@
 import * as actionTypes from './actionTypes'
 import axios from 'axios'
 
+export const setLanguages = (payload) => ({
+  type: actionTypes.SET_LANGUAGES,
+  payload
+})
+
 // const setTitle = (payload) => ({
 //   type: actionTypes.SET_TITLE,
 //   payload

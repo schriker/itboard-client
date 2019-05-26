@@ -14,15 +14,18 @@ const Layout = (props) => {
       <style  jsx>{`
         .wrapper {
           display: grid;
-          min-height: 100vh;
           grid-template-areas: "header header"
           "sidebar main";
-          grid-template-columns: 280px 1fr;
+          grid-template-columns: min-content 1fr;
           grid-template-rows: 70px auto;
         }  
         main {
           width: 100%;
+          flex-wrap: wrap;
           grid-area: main;
+          display: flex;
+          justify-content: ${props.withSidebar ? 'start' : 'center'};
+          align-items: start;
         }
       `}</style>
     </div>

@@ -21,7 +21,7 @@ const Menu = ({ router }) => {
       href: '/faq'
     },
     {
-      text: 'Facebook',
+      text: <i className="fab fa-facebook-f"></i>,
       href: '/facebook'
     }
   ]
@@ -48,6 +48,8 @@ const Menu = ({ router }) => {
           color: #a8b0bd;
           padding-bottom: 5px;
           margin-right: 22px;
+          border-bottom: 2px solid transparent;
+          transition: all .2s ease-in-out;
         }
         a:hover,
         .active {
