@@ -3,17 +3,28 @@ import * as Yup from 'yup'
 import Link from 'next/link'
 import { connect } from 'react-redux'
 import { userLogin } from '../../store/actions/index'
+import ErrorWrapper from '../ui/ErrorWrapper'
 
-const LoginForm = ({ errors, touched }) => {
+const LoginForm = ({ values, errors, touched, auth }) => {
+  const errorsArray = Object.values(errors)
+  if (auth.authFailed) {
+    errorsArray.push(auth.authErr)
+  }
   return (
     <div className="white-box wrapper">
+      <div className="errors">
+        {errorsArray.map((error, index) => {
+            return <ErrorWrapper key={index}>{error}</ErrorWrapper>
+          }
+        )}
+      </div>
       <Form>
         <div className="input-row">
-          <Field className={errors.email && touched.email ? 'with-error' : touched.email ? 'touched' : null} id="email" type="email" name="email" />
+          <Field className={errors.email && touched.email ? 'with-error' : values.email !== '' ? 'touched' : touched.email ? 'touched' : null} id="email" type="email" name="email" />
           <label htmlFor="email">Email</label>
         </div>
         <div className="input-row">
-          <Field className={errors.password && touched.password ? 'with-error' : touched.password ? 'touched' : null} id="password" type="password" name="password" />
+          <Field className={errors.password && touched.password ? 'with-error' : values.password !== '' ? 'touched' : touched.password ? 'touched' : null} id="password" type="password" name="password" />
           <label htmlFor="password">Password</label>
         </div>
         <div className="links">
@@ -22,7 +33,9 @@ const LoginForm = ({ errors, touched }) => {
           </Link>
         </div>
         <div>
-          <button className="btn btn--blue btn--blue-white" type="submit">Login</button>
+          <button disabled={auth.isSending} className="btn btn--blue btn--blue-white" type="submit">
+            {auth.isSending ? "Wait" : "Login"}
+          </button>
         </div>
       </Form>
       <style jsx>{`
@@ -52,17 +65,17 @@ const formikOptions = {
   handleSubmit: (values, { props }) => {
     props.login(values)
   },
-  validateOnBlur: true,
+  validateOnBlur: false,
   validateOnChange: false,
   validationSchema
 }
 
 const mapStateToProps = (state) => ({
-
+  auth: state.auth
 })
 
 const mapDispatchToProps = (dispatch) => ({
   login: (values) => dispatch(userLogin(values))
 })
 
-export default connect(null, mapDispatchToProps)(withFormik(formikOptions)(LoginForm))
+export default connect(mapStateToProps, mapDispatchToProps)(withFormik(formikOptions)(LoginForm))

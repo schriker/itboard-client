@@ -32,4 +32,9 @@ const Layout = (props) => {
   )
 }
 
+Layout.getInitialProps = async ({ req }) => {
+    console.log(req.cookies)
+    return {}
+}
+
 export default Layout

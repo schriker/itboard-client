@@ -1,5 +1,6 @@
 const express = require('express')
 const next = require('next')
+const cookieParser = require('cookie-parser')
 
 const dev = process.env.NODE_ENV !== 'production'
 const port = process.env.PORT || 3000;
@@ -10,6 +11,7 @@ app
   .prepare()
   .then(() => {
     const server = express()
+    server.use(cookieParser())
 
     server.get('/', (req, res) => {
       const actualPage = '/index'

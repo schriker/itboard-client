@@ -5,11 +5,11 @@ import Layout from '../components/layout/Layout'
 
 class Index extends React.Component {
 
-  static async getInitialProps ({ reduxStore }) {
-    // Fecth offers here
-    // await reduxStore.dispatch(actions.fetchTitle())
-    return {}
-}
+//   static async getInitialProps ({ reduxStore }) {
+//     // Fecth offers here
+//     // await reduxStore.dispatch(actions.fetchTitle())
+//     return {}
+// }
 
   render() {
 

@@ -1,8 +1,18 @@
 import Link from 'next/link'
 import Logo from '../header/Logo'
 import Menu from '../header/Menu'
+import { connect } from 'react-redux'
 
-const Header = () => {
+const Header = (props) => {
+
+  let userButton = <Link href="/login">
+                        <a className="btn btn--blue"><i className="far fa-user"></i>Login</a>
+                    </Link>
+
+  if (props.auth.user) {
+    userButton = <a className="btn btn--blue"><i className="far fa-user"></i>User</a>
+  }
+
   return (
     <header>
       <Logo />
@@ -12,9 +22,7 @@ const Header = () => {
           <a className="btn btn--yellow">Create Offer</a>
         </Link>
         <span> - or - </span>
-        <Link href="/login">
-          <a className="btn btn--blue"><i className="far fa-user"></i>Login</a>
-        </Link>
+        {userButton}
       </div>
       <style jsx>{`
         header {
@@ -34,12 +42,13 @@ const Header = () => {
           white-space: nowrap;
           margin: 0 10px;
         }
-        i {
-          margin-right: 10px;
-        }
         `}</style>
     </header>
   )
 }
 
-export default Header
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps)(Header)

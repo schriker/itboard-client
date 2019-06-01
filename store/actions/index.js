@@ -3,5 +3,6 @@ export {
 } from './offers'
 
 export {
-  userLogin
+  userLogin,
+  onAuthStateChange
 } from './auth'

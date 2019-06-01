@@ -18,7 +18,7 @@ const SidebarItem = ({ isSelected, item, onClickHandler }) => {
           padding: 7px 20px 7px 50px;
           margin-bottom: 10px;
           user-select: none;
-          transition: all .2s ease-in-out;
+          transition: all .1s ease-in-out;
         }
         li:hover {
           background-color: #113661;

@@ -58,6 +58,9 @@ const Meta = (props) => {
           border: 2px solid #0766ee;
           background-color: transparent;
         }
+        .btn i {
+          margin-right: 10px;
+        }
         .btn--blue-white {
           padding: 6px 35px;
         }
@@ -70,6 +73,36 @@ const Meta = (props) => {
         }
         button, input {
           font-family: 'Montserrat', sans-serif;
+        }
+        button:disabled {
+          background-color: #c3c6d8;
+        }
+        button[disabled]:hover {
+          color: #f0f1f7;
+          border-color: transparent;
+          background-color: #c3c6d8;
+        }
+        button[disabled]:after {
+          position: absolute;
+          content: '';
+          animation: wait 2s ease infinite; 
+        }
+        @keyframes wait {
+          0% {
+            content: '';
+          }
+          25% {
+            content: '.';
+          }
+          50% {
+            content: '..';
+          }
+          75% {
+            content: '...'
+          }
+          100% {
+            content: ''
+          }
         }
         input {
           width: 100%;
@@ -112,12 +145,13 @@ const Meta = (props) => {
           top: 0;
           font-size: 12px;
         }
-        input:-webkit-autofill ~ label {
-          top: 0;
-          font-size: 12px;
-        }
         input:-webkit-autofill {
           box-shadow: 0 0 0 100px #f0f1f7 inset;
+        }
+        .errors {
+          color: #e61340;
+          margin-bottom: 20px;
+          line-height: 20px;
         }
       `}</style>
     </Fragment>
