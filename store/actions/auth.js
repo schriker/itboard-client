@@ -54,6 +54,13 @@ export const userLogin = ({ email, password }) => {
   }
 }
 
+export const userLogOut = () => {
+  Cookies.remove('payload_cookie')
+  return {
+    type: actionTypes.AUTH_LOGOUT
+  }
+}
+
 export const onAuthStateChange = (cookie, dispatch) => {
   return async dispatch => {
     await api({
@@ -64,6 +71,6 @@ export const onAuthStateChange = (cookie, dispatch) => {
       }
     })
     .then(user => dispatch(authSuccess(user.data)))
-    .catch(err => console.log(err.response))
+    .catch(err => console.log(err))
   }
 }

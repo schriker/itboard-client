@@ -3,17 +3,23 @@ import React from 'react'
 import withReduxStore from '../lib/with-redux-store'
 import { Provider } from 'react-redux'
 import * as actions from '../store/actions/index'
+import Cookies from 'js-cookie'
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {}
-    const { reduxStore, req } = ctx
+    const { reduxStore, req, pathname } = ctx
+    const isServer = typeof window === 'undefined'
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx)
     }
 
-    if (typeof window === 'undefined' && req.cookies.session_cookie && req.cookies.payload_cookie) {
+    if (!isServer) {
+      Cookies.set('previousUrl', window.location.href, {path: '/'})
+    }
+
+    if (isServer && req.cookies.session_cookie && req.cookies.payload_cookie) {
       await reduxStore.dispatch(actions.onAuthStateChange(req.headers.cookie))
     }
 

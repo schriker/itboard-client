@@ -18,9 +18,9 @@ app
       app.render(req, res, actualPage)
     })
 
-    server.get('/offer/:id', (req, res) => {
+    server.get('/offer', (req, res) => {
       const actualPage = '/offer'
-      const queryParams = { id: req.params.id }
+      const queryParams = { id: req.query.id }
       app.render(req, res, actualPage, queryParams)
     })
 

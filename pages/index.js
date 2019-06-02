@@ -21,7 +21,7 @@ class Index extends React.Component {
 
     return (
       <Layout { ...layoutSetings }>
-        <Link as="/offer/2" href="/offer?id=2"><a>Offer pages</a></Link>
+        <Link href="/offer?id=2"><a>Offer pages</a></Link>
         Test
       </Layout>
     )

@@ -23,7 +23,7 @@ const Meta = (props) => {
         a {
           text-decoration: none;
           color: #818181;
-          transition: all .2s ease-in-out;
+          transition: all .1s ease-in-out;
         }
         a:hover {
           color: #0069ff;
@@ -35,7 +35,7 @@ const Meta = (props) => {
           padding: 6px 25px;
           white-space: nowrap;
           border: 2px solid transparent;
-          transition: all .2s ease-in-out;
+          transition: all .1s ease-in-out;
         }
         .btn:hover {
           cursor: pointer;
@@ -112,7 +112,7 @@ const Meta = (props) => {
           background-color: #f0f1f7;
           border: 1px solid #c3c6d8;
           border-bottom: 5px solid #c3c6d8;
-          transition: all .2s ease-in-out; 
+          transition: all .1s ease-in-out; 
           outline: none;
         }
         input:focus {
@@ -135,7 +135,7 @@ const Meta = (props) => {
           top: 50%;
           transform: translate(0, -50%);
           position: absolute;
-          transition: all .2s ease-in-out;
+          transition: all .1s ease-in-out;
           user-select: none;
           cursor: text;
         }
@@ -152,6 +152,13 @@ const Meta = (props) => {
           color: #e61340;
           margin-bottom: 20px;
           line-height: 20px;
+        }
+        .arrow-up {
+          width: 0; 
+          height: 0; 
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-bottom: 5px solid #f0f1f7;
         }
       `}</style>
     </Fragment>

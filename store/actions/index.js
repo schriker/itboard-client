@@ -4,5 +4,6 @@ export {
 
 export {
   userLogin,
-  onAuthStateChange
+  onAuthStateChange,
+  userLogOut
 } from './auth'

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Logo from '../header/Logo'
 import Menu from '../header/Menu'
+import UserDropdown from '../header/UserDropdown'
 import { connect } from 'react-redux'
 
 const Header = (props) => {
@@ -10,7 +11,7 @@ const Header = (props) => {
                     </Link>
 
   if (props.auth.user) {
-    userButton = <a className="btn btn--blue"><i className="far fa-user"></i>User</a>
+    userButton = <UserDropdown />
   }
 
   return (
