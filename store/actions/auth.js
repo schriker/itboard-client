@@ -55,9 +55,7 @@ export const userLogin = ({ email, password }) => {
 }
 
 export const userLogOut = () => {
-  const test = Cookies.get('payload_cookie')
-  console.log(test)
-  Cookies.remove('payload_cookie', {domain: '.janusmarcin.pl'})
+  Cookies.remove('payload_cookie', {domain: process.env.NODE_ENV === 'development' ? 'localhost' : '.janusmarcin.pl'})
   return {
     type: actionTypes.AUTH_LOGOUT
   }
