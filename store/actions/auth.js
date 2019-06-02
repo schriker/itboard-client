@@ -55,6 +55,8 @@ export const userLogin = ({ email, password }) => {
 }
 
 export const userLogOut = () => {
+  const test = Cookies.get('payload_cookie')
+  console.log(test)
   Cookies.remove('payload_cookie')
   return {
     type: actionTypes.AUTH_LOGOUT
