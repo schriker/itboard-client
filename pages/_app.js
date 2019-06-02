@@ -8,7 +8,7 @@ import Cookies from 'js-cookie'
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {}
-    const { reduxStore, req, pathname } = ctx
+    const { reduxStore, req } = ctx
     const isServer = typeof window === 'undefined'
 
     if (Component.getInitialProps) {
@@ -16,7 +16,7 @@ class MyApp extends App {
     }
 
     if (!isServer) {
-      Cookies.set('previousUrl', window.location.href, {path: '/'})
+      Cookies.set('previous_url', window.location.href, {path: '/'})
     }
 
     if (isServer && req.cookies.session_cookie && req.cookies.payload_cookie) {

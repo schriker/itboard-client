@@ -61,7 +61,7 @@ export const userLogOut = () => {
   }
 }
 
-export const onAuthStateChange = (cookie, dispatch) => {
+export const onAuthStateChange = (cookie) => {
   return async dispatch => {
     await api({
       method: 'post',

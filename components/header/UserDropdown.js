@@ -35,23 +35,33 @@ const UserDropdown = (props) => {
           position: absolute;
           left: 50%;
           top: 8px;
-          transfrom: translate(-50%, 0);
+          transform: translate(-50%, 0);
         }
         div ul {
           top: 13px;
-          width: 100%;
+          left: 50%;
+          transform: translate(-50%, 0);
           position: absolute;
           transition: all .1s ease-in-out;
           list-style: none;
-        }
-        div ul li {
-          border-bottom: 1px solid #c3c6d8;
+          border-radius: 5px;
         }
         div ul li a {
-          padding: 10px 18px;
+          padding: 10px 30px;
           display: block;
+          border-bottom: 1px solid #c3c6d8;
+        }
+        div ul li:first-child a{
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
+        }
+        div ul li:last-child a{
+          border-bottom-right-radius: 5px;
+          border-bottom-left-radius: 5px;
         }
         div ul li a:hover {
+          color: #818181;
+          background-color: #e5e6ef;
           cursor: pointer;
         }
         `}</style>

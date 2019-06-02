@@ -10,7 +10,7 @@ const Login = ({ auth }) => {
 
   useEffect(() => {
     if (auth.user) {
-      const prevUrl = Cookies.get('previousUrl')
+      const prevUrl = Cookies.get('previous_url')
       if (prevUrl && prevUrl !== `${window.location.origin}/login`) {
         Router.push(prevUrl)
       } else {
