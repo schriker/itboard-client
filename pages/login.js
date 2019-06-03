@@ -1,6 +1,7 @@
 import Layout from '../components/layout/Layout'
 import Logo from '../components/header/Logo'
 import LoginForm from '../components/loginForm/LoginForm'
+import Index from '../pages/index'
 import Router from 'next/router'
 import Cookies from 'js-cookie'
 import { connect } from 'react-redux'
@@ -25,17 +26,18 @@ const Login = ({ auth }) => {
     withSidebar: false
   }
 
-  let loginForm = <LoginForm />
+  let loginForm = 
+    <Layout {...layoutSettings}>
+      <Logo black />
+      <LoginForm />
+    </Layout>
 
   if (auth.user) {
-    loginForm = "You are logged in. Redirecting..."
+    loginForm = <Index />
   }
 
   return (
-    <Layout {...layoutSettings}>
-      <Logo black />
-      {loginForm}
-    </Layout>
+      loginForm
   )
 }
 

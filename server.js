@@ -29,6 +29,11 @@ app
       app.render(req, res, actualPage)
     })
 
+    server.get('/create-offer', (req, res) => {
+      const actualPage = '/create-offer'
+      app.render(req, res, actualPage)
+    })
+
     server.get('*', (req, res) => {
       return handle(req, res)
     })
