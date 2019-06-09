@@ -2,8 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Layout from '../components/layout/Layout'
 import Logo from '../components/header/Logo'
-import FormSteps from '../components/ui/FormSteps'
+import FormSteps from '../components/createOffer/FormSteps'
 import LoginForm from '../components/loginForm/LoginForm'
+import DetailsForm from '../components/createOffer/DetailsForm'
 
 class CreateOffer extends React.Component {
 
@@ -29,8 +30,8 @@ class CreateOffer extends React.Component {
 
     let content = <LoginForm />
 
-    if (this.state.currentStep > 1) {
-      content = "Form"
+    if (this.state.currentStep === 2) {
+      content = <DetailsForm />
     }
 
     return (

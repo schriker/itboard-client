@@ -47,6 +47,7 @@ const UserDropdown = (props) => {
           border-radius: 5px;
         }
         div ul li a {
+          color: #1f1f1f;
           padding: 10px 30px;
           display: block;
           border-bottom: 1px solid #c3c6d8;
@@ -60,7 +61,6 @@ const UserDropdown = (props) => {
           border-bottom-left-radius: 5px;
         }
         div ul li a:hover {
-          color: #818181;
           background-color: #e5e6ef;
           cursor: pointer;
         }

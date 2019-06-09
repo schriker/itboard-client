@@ -6,7 +6,7 @@ const FormSteps = ({ steps, currentStep }) => {
           <li className={index + 1 < currentStep ? 'active' : null} key={index}>
             <div>
               <span>
-                {index} 
+                {index + 1} 
               </span>
             </div>
             <span>
@@ -49,11 +49,13 @@ const FormSteps = ({ steps, currentStep }) => {
             font-size: 16px;
             text-align: center;
             border-bottom: 1px solid #f0f1f7;
+            transition: all .2s ease-in-out;
           }
           li div {
             padding: 7px;
             border: 1px solid #f0f1f7;
             border-radius: 50%;
+            transition: all .2s ease-in-out;
           }
           li div span {
             margin: 0;
@@ -68,6 +70,7 @@ const FormSteps = ({ steps, currentStep }) => {
             background-color: #f0f1f7;
             width: 40px;
             height: 40px;
+            transition: all .2s ease-in-out;
           }
           li.active span {
             color: #0069ff;
