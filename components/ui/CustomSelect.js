@@ -33,6 +33,12 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
     }
   }
 
+  let list = selectOptions.map((option, index) => <li aria-selected={inputValue === option} key={option} className={inputValue === option || index === cursor ? 'selected' : null} onMouseDown={() => handleSelect(option, index)}>{option}</li>)
+
+  if (selectOptions.length === 0) {
+    list = <li>No results.</li>
+  }
+
   return (
     <div className="input-row" ref={ref} aria-expanded={isOpen}>
       <input 
@@ -51,10 +57,28 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
         <i className={ isOpen ? 'fas fa-angle-down rotate' : 'fas fa-angle-down'}></i>
         <label htmlFor={field.name}>{placeholder}</label>
         <div className="dropdown">
-          <ul tabindex="-1">
-            {selectOptions.map((option, index) => <li aria-selected={inputValue === option} key={option} className={inputValue === option || index === cursor ? 'selected' : null} onMouseDown={() => handleSelect(option, index)}>{option}</li>)}
+          <ul className="select-list" tabIndex="-1">
+            { list }
           </ul>
         </div>
+        <style global jsx>{`
+        .select-list li {
+            color: #1f1f1f;
+            padding: 10px 15px;
+            list-style: none;
+            border-bottom: 1px solid #c3c6d8;
+          }
+          .selected {
+            background-color: #e5e6ef;  
+          }
+          .select-list li:last-child {
+            border-bottom: 0;
+          }
+          .select-list li:hover {
+            cursor: pointer;
+            background-color: #e5e6ef;  
+          }
+          `}</style>
         <style jsx>{`
           .input-row {
             position: relative;
@@ -63,12 +87,10 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
             background-color: #f0f1f7;
             z-index: 999;
             width: 100%;
-            margin-top: 5px;
             box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
-            border-radius: 5px;
             position: absolute;
             display: ${isOpen ? 'block' : 'none'};
-            overflow-y: scroll;
+            overflow-y: auto;
           }
           i {
             top: 50%;
@@ -79,27 +101,8 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
             transition: all .1s ease-in-out;
             transform: translate(0,-50%);
           }
-          input:hover {
-            cursor: default;
-          }
           .rotate {
             transform: translate(0,-50%) rotate(-180deg);
-          }
-          li {
-            color: #1f1f1f;
-            padding: 10px 15px;
-            list-style: none;
-            border-bottom: 1px solid #c3c6d8;
-          }
-          .selected {
-            background-color: #e5e6ef;  
-          }
-          li:last-child {
-            border-bottom: 0;
-          }
-          li:hover {
-            cursor: pointer;
-            background-color: #e5e6ef;  
           }
           `}</style>
     </div>

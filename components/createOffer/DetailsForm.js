@@ -3,6 +3,25 @@ import CustomSelect from '../ui/CustomSelect'
 import * as Yup from 'yup'
 
 const DetailsForm = ({ values, errors, touched }) => {
+
+  const experienceSelect = [
+    'Junior',
+    'Mid',
+    'Senior'
+  ]
+
+  const currencySelect = [
+    'PLN',
+    'USD',
+    'EUR'
+  ]
+
+  const contractSelect = [
+    'Permanent',
+    'B2B',
+    'Contract'
+  ]
+
   return (
     <div className="white-box wrapper">
       <Form>
@@ -13,12 +32,7 @@ const DetailsForm = ({ values, errors, touched }) => {
               <Field className={errors.position_name && touched.position_name ? 'with-error' : values.position_name !== '' ? 'touched' : touched.position_name ? 'touched' : null} id="position_name" type="text" name="position_name" />
               <label htmlFor="position_name">Position name</label>
             </div>
-        <Field name="select" component={CustomSelect} placeholder="Select..." options={["Opcja 1", "Opcja 2", "Opcja 23"]}/>
-
-            {/* <div className="input-row">
-              <Field className={errors.experience_level && touched.experience_level ? 'with-error' : values.experience_level !== '' ? 'touched' : touched.experience_level ? 'touched' : null} id="experience_level" type="text" name="experience_level" />
-              <label htmlFor="experience_level">Experience </label>
-            </div> */}
+            <Field name="experience_level" component={CustomSelect} placeholder="Experience" options={experienceSelect}/>
             <div className="input-row">
               <Field className={errors.salary_from && touched.salary_from ? 'with-error' : values.salary_from !== '' ? 'touched' : touched.salary_from ? 'touched' : null} id="salary_from" type="text" name="salary_from" />
               <label htmlFor="salary_from">Salary from</label>
@@ -27,14 +41,14 @@ const DetailsForm = ({ values, errors, touched }) => {
               <Field className={errors.salary_to && touched.salary_to ? 'with-error' : values.salary_to !== '' ? 'touched' : touched.salary_to ? 'touched' : null} id="salary_to" type="text" name="salary_to" />
               <label htmlFor="salary_to">Salary to</label>
             </div>
-            <div className="input-row">
-              <Field className={errors.salary_currency && touched.salary_currency ? 'with-error' : values.salary_currency !== '' ? 'touched' : touched.salary_currency ? 'touched' : null} id="salary_currency" type="text" name="salary_currency" />
-              <label htmlFor="salary_currency">Currency</label>
-            </div>
-            <div className="input-row">
-              <Field className={errors.contract_type && touched.contract_type ? 'with-error' : values.contract_type !== '' ? 'touched' : touched.contract_type ? 'touched' : null} id="contract_type" type="text" name="contract_type" />
-              <label htmlFor="contract_type">Contract type</label>
-            </div>
+            <Field name="salary_currency" component={CustomSelect} placeholder="Currency" options={currencySelect}/>
+            <Field name="contract_type" component={CustomSelect} placeholder="Contract type" options={contractSelect}/>
+          </div>
+        </div>
+        <div className="row">
+          <h3>Location</h3>
+          <div className="inputs">
+            
           </div>
         </div>
       </Form>
