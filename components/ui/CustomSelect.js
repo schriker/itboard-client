@@ -33,6 +33,11 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
     }
   }
 
+  const onFocusHandler = () => {
+    setIsOpen(true)
+    form.setFieldTouched(field.name, true)
+  }
+
   let list = selectOptions.map((option, index) => <li aria-selected={inputValue === option} key={option} className={inputValue === option || index === cursor ? 'selected' : null} onMouseDown={() => handleSelect(option, index)}>{option}</li>)
 
   if (selectOptions.length === 0) {
@@ -45,7 +50,7 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
           {...field}
           ref={inputRef}
           onMouseDown={() => setIsOpen(true)}
-          onFocus={() => setIsOpen(true)}
+          onFocus={() => onFocusHandler()}
           onBlur={() => setIsOpen(false)}
           onKeyDown={(event) => handleChange(event)}
           type="text"

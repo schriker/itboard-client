@@ -1,5 +1,6 @@
 import { withFormik, Form, Field } from 'formik'
 import CustomSelect from '../ui/CustomSelect'
+import LocationMap from '../createOffer/LocationMap'
 import * as Yup from 'yup'
 
 const DetailsForm = ({ values, errors, touched }) => {
@@ -47,9 +48,10 @@ const DetailsForm = ({ values, errors, touched }) => {
         </div>
         <div className="row">
           <h3>Location</h3>
-          <div className="inputs">
-            
-          </div>
+          <Field name="location" component={LocationMap} />
+        </div>
+        <div className="row">
+          <h3>Agreements</h3>
         </div>
       </Form>
       <style jsx>{`
@@ -93,7 +95,11 @@ const formikOptions = {
     salary_from: '',
     salary_to: '',
     salary_currency: '',
-    contract_type: ''
+    contract_type: '',
+    location: '',
+    address_components: [],
+    lat: 0,
+    lng: 0
   })
 }
 
