@@ -1,9 +1,12 @@
 import { withFormik, Form, Field } from 'formik'
 import CustomSelect from '../ui/CustomSelect'
 import LocationMap from '../createOffer/LocationMap'
+import ImageUpload from '../ui/ImageUpload'
+import { agreements } from '../../helpers/agreements'
+import { languagesArr } from '../../helpers/languages'
 import * as Yup from 'yup'
 
-const DetailsForm = ({ values, errors, touched }) => {
+const DetailsForm = ({ values, errors, touched, setFieldValue }) => {
 
   const experienceSelect = [
     'Junior',
@@ -23,9 +26,30 @@ const DetailsForm = ({ values, errors, touched }) => {
     'Contract'
   ]
 
+  const technologySelect = languagesArr.map((language) => language.name)
+
   return (
     <div className="white-box wrapper">
       <Form>
+        <div className="row">
+          <h3>General info</h3>
+          <div className="inputs">
+            <Field name="company_logo" component={ImageUpload}/>            
+            <div className="input-row">
+              <Field className={errors.company_name && touched.company_name ? 'with-error' : values.company_name !== '' ? 'touched' : touched.company_name ? 'touched' : null} id="company_name" type="text" name="company_name" />
+                <label htmlFor="company_name">Company</label>
+            </div>
+            <div className="input-row">
+              <Field className={errors.company_website && touched.company_website ? 'with-error' : values.company_website !== '' ? 'touched' : touched.company_website ? 'touched' : null} id="company_website" type="text" name="company_website" />
+                <label htmlFor="company_website">Website</label>
+            </div>
+            <div className="input-row">
+              <Field className={errors.company_size && touched.company_size ? 'with-error' : values.company_size !== '' ? 'touched' : touched.company_size ? 'touched' : null} id="company_size" type="text" name="company_size" />
+                <label htmlFor="company_size">Company size</label>
+            </div>
+            <Field name="technology" component={CustomSelect} placeholder="Technology" options={technologySelect}/>
+          </div>
+        </div>
         <div className="row">
           <h3>Position info</h3>
           <div className="inputs">
@@ -52,12 +76,25 @@ const DetailsForm = ({ values, errors, touched }) => {
         </div>
         <div className="row">
           <h3>Agreements</h3>
+          <div className="inputs agreements">
+            <div className="input-row">
+              <Field name="agreements" component="textarea" />
+            </div>
+            <div className="input-row">
+              <Field className={errors.apply_link && touched.apply_link ? 'with-error' : values.apply_link !== '' ? 'touched' : touched.apply_link ? 'touched' : null} id="apply_link" type="text" name="apply_link" />
+              <label htmlFor="apply_link">E-mail or link to aply</label>
+            </div>
+            <div className="checkbox-row">
+              <Field name="remote" id="remote" type="checkbox" />
+              <label htmlFor="remote">Fully remote?</label>
+            </div>
+            <div>
+              <button className="btn btn--blue btn--blue-white" type="submit">Done</button>
+            </div>
+          </div>
         </div>
       </Form>
       <style jsx>{`
-        .row {
-
-        }
         h3 {
           padding: 10px 20px;
           font-weight: 500;
@@ -70,13 +107,22 @@ const DetailsForm = ({ values, errors, touched }) => {
         .inputs {
           display: grid;
           padding: 40px 80px;
-          grid-template-columns: auto auto;
+          grid-template-columns: 1fr 1fr;
           grid-template-rows: auto;
           grid-column-gap: 40px;
           grid-row-gap: 10px;
         }
+        .checkbox-row {
+          align-self: center;
+          margin-bottom: 30px;
+        }
+        .agreements div:first-of-type {
+          grid-column: 1 / 3;
+        }
         .wrapper {
           flex: 0 1 935px;
+          margin-bottom: 150px;
+          padding-top: 30px;
         }
         `}</style>
     </div>
@@ -89,7 +135,11 @@ const validationSchema = Yup.object().shape({
 
 const formikOptions = {
   mapPropsToValues: () => ({
-    select: '',
+    company_name: '',
+    company_website: '',
+    company_size: '',
+    company_logo: null,
+    technology: '',
     position_name: '',
     experience_level: '',
     salary_from: '',
@@ -97,10 +147,16 @@ const formikOptions = {
     salary_currency: '',
     contract_type: '',
     location: '',
-    address_components: [],
-    lat: 0,
-    lng: 0
-  })
+    address_components: null,
+    lat: null,
+    lng: null,
+    agreements: agreements,
+    apply_link: '',
+    remote: false
+  }),
+  handleSubmit: (values) => {
+    console.log(values)
+  }
 }
 
 const mapStateToProps = (state) => ({

@@ -47,6 +47,7 @@ const LocationMap = ({ form, field }) => {
       }
       marker.setPosition(place.geometry.location)
       marker.setVisible(true)
+      map.setCenter(marker.getPosition());
 
       form.setFieldValue('address_components', place.address_components)
       form.setFieldValue('lat', place.geometry.location.lat())
@@ -87,12 +88,7 @@ const LocationMap = ({ form, field }) => {
           height: 100%;
         }
         .inputs {
-          display: grid;
           padding: 40px 80px;
-          grid-template-columns: 1fr;
-          grid-template-rows: auto;
-          grid-column-gap: 40px;
-          grid-row-gap: 10px;
         }
         .window-content {
           display: none;

@@ -104,9 +104,9 @@ const Meta = (props) => {
             content: ''
           }
         }
-        input {
+        input, 
+        textarea {
           width: 100%;
-          color: #1f1f1f;
           font-size 14px;
           padding: 15px 25px;
           background-color: #f0f1f7;
@@ -114,6 +114,87 @@ const Meta = (props) => {
           border-bottom: 5px solid #c3c6d8;
           transition: all .1s ease-in-out; 
           outline: none;
+        }
+        input[type="file"] {
+          opacity: 0;
+          width: 100%;
+          height: 250px;
+          position: absolute;
+          z-index: 2;
+        }
+        input[type="file"] + div {
+          color: #1f1f1f;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          z-index: 1;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 250px;
+          background-color: #dadce7;
+        }
+        input[type="file"] + div span {
+          font-size: 14px;
+          margin-top: 5px;
+        }
+        input[type="file"] + div img {
+          width: 100%;
+          height: auto;
+        }
+        input[type="file"] + div i {
+          font-size: 72px;
+          color: #f0f1f7;
+        }
+        input[type="checkbox"] {
+          display: none;
+          width: auto;
+        }
+
+        input[type="checkbox"] + label {
+          position: relative;
+          padding-left: 30px;
+        }
+
+        input[type="checkbox"] + label:hover {
+          cursor: pointer;
+          user-select: none;
+        }
+
+        input[type="checkbox"] + label::before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          content: '';
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          border: 1px solid #dadce7;
+        }
+        input[type="checkbox"] + label::after {
+          position: absolute;
+          opacity: 0;
+          left: 4px;
+          top: 50%;
+          transform: translate(0, -50%);
+          content: '';
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          background-color: #0069ff;
+          transition: all .1s ease-in-out; 
+        }
+        input[type="checkbox"]:checked + label::after {
+          opacity: 1;
+        }
+        textarea {
+          color: #818181;
+          font-size: 14px;
+          line-height: 20px;
+          height: 350px;
+          font-family: 'Montserrat', sans-serif;
         }
         input:focus {
           border-color: #0069ff;

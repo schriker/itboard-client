@@ -38,7 +38,7 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
     form.setFieldTouched(field.name, true)
   }
 
-  let list = selectOptions.map((option, index) => <li aria-selected={inputValue === option} key={option} className={inputValue === option || index === cursor ? 'selected' : null} onMouseDown={() => handleSelect(option, index)}>{option}</li>)
+  let list = selectOptions.map((option, index) => <li aria-selected={inputValue === option} key={option} className={inputValue === option ? 'selected' : null} onMouseDown={() => handleSelect(option, index)}>{option}</li>)
 
   if (selectOptions.length === 0) {
     list = <li>No results.</li>
@@ -92,6 +92,7 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
             background-color: #f0f1f7;
             z-index: 999;
             width: 100%;
+            max-height: 200px;
             box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
             position: absolute;
             display: ${isOpen ? 'block' : 'none'};
