@@ -31,6 +31,7 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
       setSelectOptions(filterOptions)
       setInputValue(value)
     }
+    form.validateField(field.name)
   }
 
   const onFocusHandler = () => {

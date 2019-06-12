@@ -1,7 +1,6 @@
 import { useEffect, useState, Fragment } from 'react'
 
 const ImageUpload = ({ field, form }) => {
-  console.log(form)
   const [thumb, setThumb] = useState(undefined)
 
   useEffect(() => {
