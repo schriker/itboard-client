@@ -7,7 +7,8 @@ const initialState = {
     level: null,
     stack: null,
     salary: null
-  }
+  },
+  newOffer: {}
 }
 
 const reducer = (state = initialState, action) => {
@@ -19,6 +20,12 @@ const reducer = (state = initialState, action) => {
           ...state.filters,
           language: action.payload
         }
+      }
+    }
+    case actionTypes.NEW_OFFER_DETAILS: {
+      return {
+        ...state,
+        newOffer: action.payload
       }
     }
     default: return state

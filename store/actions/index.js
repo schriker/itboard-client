@@ -1,5 +1,6 @@
 export {
-  setLanguages
+  setLanguages,
+  newOfferDetials
 } from './offers'
 
 export {

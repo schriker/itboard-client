@@ -25,8 +25,6 @@ const Sidebar = (props) => {
   return (
     <aside>
       <i className="far fa-file-code"></i>
-      {/* Icons are slow render in FF temp solution to hide thath cross being loaded */}
-      <i className="fas fa-times hide"></i>
       <ul>
         {languages.map(item => {
           const isSelected = props.filters.language.includes(item.name.toLowerCase())

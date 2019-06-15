@@ -6,6 +6,7 @@ const Meta = (props) => {
     <Fragment>
       <Head>
         <title>{props.pageTitle || `ITBoard - Jobs Offers`}</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossOrigin="anonymous"></link>
       </Head>
 
       <style jsx global>{`
@@ -136,6 +137,10 @@ const Meta = (props) => {
           height: 250px;
           background-color: #dadce7;
         }
+        input[type="file"].with-error + div {
+          color: white;
+          background-color: #e61340;
+        }
         input[type="file"] + div span {
           font-size: 14px;
           margin-top: 5px;
@@ -200,7 +205,8 @@ const Meta = (props) => {
           border-color: #0069ff;
         }
         input.with-error,
-        input:invalid {
+        input:invalid,
+        textarea.with-error {
           outline: 0;
           box-shadow: none;
           border-color: #e61340;

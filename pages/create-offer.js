@@ -9,7 +9,8 @@ import DetailsForm from '../components/createOffer/DetailsForm'
 class CreateOffer extends React.Component {
 
   state = {
-    currentStep: !this.props.auth.user ? 1 : 2
+    currentStep: !this.props.auth.user ? 1 : 2,
+    offer: {}
   }
 
   componentDidUpdate(prevProps) {
@@ -31,7 +32,11 @@ class CreateOffer extends React.Component {
     let content = <LoginForm />
 
     if (this.state.currentStep === 2) {
-      content = <DetailsForm />
+      content = <DetailsForm submitOffer={() => this.setState({currentStep: 3})} />
+    }
+
+    if (this.state.currentStep === 3) {
+      content = <div>Test</div>
     }
 
     return (

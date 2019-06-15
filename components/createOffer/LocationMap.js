@@ -7,7 +7,9 @@ const LocationMap = ({ form, field }) => {
   const inputRef = useRef()
 
   useEffect(() => {
-    initMap()
+    if (window.google) {
+      initMap()
+    }
   },[])
 
   const initMap = () => {

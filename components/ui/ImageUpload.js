@@ -21,12 +21,12 @@ const ImageUpload = ({ field, form }) => {
                     </Fragment>
 
   if (thumb) {
-  thumbContent = <img src={thumb} alt="Company Logo"/>
+    thumbContent = <img src={thumb} alt="Company Logo"/>
   }
 
   return (
   <div className="file-input">
-    <input className={form.errors[field.name] && form.touched[field.name] ? 'with-error' : form.values[field.name] !== '' ? 'touched' : form.touched[field.name] ? 'touched' : null} id={field.name} name={field.name} type="file" onChange={(event) => {
+    <input accept="image/png, image/jpeg" className={form.errors[field.name] && form.touched[field.name] ? 'with-error' : form.values[field.name] !== '' ? 'touched' : form.touched[field.name] ? 'touched' : null} id={field.name} name={field.name} type="file" onChange={(event) => {
       form.setFieldValue(field.name, event.currentTarget.files[0]);
     }} />
     <div>

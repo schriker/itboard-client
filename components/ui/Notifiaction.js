@@ -1,13 +1,4 @@
-// import { useState, useEffect } from 'react'
-
-const Notification = ({ open, close, type, children }) => {
-
-  // const [open, setOpen] = useState(false)
-
-  // useEffect(() => {
-  //   let timeOut = window.setTimeout(() => setOpen(true))
-  //   return () => window.clearTimeout(timeOut)
-  // }, [])
+const Notification = ({ close, type, children }) => {
 
   return (
     <div className={`wrapper white-box notification ${type}`}>

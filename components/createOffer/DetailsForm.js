@@ -1,6 +1,9 @@
 import { withFormik, Form, Field } from 'formik'
 import { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { newOfferDetials } from '../../store/actions/index'
 import CustomSelect from '../ui/CustomSelect'
+import CustomInput from './CustomInput'
 import LocationMap from '../createOffer/LocationMap'
 import ImageUpload from '../ui/ImageUpload'
 import Notification from '../ui/Notifiaction'
@@ -40,7 +43,7 @@ const DetailsForm = ({ values, errors, touched }) => {
     }
   }, [errors])
 
-  const errorsArray = Object.values(errors)
+  const errorsArray = [...new Set(Object.values(errors))]
 
   return (
     <div className="white-box wrapper">
@@ -57,11 +60,12 @@ const DetailsForm = ({ values, errors, touched }) => {
         <div className="row">
           <h3>General info</h3>
           <div className="inputs">
-            <Field name="company_logo" component={ImageUpload}/>            
-            <div className="input-row">
+            <Field name="company_logo" component={ImageUpload}/> 
+            <Field name="company_name" component={CustomInput} placeholder="Company"/>   
+            {/* <div className="input-row">
               <Field className={errors.company_name && touched.company_name ? 'with-error' : values.company_name !== '' ? 'touched' : touched.company_name ? 'touched' : null} id="company_name" type="text" name="company_name" />
                 <label htmlFor="company_name">Company</label>
-            </div>
+            </div> */}
             <div className="input-row">
               <Field className={errors.company_website && touched.company_website ? 'with-error' : values.company_website !== '' ? 'touched' : touched.company_website ? 'touched' : null} id="company_website" type="text" name="company_website" />
                 <label htmlFor="company_website">Website</label>
@@ -101,7 +105,7 @@ const DetailsForm = ({ values, errors, touched }) => {
           <h3>Agreements</h3>
           <div className="inputs agreements">
             <div className="input-row">
-              <Field name="agreements" component="textarea" />
+              <Field className={errors.agreements && touched.agreements ? 'with-error' : values.agreements !== '' ? 'touched' : touched.agreements ? 'touched' : null} name="agreements" component="textarea" />
             </div>
             <div className="input-row">
               <Field className={errors.apply_link && touched.apply_link ? 'with-error' : values.apply_link !== '' ? 'touched' : touched.apply_link ? 'touched' : null} id="apply_link" type="text" name="apply_link" />
@@ -193,20 +197,17 @@ const formikOptions = {
     apply_link: '',
     remote: false
   }),
-  handleSubmit: (values) => {
-    console.log(values)
+  handleSubmit: (values, { props }) => {
+    props.newOfferDetails(values)
+    props.submitOffer()
   },
   validateOnBlur: false,
   validateOnChange: false,
   validationSchema
 }
 
-const mapStateToProps = (state) => ({
-  auth: state.auth
-})
-
 const mapDispatchToProps = (dispatch) => ({
-  login: (values) => dispatch(userLogin(values))
+  newOfferDetails: (values) => dispatch(newOfferDetials(values))
 })
 
-export default withFormik(formikOptions)(DetailsForm)
+export default connect(null, mapDispatchToProps)(withFormik(formikOptions)(DetailsForm))

@@ -5,6 +5,11 @@ export const setLanguages = (payload) => ({
   payload
 })
 
+export const newOfferDetials = (payload) => ({
+  type: actionTypes.NEW_OFFER_DETAILS,
+  payload
+})
+
 // const setTitle = (payload) => ({
 //   type: actionTypes.SET_TITLE,
 //   payload

@@ -14,9 +14,8 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,500,600&display=swap' rel='stylesheet' /> 
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossOrigin="anonymous"></link>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvaXqB12NxSUnXqC22jDpJ-fyxNNeNWc8&libraries=places"
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,500,600&display=swap' rel='stylesheet' />
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvaXqB12NxSUnXqC22jDpJ-fyxNNeNWc8&language=en&libraries=places"
   type="text/javascript"></script>
         </Head>
         <body>
