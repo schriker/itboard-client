@@ -8,33 +8,38 @@ const Logo = (props) => {
         <a className={props.black ? 'black' : null}>
           <LogoSVG />
           <span>Board</span>
-          <style jsx>{`
-          a {
-            display: flex;
-            flex: 0 1 250px;
-            align-items: center;
-            margin-right: 22px;
-            color: #f0f1f7;
-            font-weight: 600;
-            font-size: 24px;
-          }
-          a:hover {
-            color: #f0f1f7;
-          }
-          span {
-            margin-left: 8px;
-          }
-          .black {
-            flex: 1 0 100%;
-            margin: 70px 0;
-            justify-content: center;
-          }
-          .black span {
-            color: #1f1f1f;
-          }
-          `}</style>
         </a>
       </Link>
+        <style jsx>{`
+        div {
+            width: ${props.black ? '100%' : 'auto'} ;
+            display: flex;
+            justify-content: center;
+        }
+        a {
+          display: flex;
+          flex: 0 1 250px;
+          align-items: center;
+          margin-right: 22px;
+          color: #f0f1f7;
+          font-weight: 600;
+          font-size: 24px;
+        }
+        a:hover {
+          color: #f0f1f7;
+        }
+        span {
+          margin-left: 8px;
+        }
+        .black {
+          flex: 0 1 200px;
+          margin: 70px 0;
+          justify-content: center;
+        }
+        .black span {
+          color: #1f1f1f;
+        }
+        `}</style>
     </div>
   )
 }

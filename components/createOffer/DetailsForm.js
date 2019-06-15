@@ -9,7 +9,7 @@ import ImageUpload from '../ui/ImageUpload'
 import Notification from '../ui/Notifiaction'
 import { agreements } from '../../helpers/agreements'
 import { languagesArr } from '../../helpers/languages'
-import * as Yup from 'yup'
+import validationSchema from './validationSchema'
 
 const technologySelect = languagesArr.map((language) => language.name)
 
@@ -62,37 +62,18 @@ const DetailsForm = ({ values, errors, touched }) => {
           <div className="inputs">
             <Field name="company_logo" component={ImageUpload}/> 
             <Field name="company_name" component={CustomInput} placeholder="Company"/>   
-            {/* <div className="input-row">
-              <Field className={errors.company_name && touched.company_name ? 'with-error' : values.company_name !== '' ? 'touched' : touched.company_name ? 'touched' : null} id="company_name" type="text" name="company_name" />
-                <label htmlFor="company_name">Company</label>
-            </div> */}
-            <div className="input-row">
-              <Field className={errors.company_website && touched.company_website ? 'with-error' : values.company_website !== '' ? 'touched' : touched.company_website ? 'touched' : null} id="company_website" type="text" name="company_website" />
-                <label htmlFor="company_website">Website</label>
-            </div>
-            <div className="input-row">
-              <Field className={errors.company_size && touched.company_size ? 'with-error' : values.company_size !== '' ? 'touched' : touched.company_size ? 'touched' : null} id="company_size" type="text" name="company_size" />
-                <label htmlFor="company_size">Company size</label>
-            </div>
+            <Field name="company_website" component={CustomInput} placeholder="Website"/>   
+            <Field name="company_size" component={CustomInput} placeholder="Company size"/>             
             <Field name="technology" component={CustomSelect} placeholder="Technology" options={technologySelect}/>
           </div>
         </div>
         <div className="row">
           <h3>Position info</h3>
           <div className="inputs">
-            <div className="input-row">
-              <Field className={errors.position_name && touched.position_name ? 'with-error' : values.position_name !== '' ? 'touched' : touched.position_name ? 'touched' : null} id="position_name" type="text" name="position_name" />
-              <label htmlFor="position_name">Position name</label>
-            </div>
+            <Field name="position_name" component={CustomInput} placeholder="Position name"/>   
             <Field name="experience_level" component={CustomSelect} placeholder="Experience" options={experienceSelect}/>
-            <div className="input-row">
-              <Field className={errors.salary_from && touched.salary_from ? 'with-error' : values.salary_from !== '' ? 'touched' : touched.salary_from ? 'touched' : null} id="salary_from" type="text" name="salary_from" />
-              <label htmlFor="salary_from">Salary from</label>
-            </div>
-            <div className="input-row">
-              <Field className={errors.salary_to && touched.salary_to ? 'with-error' : values.salary_to !== '' ? 'touched' : touched.salary_to ? 'touched' : null} id="salary_to" type="text" name="salary_to" />
-              <label htmlFor="salary_to">Salary to</label>
-            </div>
+            <Field name="salary_from" component={CustomInput} placeholder="Salary from"/>   
+            <Field name="salary_to" component={CustomInput} placeholder="Salary to"/>   
             <Field name="salary_currency" component={CustomSelect} placeholder="Currency" options={currencySelect}/>
             <Field name="contract_type" component={CustomSelect} placeholder="Contract type" options={contractSelect}/>
           </div>
@@ -107,10 +88,7 @@ const DetailsForm = ({ values, errors, touched }) => {
             <div className="input-row">
               <Field className={errors.agreements && touched.agreements ? 'with-error' : values.agreements !== '' ? 'touched' : touched.agreements ? 'touched' : null} name="agreements" component="textarea" />
             </div>
-            <div className="input-row">
-              <Field className={errors.apply_link && touched.apply_link ? 'with-error' : values.apply_link !== '' ? 'touched' : touched.apply_link ? 'touched' : null} id="apply_link" type="text" name="apply_link" />
-              <label htmlFor="apply_link">E-mail or link to aply</label>
-            </div>
+            <Field name="apply_link" component={CustomInput} placeholder="E-mail or link to aply"/>   
             <div className="checkbox-row">
               <Field name="remote" id="remote" type="checkbox" />
               <label htmlFor="remote">Fully remote?</label>
@@ -155,27 +133,6 @@ const DetailsForm = ({ values, errors, touched }) => {
   )
 }
 
-const validationSchema = Yup.object().shape({
-  company_name: Yup.string().required('Company name is required.'),
-  company_website: Yup.string().url('Provide correct url ex. https://google.com').required('Company website is required.'),
-  company_size: Yup.number('Company size must be a number.').positive('Only positive numbers as company szie.').integer('Company size must be an integer.').required('Company size is required.'),
-  company_logo: Yup.mixed().required('Logo is required.'),
-  technology: Yup.mixed().oneOf(technologySelect, 'Technology must be one from available values.').required('Technology is required.'),
-  position_name: Yup.string().required('Position name is required.'),
-  experience_level: Yup.mixed().oneOf(experienceSelect, 'Experience must be one from available values.').required('Experience level is required.'),
-  salary_from: Yup.number('Salary must be a number.').positive('Salary must be positive.').integer('Salary must be an integer.').required('Salary is required.'),
-  salary_to: Yup.number('Salary must be a number.').positive('Salary must be positive.').integer('Salary must be an integer.').required('Salary is required.'),
-  salary_currency: Yup.mixed().oneOf(currencySelect, 'Currency must be one from available values.').required('Currency is required.'),
-  contract_type: Yup.mixed().oneOf(contractSelect, 'Contract must be one from available values.').required('Contract type is required.'),
-  location: Yup.string().required('Location is required.'),
-  address_components: Yup.array().required('Location is required.'),
-  lat: Yup.number().required('Location is required.'),
-  lng: Yup.number().required('Location is required.'),
-  agreements: Yup.string().required('Agreements field is required.'),
-  apply_link: Yup.string().matches(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))|((https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}))$/, 'Pleas provide correct email or url ex. https://google.com to apply.').required('Pleas provide correct email or url ex. https://google.com to apply.'),
-  remote: Yup.boolean()
-})
-
 const formikOptions = {
   mapPropsToValues: () => ({
     company_name: '',
@@ -198,6 +155,7 @@ const formikOptions = {
     remote: false
   }),
   handleSubmit: (values, { props }) => {
+    console.log(values)
     props.newOfferDetails(values)
     props.submitOffer()
   },
