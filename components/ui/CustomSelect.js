@@ -8,6 +8,7 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
   const [cursor, setCursor] = useState(0)
   const { ref, isOpen, setIsOpen } = useDropdown(false) 
   const inputRef = useRef()
+  const dropdownRef = useRef()
 
   const handleSelect = (value, index) => {
       form.setFieldValue(field.name, value)
@@ -20,18 +21,21 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
     const value = event.target.value
 
     if (event.keyCode === 13 && isOpen) {
+      event.preventDefault()
       handleSelect(selectOptions[cursor], 0)
     } else if (event.keyCode === 38 && cursor > 0 && isOpen) {
+      dropdownRef.current.scrollTop = dropdownRef.current.scrollTop - 30
       setCursor(cursor - 1)
     } else if (event.keyCode === 40 && cursor < selectOptions.length - 1 && isOpen) {
+      dropdownRef.current.scrollTop = dropdownRef.current.scrollTop + 30
       setCursor(cursor + 1)
     } else {
       const filterOptions = options.filter(option => option.toLowerCase().includes(value.toLowerCase()))
       setIsOpen(true)
       setSelectOptions(filterOptions)
       setInputValue(value)
+      form.setFieldValue(field.name, value)
     }
-    form.validateField(field.name)
   }
 
   const onFocusHandler = () => {
@@ -39,7 +43,7 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
     form.setFieldTouched(field.name, true)
   }
 
-  let list = selectOptions.map((option, index) => <li aria-selected={inputValue === option} key={option} className={inputValue === option ? 'selected' : null} onMouseDown={() => handleSelect(option, index)}>{option}</li>)
+  let list = selectOptions.map((option, index) => <li aria-selected={inputValue === option} key={option} className={inputValue === option || index === cursor ? 'selected' : null} onMouseDown={() => handleSelect(option, index)}>{option}</li>)
 
   if (selectOptions.length === 0) {
     list = <li>No results.</li>
@@ -58,11 +62,12 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
           value={inputValue}
           id={field.name} 
           name={field.name}
+          autoComplete="off"
           onChange={(event) => handleChange(event)}
           className={form.errors[field.name] && form.touched[field.name] ? 'with-error' : form.values[field.name] !== '' ? 'touched' : form.touched[field.name] ? 'touched' : null} />
         <i className={ isOpen ? 'fas fa-angle-down rotate' : 'fas fa-angle-down'}></i>
         <label htmlFor={field.name}>{placeholder}</label>
-        <div className="dropdown">
+        <div ref={dropdownRef} className="dropdown">
           <ul className="select-list" tabIndex="-1">
             { list }
           </ul>
@@ -93,7 +98,7 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
             background-color: #f0f1f7;
             z-index: 999;
             width: 100%;
-            max-height: 200px;
+            max-height: 232px;
             box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
             position: absolute;
             display: ${isOpen ? 'block' : 'none'};

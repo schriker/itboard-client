@@ -241,6 +241,18 @@ const Meta = (props) => {
           border-right: 5px solid transparent;
           border-bottom: 5px solid #f0f1f7;
         }
+        .notification {
+          z-index: 3;
+        }
+        .notification p {
+          font-size: 16px;
+        }
+        .notification ul {
+          margin: 10px 0 5px 25px;
+        }
+        .notification ul li {
+          margin: 5px 0;
+        }
       `}</style>
     </Fragment>
   )

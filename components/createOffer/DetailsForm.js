@@ -1,7 +1,9 @@
 import { withFormik, Form, Field } from 'formik'
+import { useState, useEffect } from 'react'
 import CustomSelect from '../ui/CustomSelect'
 import LocationMap from '../createOffer/LocationMap'
 import ImageUpload from '../ui/ImageUpload'
+import Notification from '../ui/Notifiaction'
 import { agreements } from '../../helpers/agreements'
 import { languagesArr } from '../../helpers/languages'
 import * as Yup from 'yup'
@@ -26,10 +28,31 @@ const contractSelect = [
   'Contract'
 ]
 
-const DetailsForm = ({ values, errors, touched, setFieldValue }) => {
+const DetailsForm = ({ values, errors, touched }) => {
+
+  const [withErrors, setWithErrors] = useState(false)
+
+  useEffect(() => {
+    if (errorsArray.length > 0) {
+      setWithErrors(true)
+    } else if (withErrors) {
+      setWithErrors(false)
+    }
+  }, [errors])
+
+  const errorsArray = Object.values(errors)
 
   return (
     <div className="white-box wrapper">
+    {withErrors && <Notification type="error" close={() => setWithErrors(false)}>
+      <p>Something went wrong :(</p>
+      <ul>
+        {errorsArray.map((error, index) => {
+            return <li key={index}>{error}</li>
+          }
+        )}
+      </ul>
+    </Notification>}
       <Form>
         <div className="row">
           <h3>General info</h3>
@@ -122,7 +145,6 @@ const DetailsForm = ({ values, errors, touched, setFieldValue }) => {
         .wrapper {
           flex: 0 1 935px;
           margin-bottom: 150px;
-          padding-top: 30px;
         }
         `}</style>
     </div>
@@ -130,23 +152,23 @@ const DetailsForm = ({ values, errors, touched, setFieldValue }) => {
 }
 
 const validationSchema = Yup.object().shape({
-  company_name: Yup.string().required(),
-  company_website: Yup.string().url().required(),
-  company_size: Yup.number().positive().integer().required(),
-  company_logo: Yup.mixed().required(),
-  technology: Yup.mixed().oneOf(technologySelect).required(),
-  position_name: Yup.string().required(),
-  experience_level: Yup.mixed().oneOf(experienceSelect).required(),
-  salary_from: Yup.number().positive().integer().required(),
-  salary_to: Yup.number().positive().integer().required(),
-  salary_currency: Yup.mixed().oneOf(currencySelect).required(),
-  contract_type: Yup.mixed().oneOf(contractSelect).required(),
-  location: Yup.string().required(),
-  address_components: Yup.array().required(),
-  lat: Yup.number().required(),
-  lng: Yup.number().required(),
-  agreements: Yup.string().required(),
-  apply_link: Yup.string().matches(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))|((https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}))$/).required(),
+  company_name: Yup.string().required('Company name is required.'),
+  company_website: Yup.string().url('Provide correct url ex. https://google.com').required('Company website is required.'),
+  company_size: Yup.number('Company size must be a number.').positive('Only positive numbers as company szie.').integer('Company size must be an integer.').required('Company size is required.'),
+  company_logo: Yup.mixed().required('Logo is required.'),
+  technology: Yup.mixed().oneOf(technologySelect, 'Technology must be one from available values.').required('Technology is required.'),
+  position_name: Yup.string().required('Position name is required.'),
+  experience_level: Yup.mixed().oneOf(experienceSelect, 'Experience must be one from available values.').required('Experience level is required.'),
+  salary_from: Yup.number('Salary must be a number.').positive('Salary must be positive.').integer('Salary must be an integer.').required('Salary is required.'),
+  salary_to: Yup.number('Salary must be a number.').positive('Salary must be positive.').integer('Salary must be an integer.').required('Salary is required.'),
+  salary_currency: Yup.mixed().oneOf(currencySelect, 'Currency must be one from available values.').required('Currency is required.'),
+  contract_type: Yup.mixed().oneOf(contractSelect, 'Contract must be one from available values.').required('Contract type is required.'),
+  location: Yup.string().required('Location is required.'),
+  address_components: Yup.array().required('Location is required.'),
+  lat: Yup.number().required('Location is required.'),
+  lng: Yup.number().required('Location is required.'),
+  agreements: Yup.string().required('Agreements field is required.'),
+  apply_link: Yup.string().matches(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))|((https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}))$/, 'Pleas provide correct email or url ex. https://google.com to apply.').required('Pleas provide correct email or url ex. https://google.com to apply.'),
   remote: Yup.boolean()
 })
 
@@ -164,9 +186,9 @@ const formikOptions = {
     salary_currency: '',
     contract_type: '',
     location: '',
-    address_components: null,
-    lat: null,
-    lng: null,
+    address_components: [],
+    lat: '',
+    lng: '',
     agreements: agreements,
     apply_link: '',
     remote: false
@@ -174,6 +196,8 @@ const formikOptions = {
   handleSubmit: (values) => {
     console.log(values)
   },
+  validateOnBlur: false,
+  validateOnChange: false,
   validationSchema
 }
 

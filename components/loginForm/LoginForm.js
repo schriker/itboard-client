@@ -1,23 +1,51 @@
 import { withFormik, Form, Field } from 'formik'
+import { useEffect, useState } from 'react'
 import * as Yup from 'yup'
 import Link from 'next/link'
 import { connect } from 'react-redux'
-import { userLogin } from '../../store/actions/index'
-import ErrorWrapper from '../ui/ErrorWrapper'
+import { userLogin, authReset } from '../../store/actions/index'
+import Notification from '../ui/Notifiaction'
 
-const LoginForm = ({ values, errors, touched, auth }) => {
+const LoginForm = ({ values, errors, touched, auth, resetAuth }) => {
+
+  useEffect(() => {
+    return () => resetAuth()
+  }, [])
+
+  const [withErrors, setWithErrors] = useState(false)
+
+  useEffect(() => {
+    if (errorsArray.length > 0) {
+      setWithErrors(true)
+    } else if (withErrors) {
+      setWithErrors(false)
+    }
+  }, [errors, auth])
+
   const errorsArray = Object.values(errors)
+
   if (auth.authFailed) {
     errorsArray.push(auth.authErr)
   }
+
+  const handleCloseNotification = () => {
+    setWithErrors(false)
+    if (auth.authErr) {
+      resetAuth()
+    }
+  }
+
   return (
     <div className="white-box wrapper">
-      <div className="errors">
-        {errorsArray.map((error, index) => {
-            return <ErrorWrapper key={index}>{error}</ErrorWrapper>
-          }
-        )}
-      </div>
+      {withErrors && <Notification type="error" close={() => handleCloseNotification()}>
+        <p>Something went wrong :(</p>
+        <ul>
+          {errorsArray.map((error, index) => {
+              return <li key={index}>{error}</li>
+            }
+          )}
+        </ul>
+      </Notification>}
       <Form>
         <div className="input-row">
           <Field className={errors.email && touched.email ? 'with-error' : values.email !== '' ? 'touched' : touched.email ? 'touched' : null} id="email" type="email" name="email" />
@@ -75,7 +103,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (values) => dispatch(userLogin(values))
+  login: (values) => dispatch(userLogin(values)),
+  resetAuth: () => dispatch(authReset())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withFormik(formikOptions)(LoginForm))

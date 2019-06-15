@@ -40,6 +40,13 @@ const reducer = (state = initialState, action) => {
         user: null
       }
     }
+    case actionTypes.AUTH_RESET: {
+      return {
+        ...state,
+        authFailed: false,
+        authErr: ''
+      }
+    }
     default: return state
   }
 }

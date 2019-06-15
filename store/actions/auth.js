@@ -17,6 +17,10 @@ const authFailed = (errMsg) => ({
   payload: errMsg
 })
 
+export const authReset = () => ({
+  type: actionTypes.AUTH_RESET
+})
+
 export const userLogin = ({ email, password }) => {
   return dispatch => {
     dispatch(authStart())

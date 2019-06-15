@@ -5,5 +5,6 @@ export {
 export {
   userLogin,
   onAuthStateChange,
-  userLogOut
+  userLogOut,
+  authReset
 } from './auth'
