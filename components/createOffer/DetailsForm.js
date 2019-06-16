@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { newOfferDetials } from '../../store/actions/index'
 import CustomSelect from '../ui/CustomSelect'
-import CustomInput from './CustomInput'
+import CustomInput from '../ui/CustomInput'
 import LocationMap from '../createOffer/LocationMap'
 import ImageUpload from '../ui/ImageUpload'
 import Notification from '../ui/Notifiaction'
@@ -31,7 +31,7 @@ const contractSelect = [
   'Contract'
 ]
 
-const DetailsForm = ({ values, errors, touched }) => {
+const DetailsForm = ({ values, errors, touched, isValidating }) => {
 
   const [withErrors, setWithErrors] = useState(false)
 
@@ -41,21 +41,21 @@ const DetailsForm = ({ values, errors, touched }) => {
     } else if (withErrors) {
       setWithErrors(false)
     }
-  }, [errors])
+  }, [isValidating])
 
   const errorsArray = [...new Set(Object.values(errors))]
 
   return (
     <div className="white-box wrapper">
-    {withErrors && <Notification type="error" close={() => setWithErrors(false)}>
-      <p>Something went wrong :(</p>
-      <ul>
-        {errorsArray.map((error, index) => {
-            return <li key={index}>{error}</li>
-          }
-        )}
-      </ul>
-    </Notification>}
+    <Notification open={withErrors} type="error" close={() => setWithErrors(false)}>
+        <p>Something went wrong :(</p>
+        <ul>
+          {errorsArray.map((error, index) => {
+              return <li key={index}>{error}</li>
+            }
+          )}
+        </ul>
+      </Notification>
       <Form>
         <div className="row">
           <h3>General info</h3>

@@ -1,41 +1,72 @@
-const Notification = ({ close, type, children }) => {
+import { useEffect } from 'react'
+import posed, { PoseGroup } from 'react-pose'
+
+const Box = posed.div({
+  enter: {
+    x: '0%',
+    applyAtStart: { 
+      position: 'fixed'
+    },
+    transition: {
+      type: 'spring', 
+      duration: 300
+    }
+  },
+  exit: {
+    x: 'calc(-100% - 30px)', 
+    transition: { 
+      duration: 300
+    }
+  }
+})
+
+const Notification = ({ open, close, type, children }) => {
+
+  useEffect(() => {
+    const hideTimeout = setTimeout(() => close(), 10000)
+    return () => clearTimeout(hideTimeout)
+  }, [open])
 
   return (
-    <div className={`wrapper white-box notification ${type}`}>
-      <i onClick={close} className="fas fa-times-circle"></i>
-      {children}
-      <style jsx>{`
-        .wrapper {
-          position: relative;
-          padding: 30px 60px;
-          position fixed;
-          left: 30px;
-          bottom: 30px;
-          transition: all .2s ease-in-out;
-        }
-        i {
-          position: absolute;
-          top: 15px;
-          right: 15px;
-        }
-        i:hover {
-          cursor: pointer;
-        }
-        .success {
-          color: #10b63b;
-          background-color: #f3fff6;
-          border-left: #10b63b 4px solid;
-        }
-        .info {
-          border-left: #0069ff 4px solid;
-        }
-        .error {
-          color: #dd0505;
-          background-color: #fff8f8;
-          border-left: #dd0505 4px solid;
-        }
-        `}</style>
-    </div>
+    <PoseGroup>
+      {open ? 
+        <Box key="box" className={`box white-box notification ${type}`}>
+            <i onClick={close} className="fas fa-times-circle"></i>
+            {children}
+          <style jsx global>{`
+            .box {
+              position fixed;
+              bottom: 30px;
+              left: 30px;
+              padding: 30px 60px;
+            }
+            .box p {
+              white-space: nowrap;
+            }
+            .box i {
+              position: absolute;
+              top: 15px;
+              right: 15px;
+            }
+            .box i:hover {
+              cursor: pointer;
+            }
+            .success {
+              color: #10b63b;
+              background-color: #f3fff6;
+              border-left: #10b63b 4px solid;
+            }
+            .info {
+              border-left: #0069ff 4px solid;
+            }
+            .error {
+              color: #dd0505;
+              background-color: #fff8f8;
+              border-left: #dd0505 4px solid;
+            }
+            `}</style>
+        </Box> : null}
+    </PoseGroup>
   )
 }
 

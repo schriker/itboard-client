@@ -5,22 +5,25 @@ import Link from 'next/link'
 import { connect } from 'react-redux'
 import { userLogin, authReset } from '../../store/actions/index'
 import Notification from '../ui/Notifiaction'
+import CustomInput from '../ui/CustomInput'
 
-const LoginForm = ({ values, errors, touched, auth, resetAuth }) => {
+const LoginForm = ({ errors, auth, resetAuth, isValidating }) => {
+
+  console.log(isValidating)
 
   useEffect(() => {
     return () => resetAuth()
   }, [])
-
+  
   const [withErrors, setWithErrors] = useState(false)
-
+  
   useEffect(() => {
     if (errorsArray.length > 0) {
       setWithErrors(true)
     } else if (withErrors) {
       setWithErrors(false)
     }
-  }, [errors, auth])
+  }, [isValidating, auth])
 
   const errorsArray = Object.values(errors)
 
@@ -37,7 +40,7 @@ const LoginForm = ({ values, errors, touched, auth, resetAuth }) => {
 
   return (
     <div className="white-box wrapper">
-      {withErrors && <Notification type="error" close={() => handleCloseNotification()}>
+      <Notification open={withErrors} type="error" close={() => handleCloseNotification()}>
         <p>Something went wrong :(</p>
         <ul>
           {errorsArray.map((error, index) => {
@@ -45,16 +48,10 @@ const LoginForm = ({ values, errors, touched, auth, resetAuth }) => {
             }
           )}
         </ul>
-      </Notification>}
+      </Notification>
       <Form>
-        <div className="input-row">
-          <Field className={errors.email && touched.email ? 'with-error' : values.email !== '' ? 'touched' : touched.email ? 'touched' : null} id="email" type="email" name="email" />
-          <label htmlFor="email">Email</label>
-        </div>
-        <div className="input-row">
-          <Field className={errors.password && touched.password ? 'with-error' : values.password !== '' ? 'touched' : touched.password ? 'touched' : null} id="password" type="password" name="password" />
-          <label htmlFor="password">Password</label>
-        </div>
+          <Field name="email" component={CustomInput} placeholder="Email" />
+          <Field name="password" component={CustomInput} placeholder="Password" password />
         <div className="links">
           <Link href="/reset-password">
             <a>Forgot password?</a>
@@ -81,8 +78,11 @@ const LoginForm = ({ values, errors, touched, auth, resetAuth }) => {
 }
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().required('Email is required.').email('Invalid email.'),
-  password: Yup.string().required('Password is required.')
+  email: Yup.string().
+    required('Email is required.').
+    email('Invalid email.'),
+  password: Yup.string().
+    required('Password is required.')
 })
 
 const formikOptions = {
