@@ -5,19 +5,23 @@ import Logo from '../components/header/Logo'
 import FormSteps from '../components/createOffer/FormSteps'
 import LoginForm from '../components/loginForm/LoginForm'
 import DetailsForm from '../components/createOffer/DetailsForm'
+import ContentForm from '../components/createOffer/ContentForm'
 
 class CreateOffer extends React.Component {
 
+  // Uncoment when done with content component 
+
   state = {
-    currentStep: !this.props.auth.user ? 1 : 2,
+    // currentStep: !this.props.auth.user ? 1 : 2,
+    currentStep: 3,
     offer: {}
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.auth.user !== prevProps.auth.user) {
-      this.setState({ currentStep: !this.props.auth.user ? 1 : 2 })
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.auth.user !== prevProps.auth.user) {
+  //     this.setState({ currentStep: !this.props.auth.user ? 1 : 2 })
+  //   }
+  // }
 
   render() {
 
@@ -36,7 +40,7 @@ class CreateOffer extends React.Component {
     }
 
     if (this.state.currentStep === 3) {
-      content = <div>Test</div>
+      content = <ContentForm />
     }
 
     return (

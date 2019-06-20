@@ -72,6 +72,26 @@ const Meta = (props) => {
           background-color: #f0f1f7;
           box-shadow: 0px 2px 1px 0px rgba(104,111,151,0.2);
         }
+        .white-box h2 {
+          margin-right: -30px;
+          margin-left: -30px;
+          margin-bottom: 15px;
+          font-size: 18px;
+          font-weight: 400;
+          color: #1f1f1f;
+          border-bottom: 1px solid #dadce7;
+          border-left: 4px solid #0069ff;
+          padding: 8px 20px;
+        }
+        .white-box ol {
+          margin: 15px 60px;
+        }
+        .white-box ul {
+          margin: 15px 60px;
+        }
+        .wrapper {
+          flex: 0 1 935px;
+        }
         button, input {
           font-family: 'Montserrat', sans-serif;
         }
@@ -258,6 +278,21 @@ const Meta = (props) => {
         }
         .notification ul li {
           margin: 5px 0;
+        }
+        .DraftEditor-root {
+          position: relative;
+        }
+        .DraftEditor-editorContainer {
+          min-height: 300px;
+          padding: 30px;
+        }
+        .public-DraftEditorPlaceholder-root {
+          color: #d1d1d1;
+          position: absolute;
+          font-size: 24px;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
         }
       `}</style>
     </Fragment>

@@ -124,10 +124,6 @@ const DetailsForm = ({ values, errors, touched, isValidating }) => {
         .agreements div:first-of-type {
           grid-column: 1 / 3;
         }
-        .wrapper {
-          flex: 0 1 935px;
-          margin-bottom: 150px;
-        }
         `}</style>
     </div>
   )

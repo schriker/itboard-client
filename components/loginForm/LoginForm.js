@@ -9,8 +9,6 @@ import CustomInput from '../ui/CustomInput'
 
 const LoginForm = ({ errors, auth, resetAuth, isValidating }) => {
 
-  console.log(isValidating)
-
   useEffect(() => {
     return () => resetAuth()
   }, [])

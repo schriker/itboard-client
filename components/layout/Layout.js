@@ -26,6 +26,7 @@ const Layout = (props) => {
           display: flex;
           justify-content: ${props.withSidebar ? 'start' : 'center'};
           align-items: start;
+          padding-bottom: 100px;
         }
       `}</style>
     </div>

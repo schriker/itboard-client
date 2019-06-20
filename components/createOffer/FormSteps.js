@@ -73,7 +73,6 @@ const FormSteps = ({ steps, currentStep }) => {
             transition: all .2s ease-in-out;
           }
           li.active span {
-            color: #0069ff;
             border-color: #0069ff;
           }
           li.active div {
