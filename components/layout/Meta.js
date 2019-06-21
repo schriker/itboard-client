@@ -72,10 +72,8 @@ const Meta = (props) => {
           background-color: #f0f1f7;
           box-shadow: 0px 2px 1px 0px rgba(104,111,151,0.2);
         }
-        .white-box h2 {
-          margin-right: -30px;
-          margin-left: -30px;
-          margin-bottom: 15px;
+        .white-box--content h2 {
+          margin: 15px -30px;
           font-size: 18px;
           font-weight: 400;
           color: #1f1f1f;
@@ -83,11 +81,24 @@ const Meta = (props) => {
           border-left: 4px solid #0069ff;
           padding: 8px 20px;
         }
-        .white-box ol {
+        .white-box--content ol {
           margin: 15px 60px;
         }
-        .white-box ul {
+        .white-box--content ul {
           margin: 15px 60px;
+          list-style: none;
+        }
+        .white-box--content ul li {
+          display: flex;
+          align-items: center;
+        }
+        .white-box--content ul li::before {
+          font-family: "Font Awesome 5 Free";
+          font-weight: bold;
+          font-size: 5px;
+          content: "\\f111";
+          color: #015fff;
+          margin-right: 8px;
         }
         .wrapper {
           flex: 0 1 935px;
@@ -283,7 +294,7 @@ const Meta = (props) => {
           position: relative;
         }
         .DraftEditor-editorContainer {
-          min-height: 300px;
+          min-height: 250px;
           padding: 30px;
         }
         .public-DraftEditorPlaceholder-root {
@@ -291,7 +302,7 @@ const Meta = (props) => {
           position: absolute;
           font-size: 24px;
           left: 50%;
-          top: 50%;
+          top: calc(50% + 40px);
           transform: translate(-50%, -50%);
         }
       `}</style>

@@ -1,5 +1,5 @@
 import { withFormik, Form, Field } from 'formik'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Fragment } from 'react'
 import * as Yup from 'yup'
 import Link from 'next/link'
 import { connect } from 'react-redux'
@@ -7,7 +7,7 @@ import { userLogin, authReset } from '../../store/actions/index'
 import Notification from '../ui/Notifiaction'
 import CustomInput from '../ui/CustomInput'
 
-const LoginForm = ({ errors, auth, resetAuth, isValidating }) => {
+const LoginForm = ({ errors, auth, resetAuth, isValidating, isSubmitting }) => {
 
   useEffect(() => {
     return () => resetAuth()
@@ -16,12 +16,13 @@ const LoginForm = ({ errors, auth, resetAuth, isValidating }) => {
   const [withErrors, setWithErrors] = useState(false)
   
   useEffect(() => {
-    if (errorsArray.length > 0) {
+    if ((errorsArray.length > 0  && !isSubmitting && !isValidating) || auth.authFailed) {
       setWithErrors(true)
     } else if (withErrors) {
       setWithErrors(false)
     }
-  }, [isValidating, auth])
+  }, [isValidating, isSubmitting, auth])
+
 
   const errorsArray = Object.values(errors)
 
@@ -37,7 +38,7 @@ const LoginForm = ({ errors, auth, resetAuth, isValidating }) => {
   }
 
   return (
-    <div className="white-box wrapper">
+    <Fragment>
       <Notification open={withErrors} type="error" close={() => handleCloseNotification()}>
         <p>Something went wrong :(</p>
         <ul>
@@ -47,31 +48,33 @@ const LoginForm = ({ errors, auth, resetAuth, isValidating }) => {
           )}
         </ul>
       </Notification>
-      <Form>
-          <Field name="email" component={CustomInput} placeholder="Email" />
-          <Field name="password" component={CustomInput} placeholder="Password" password />
-        <div className="links">
-          <Link href="/reset-password">
-            <a>Forgot password?</a>
-          </Link>
-        </div>
-        <div>
-          <button disabled={auth.isSending} className="btn btn--blue btn--blue-white" type="submit">
-            {auth.isSending ? "Wait" : "Login"}
-          </button>
-        </div>
-      </Form>
-      <style jsx>{`
-        .wrapper {
-          flex: 0 1 600px;
-          padding: 90px 100px;
-        }
-        .links {
-          margin-bottom: 10px;
-          text-align: right;
-        }
-        `}</style>
-    </div>
+      <div className="white-box wrapper">
+        <Form>
+            <Field name="email" component={CustomInput} placeholder="Email" />
+            <Field name="password" component={CustomInput} placeholder="Password" password />
+          <div className="links">
+            <Link href="/reset-password">
+              <a>Forgot password?</a>
+            </Link>
+          </div>
+          <div>
+            <button disabled={auth.isSending} className="btn btn--blue btn--blue-white" type="submit">
+              {auth.isSending ? "Wait" : "Login"}
+            </button>
+          </div>
+        </Form>
+        <style jsx>{`
+          .wrapper {
+            flex: 0 1 600px;
+            padding: 90px 100px;
+          }
+          .links {
+            margin-bottom: 10px;
+            text-align: right;
+          }
+          `}</style>
+      </div>
+    </Fragment>
   )
 }
 

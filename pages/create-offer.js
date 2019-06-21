@@ -13,7 +13,7 @@ class CreateOffer extends React.Component {
 
   state = {
     // currentStep: !this.props.auth.user ? 1 : 2,
-    currentStep: 3,
+    currentStep: 2,
     offer: {}
   }
 

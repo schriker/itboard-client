@@ -31,17 +31,17 @@ const contractSelect = [
   'Contract'
 ]
 
-const DetailsForm = ({ values, errors, touched, isValidating }) => {
+const DetailsForm = ({ values, errors, touched, isValidating, isSubmitting }) => {
 
   const [withErrors, setWithErrors] = useState(false)
 
   useEffect(() => {
-    if (errorsArray.length > 0) {
+    if (errorsArray.length > 0  && !isSubmitting && !isValidating) {
       setWithErrors(true)
     } else if (withErrors) {
       setWithErrors(false)
     }
-  }, [isValidating])
+  }, [isValidating, isSubmitting])
 
   const errorsArray = [...new Set(Object.values(errors))]
 

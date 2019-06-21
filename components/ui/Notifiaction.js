@@ -4,12 +4,11 @@ import posed, { PoseGroup } from 'react-pose'
 const Box = posed.div({
   enter: {
     x: '0%',
+    transition: {
+      duration: 300
+    },
     applyAtStart: { 
       position: 'fixed'
-    },
-    transition: {
-      type: 'spring', 
-      duration: 300
     }
   },
   exit: {
@@ -28,7 +27,7 @@ const Notification = ({ open, close, type, children }) => {
   }, [open])
 
   return (
-    <PoseGroup>
+    <PoseGroup animateOnMount>
       {open ? 
         <Box key="box" className={`box white-box notification ${type}`}>
             <i onClick={close} className="fas fa-times-circle"></i>
