@@ -6,7 +6,7 @@ import InlineStyleControls from './InlineStyleControls'
 import BlockStyleControls from './BlockStyleControls'
 import Notification from '../ui/Notifiaction'
 
-const TextEditor = () => {
+const TextEditor = ({ onSubmit }) => {
   
   const [withErrors, setWithErrors] = useState(false)
   const [errorsArray, setErrorsArray] = useState([])
@@ -41,10 +41,20 @@ const TextEditor = () => {
   }
 
   const submit = () => {
-    const html = stateToHTML(editorState.getCurrentContent())
-    // setErrorsArray(['Blad'])
-    console.log(html)
-    setWithErrors(true)
+    const currentContent = editorState.getCurrentContent()
+    const currentContentLength = currentContent.getPlainText('').length
+
+    if (currentContentLength === 0) {
+      setErrorsArray(['Please enter some content.'])
+      setWithErrors(true)
+    } else if (currentContentLength < 200) {
+      setErrorsArray(['Minimum length of content is 200 characters.'])
+      setWithErrors(true)
+    } else {
+      const html = stateToHTML(editorState.getCurrentContent())
+      onSubmit(html)
+    }
+
   }
 
   const styleMap = {

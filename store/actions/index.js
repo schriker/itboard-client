@@ -1,6 +1,7 @@
 export {
   setLanguages,
-  newOfferDetials
+  newOfferDetials,
+  newOfferContent
 } from './offers'
 
 export {

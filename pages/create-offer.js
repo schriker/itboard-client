@@ -9,19 +9,17 @@ import ContentForm from '../components/createOffer/ContentForm'
 
 class CreateOffer extends React.Component {
 
-  // Uncoment when done with content component 
-
   state = {
-    // currentStep: !this.props.auth.user ? 1 : 2,
-    currentStep: 2,
+    currentStep: !this.props.auth.user ? 1 : 2,
+    // currentStep: 3,
     offer: {}
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.auth.user !== prevProps.auth.user) {
-  //     this.setState({ currentStep: !this.props.auth.user ? 1 : 2 })
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    if (this.props.auth.user !== prevProps.auth.user) {
+      this.setState({ currentStep: !this.props.auth.user ? 1 : 2 })
+    }
+  }
 
   render() {
 
@@ -40,7 +38,7 @@ class CreateOffer extends React.Component {
     }
 
     if (this.state.currentStep === 3) {
-      content = <ContentForm />
+      content = <ContentForm submitOffer={() => this.setState({currentStep: 4})} />
     }
 
     return (

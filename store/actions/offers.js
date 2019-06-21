@@ -10,6 +10,11 @@ export const newOfferDetials = (payload) => ({
   payload
 })
 
+export const newOfferContent = (payload) => ({
+  type: actionTypes.NEW_OFFER_CONTENT,
+  payload
+})
+
 // const setTitle = (payload) => ({
 //   type: actionTypes.SET_TITLE,
 //   payload

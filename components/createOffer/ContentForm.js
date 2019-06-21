@@ -1,10 +1,21 @@
 import TextEditor from '../textEditor/TextEditor'
+import { newOfferContent } from '../../store/actions/index'
+import { connect } from 'react-redux' 
 
-const ContentForm = () => {
+const ContentForm = ({ submitOffer, newOfferContent }) => {
+
+  const onSubmit = (content) => {
+    newOfferContent(content)
+    submitOffer()
+  }
 
   return (
-    <TextEditor />
+    <TextEditor onSubmit={onSubmit} />
   )
 }
 
-export default ContentForm
+const mapDispatchToProps = (dispatch) => ({
+  newOfferContent: (content) => dispatch(newOfferContent(content)) 
+})
+
+export default connect(null, mapDispatchToProps)(ContentForm)

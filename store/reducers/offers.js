@@ -28,6 +28,15 @@ const reducer = (state = initialState, action) => {
         newOffer: action.payload
       }
     }
+    case actionTypes.NEW_OFFER_CONTENT: {
+      return {
+        ...state,
+        newOffer: {
+          ...state.newOffer,
+          content: action.payload
+        }
+      }
+    }
     default: return state
   }
 }
