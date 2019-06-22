@@ -36,6 +36,7 @@ const Sidebar = (props) => {
       </ul>
       <style jsx>{`
         aside {
+          min-height: calc(100vh - 70px); 
           position: relative;
           background-color: #08294f;
           width: 280px;

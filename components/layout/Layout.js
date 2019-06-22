@@ -4,7 +4,7 @@ import Sidebar from './Sidebar'
 
 const Layout = (props) => {
   return (
-    <div className='wrapper'>
+    <div className='main-wrapper'>
       <Meta { ...props.meta } />
       <Header />
       { props.withSidebar ? <Sidebar /> : null }
@@ -12,7 +12,7 @@ const Layout = (props) => {
         {props.children}
       </main>
       <style  jsx>{`
-        .wrapper {
+        .main-wrapper {
           display: grid;
           grid-template-areas: "header header"
           "sidebar main";
