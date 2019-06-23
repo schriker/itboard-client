@@ -11,15 +11,15 @@ import PreviewForm from '../components/createOffer/PreviewForm'
 class CreateOffer extends React.Component {
 
   state = {
-    // currentStep: !this.props.auth.user ? 1 : 2
-    currentStep: 4,
+    currentStep: !this.props.auth.user ? 1 : 2
+    // currentStep: 4,
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.auth.user !== prevProps.auth.user) {
-  //     this.setState({ currentStep: !this.props.auth.user ? 1 : 2 })
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    if (this.props.auth.user !== prevProps.auth.user) {
+      this.setState({ currentStep: !this.props.auth.user ? 1 : 2 })
+    }
+  }
 
   render() {
 

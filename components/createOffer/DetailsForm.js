@@ -130,28 +130,47 @@ const DetailsForm = ({ values, errors, touched, isValidating, isSubmitting }) =>
 }
 
 const formikOptions = {
+  // mapPropsToValues: () => ({
+  //   company_name: '',
+  //   company_website: '',
+  //   company_size: '',
+  //   company_logo: null,
+  //   technology: '',
+  //   position_name: '',
+  //   experience_level: '',
+  //   salary_from: '',
+  //   salary_to: '',
+  //   salary_currency: '',
+  //   contract_type: '',
+  //   location: '',
+  //   address_components: [],
+  //   lat: '',
+  //   lng: '',
+  //   agreements: agreements,
+  //   apply_link: '',
+  //   remote: false
+  // }),
   mapPropsToValues: () => ({
-    company_name: '',
-    company_website: '',
-    company_size: '',
+    company_name: 'Packhelp',
+    company_website: 'https://google.com/',
+    company_size: 10,
     company_logo: null,
-    technology: '',
-    position_name: '',
-    experience_level: '',
-    salary_from: '',
-    salary_to: '',
-    salary_currency: '',
-    contract_type: '',
+    technology: 'UI/UX',
+    position_name: 'UX Designer',
+    experience_level: 'Junior',
+    salary_from: 7000,
+    salary_to: 12000,
+    salary_currency: 'PLN',
+    contract_type: 'B2B',
     location: '',
     address_components: [],
     lat: '',
     lng: '',
     agreements: agreements,
-    apply_link: '',
+    apply_link: 'https://google.com/',
     remote: false
   }),
   handleSubmit: (values, { props }) => {
-    console.log(values)
     props.newOfferDetails(values)
     props.submitOffer()
   },

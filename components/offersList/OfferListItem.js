@@ -1,30 +1,36 @@
-const OfferListItem = ({ offer }) => {
+import useFileReader from '../../hooks/useFileReader'
+import { languagesArr } from '../../helpers/languages'
 
+const OfferListItem = ({ offer, preview }) => {
 
-  const color = '#e61340' // Grab color form languages helper object
-  const isNew = true // Calc if is older than 24h
+  let thumb
+  
+  const color = languagesArr.filter(language => language.name.toLowerCase() === offer.technology.toLowerCase())[0].color
+  const isNew = preview ? true : false // Calc if is older than 24h 
+  
+  preview ? thumb = useFileReader(offer.company_logo) : thumb = offer.company_logo
 
   return (
     <div className="item-wrapper">
       <a href="#"></a>
       <div className="item-logo">
-        <img src="http://startuppoland.org/wp-content/uploads/2017/04/PACKHELP_logo.png" alt="Company Name"/>
+        <img src={thumb} alt={offer.company_name}/>
       </div>
       <div className="item-company">
-        <h3>Ruby Developer</h3>
+        <h3>{offer.position_name}</h3>
         <div className="company-location">
-          <i className="far fa-building"></i>Packhelp
+          <i className="far fa-building"></i>{offer.company_name}
           <i className="fas fa-map-marker-alt"></i>Kolejowa 5/7, Warszawa 
         </div>
       </div>
       <div>
       <div className="item-info">
         <div className="item-salary">
-          7000 - 12000
+          {offer.salary_from} - {offer.salary_to} {offer.salary_currency}
         </div>
         <div className="item-details">
-        <i className="fas fa-chart-line"></i>Regular
-        <span>1 day</span>
+        <i className="fas fa-chart-line"></i>{offer.experience_level}
+        <span>{ isNew ? 'New' : 'Day' }</span>
         </div>
       </div>
       </div>

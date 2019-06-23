@@ -1,19 +1,12 @@
-import { useEffect, useState, Fragment } from 'react'
+import { Fragment } from 'react'
+import useFileReader from '../../hooks/useFileReader'
 
 const ImageUpload = ({ field, form }) => {
-  const [thumb, setThumb] = useState(undefined)
+  let thumb = undefined
 
-  useEffect(() => {
-    if (field.value) {
-      const reader = new FileReader()
-
-      reader.onloadend = () => {
-        setThumb(reader.result)
-      }
-
-      reader.readAsDataURL(field.value);
-    }
-  }, [field.value])
+  if (field.value) {
+    thumb = useFileReader(field.value)
+  }
 
   let thumbContent = <Fragment>
                       <i className="fas fa-image"></i>
