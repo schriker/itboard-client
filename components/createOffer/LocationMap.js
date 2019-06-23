@@ -49,7 +49,7 @@ const LocationMap = ({ form, field }) => {
       }
       marker.setPosition(place.geometry.location)
       marker.setVisible(true)
-      map.setCenter(marker.getPosition());
+      map.setCenter(marker.getPosition())
 
       form.setFieldValue('address_components', place.address_components)
       form.setFieldValue('lat', place.geometry.location.lat())

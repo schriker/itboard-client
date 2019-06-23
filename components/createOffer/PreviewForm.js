@@ -1,11 +1,16 @@
 import { connect } from 'react-redux'
-import OfferListItem from '../../components/offersList/OfferListItem'
+import OfferListItem from '../offersList/OfferListItem'
+import OfferContent from '../offer/OfferContent'
 
 const PreviewForm = ({ offer }) => {
   return (
-    <div className="white-box wrapper white-box--content">
+    <div className="fullpage-wrapper">
       <OfferListItem offer={offer} preview />
+      <OfferContent offer={offer} preview />
       <style jsx>{`
+        div {
+          padding: 0 20px;
+        }
         h2 {
           margin: 15px 0;
         }

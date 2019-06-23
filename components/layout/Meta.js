@@ -73,8 +73,16 @@ const Meta = (props) => {
           background-color: #f0f1f7;
           box-shadow: 0px 2px 1px 0px rgba(104,111,151,0.2);
         }
+        .white-box div:last-of-type {
+          border-bottom: 0;
+        }
+        .white-box--content strong {
+          color: #015fff;
+        }
+        .white-box--content p {
+          padding: 0 35px;
+        }
         .white-box--content h2 {
-          margin: 15px -30px;
           font-size: 18px;
           font-weight: 400;
           color: #1f1f1f;
@@ -103,6 +111,9 @@ const Meta = (props) => {
         }
         .wrapper {
           flex: 0 1 935px;
+        }
+        .fullpage-wrapper {
+          flex: 0 1 100%;
         }
         button, input {
           font-family: 'Montserrat', sans-serif;
@@ -297,6 +308,9 @@ const Meta = (props) => {
         .DraftEditor-editorContainer {
           min-height: 250px;
           padding: 30px;
+        }
+        .h2-margin h2 {
+          margin: 0 -30px;
         }
         .public-DraftEditorPlaceholder-root {
           color: #d1d1d1;

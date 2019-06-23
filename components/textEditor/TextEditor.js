@@ -75,7 +75,7 @@ const TextEditor = ({ onSubmit }) => {
           )}
         </ul>
       </Notification>
-      <div className="white-box wrapper white-box--content">
+      <div className="white-box wrapper white-box--content h2-margin">
         <Toolbar>
           <InlineStyleControls editorState={editorState} onToggle={toggleInlineStyle} />
           <BlockStyleControls editorState={editorState} onToggle={toggleBlockStyle} />

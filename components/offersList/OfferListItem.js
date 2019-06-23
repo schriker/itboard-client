@@ -20,7 +20,7 @@ const OfferListItem = ({ offer, preview }) => {
         <h3>{offer.position_name}</h3>
         <div className="company-location">
           <i className="far fa-building"></i>{offer.company_name}
-          <i className="fas fa-map-marker-alt"></i>Kolejowa 5/7, Warszawa 
+          <i className="fas fa-map-marker-alt"></i>{offer.location}
         </div>
       </div>
       <div>

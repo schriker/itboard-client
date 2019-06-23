@@ -58,7 +58,7 @@ const DetailsForm = ({ values, errors, touched, isValidating, isSubmitting }) =>
       </Notification>
       <Form>
         <div className="row">
-          <h3>General info</h3>
+          <h2>General info</h2>
           <div className="inputs">
             <Field name="company_logo" component={ImageUpload}/> 
             <Field name="company_name" component={CustomInput} placeholder="Company"/>   
@@ -68,7 +68,7 @@ const DetailsForm = ({ values, errors, touched, isValidating, isSubmitting }) =>
           </div>
         </div>
         <div className="row">
-          <h3>Position info</h3>
+          <h2>Position info</h2>
           <div className="inputs">
             <Field name="position_name" component={CustomInput} placeholder="Position name"/>   
             <Field name="experience_level" component={CustomSelect} placeholder="Experience" options={experienceSelect}/>
@@ -79,11 +79,11 @@ const DetailsForm = ({ values, errors, touched, isValidating, isSubmitting }) =>
           </div>
         </div>
         <div className="row">
-          <h3>Location</h3>
+          <h2>Location</h2>
           <Field name="location" component={LocationMap} />
         </div>
         <div className="row">
-          <h3>Agreements</h3>
+          <h2>Agreements</h2>
           <div className="inputs agreements">
             <div className="input-row">
               <Field className={errors.agreements && touched.agreements ? 'with-error' : values.agreements !== '' ? 'touched' : touched.agreements ? 'touched' : null} name="agreements" component="textarea" />
@@ -100,12 +100,12 @@ const DetailsForm = ({ values, errors, touched, isValidating, isSubmitting }) =>
         </div>
       </Form>
       <style jsx>{`
-        h3 {
-          padding: 10px 20px;
-          font-weight: 500;
+        h2 {
+          padding: 8px 20px;
+          font-weight: 400;
           border-bottom: #dadce7 1px solid;
           border-left: #0069ff 4px solid;
-          font-size: 16px;
+          font-size: 18px;
           color: #1f1f1f;
           width: 100%;
         }
