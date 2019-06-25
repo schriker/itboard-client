@@ -10,9 +10,10 @@ export const newOfferDetials = (payload) => ({
   payload
 })
 
-export const newOfferContent = (payload) => ({
+export const newOfferContent = (payload, raw) => ({
   type: actionTypes.NEW_OFFER_CONTENT,
-  payload
+  payload,
+  raw
 })
 
 // const setTitle = (payload) => ({

@@ -6,7 +6,7 @@ import InlineStyleControls from './InlineStyleControls'
 import BlockStyleControls from './BlockStyleControls'
 import Notification from '../ui/Notifiaction'
 
-const TextEditor = ({ onSubmit }) => {
+const TextEditor = ({ onSubmit, raw }) => {
   
   const [withErrors, setWithErrors] = useState(false)
   const [errorsArray, setErrorsArray] = useState([])
@@ -16,7 +16,7 @@ const TextEditor = ({ onSubmit }) => {
     setLoaded(true)
   })
   
-  const [editorState, setEditorState] = useState(EditorState.createEmpty())
+  const [editorState, setEditorState] = useState(raw || EditorState.createEmpty())
   const editorRef = useRef()
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const TextEditor = ({ onSubmit }) => {
       setWithErrors(true)
     } else {
       const html = stateToHTML(editorState.getCurrentContent())
-      onSubmit(html)
+      onSubmit(html, editorState)
     }
 
   }
@@ -75,7 +75,7 @@ const TextEditor = ({ onSubmit }) => {
           )}
         </ul>
       </Notification>
-      <div className="white-box wrapper white-box--content h2-margin">
+      <div className="white-box wrapper white-box--content">
         <Toolbar>
           <InlineStyleControls editorState={editorState} onToggle={toggleInlineStyle} />
           <BlockStyleControls editorState={editorState} onToggle={toggleBlockStyle} />
@@ -98,7 +98,7 @@ const TextEditor = ({ onSubmit }) => {
         <style jsx>
           {`
             .row {
-              padding: 40px;
+              padding: 40px 80px;
             }
           `}
         </style>

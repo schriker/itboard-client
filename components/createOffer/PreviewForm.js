@@ -1,8 +1,12 @@
 import { connect } from 'react-redux'
+import useScrollToTop from '../../hooks/useScrollToTop'
 import OfferListItem from '../offersList/OfferListItem'
 import OfferContent from '../offer/OfferContent'
 
 const PreviewForm = ({ offer }) => {
+
+  useScrollToTop()
+
   return (
     <div className="fullpage-wrapper">
       <OfferListItem offer={offer} preview />

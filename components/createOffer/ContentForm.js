@@ -2,20 +2,24 @@ import TextEditor from '../textEditor/TextEditor'
 import { newOfferContent } from '../../store/actions/index'
 import { connect } from 'react-redux' 
 
-const ContentForm = ({ submitOffer, newOfferContent }) => {
+const ContentForm = ({ submitOffer, newOfferContent, offer }) => {
 
-  const onSubmit = (content) => {
-    newOfferContent(content)
+  const onSubmit = (content, raw) => {
+    newOfferContent(content, raw)
     submitOffer()
   }
 
   return (
-    <TextEditor onSubmit={onSubmit} />
+    <TextEditor onSubmit={onSubmit} raw={offer.raw} />
   )
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  newOfferContent: (content) => dispatch(newOfferContent(content)) 
+const mapStateToProps = (state) => ({
+  offer: state.offers.newOffer
 })
 
-export default connect(null, mapDispatchToProps)(ContentForm)
+const mapDispatchToProps = (dispatch) => ({
+  newOfferContent: (content, raw) => dispatch(newOfferContent(content, raw)) 
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContentForm)

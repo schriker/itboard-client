@@ -90,7 +90,7 @@ const DetailsForm = ({ values, errors, touched, isValidating, isSubmitting }) =>
             </div>
             <Field name="apply_link" component={CustomInput} placeholder="E-mail or link to aply"/>   
             <div className="checkbox-row">
-              <Field name="remote" id="remote" type="checkbox" />
+              <Field name="remote" id="remote" type="checkbox" checked={values.remote} />
               <label htmlFor="remote">Fully remote?</label>
             </div>
             <div>
@@ -130,45 +130,25 @@ const DetailsForm = ({ values, errors, touched, isValidating, isSubmitting }) =>
 }
 
 const formikOptions = {
-  // mapPropsToValues: () => ({
-  //   company_name: '',
-  //   company_website: '',
-  //   company_size: '',
-  //   company_logo: null,
-  //   technology: '',
-  //   position_name: '',
-  //   experience_level: '',
-  //   salary_from: '',
-  //   salary_to: '',
-  //   salary_currency: '',
-  //   contract_type: '',
-  //   location: '',
-  //   address_components: [],
-  //   lat: '',
-  //   lng: '',
-  //   agreements: agreements,
-  //   apply_link: '',
-  //   remote: false
-  // }),
-  mapPropsToValues: () => ({
-    company_name: 'Packhelp',
-    company_website: 'https://google.com/',
-    company_size: 10,
-    company_logo: null,
-    technology: 'UI/UX',
-    position_name: 'UX Designer',
-    experience_level: 'Junior',
-    salary_from: 7000,
-    salary_to: 12000,
-    salary_currency: 'PLN',
-    contract_type: 'B2B',
-    location: '',
-    address_components: [],
-    lat: '',
-    lng: '',
-    agreements: agreements,
-    apply_link: 'https://google.com/',
-    remote: false
+  mapPropsToValues: ({ offer }) => ({
+    company_name: offer.company_name || '',
+    company_website: offer.company_website || '',
+    company_size: offer.company_size || '',
+    company_logo: offer.company_logo || null,
+    technology: offer.technology || '',
+    position_name: offer.position_name || '',
+    experience_level: offer.experience_level || '',
+    salary_from: offer.salary_from || '',
+    salary_to: offer.salary_to || '',
+    salary_currency: offer.salary_currency || '',
+    contract_type: offer.contract_type || '',
+    location: offer.location || '',
+    address_components: offer.address_components || [],
+    lat: offer.lat || '',
+    lng: offer.lng || '',
+    agreements: offer.agreements || agreements,
+    apply_link: offer.apply_link || '',
+    remote: offer.remote || false
   }),
   handleSubmit: (values, { props }) => {
     props.newOfferDetails(values)
@@ -179,8 +159,12 @@ const formikOptions = {
   validationSchema
 }
 
+const mapStateToProps = (state) => ({
+  offer: state.offers.newOffer
+})
+
 const mapDispatchToProps = (dispatch) => ({
   newOfferDetails: (values) => dispatch(newOfferDetials(values))
 })
 
-export default connect(null, mapDispatchToProps)(withFormik(formikOptions)(DetailsForm))
+export default connect(mapStateToProps, mapDispatchToProps)(withFormik(formikOptions)(DetailsForm))

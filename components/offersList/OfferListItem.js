@@ -17,7 +17,7 @@ const OfferListItem = ({ offer, preview }) => {
         <img src={thumb} alt={offer.company_name}/>
       </div>
       <div className="item-company">
-        <h3>{offer.position_name}</h3>
+        <h3>{offer.position_name}{offer.remote && <span>Remote</span>}</h3>
         <div className="company-location">
           <i className="far fa-building"></i>{offer.company_name}
           <i className="fas fa-map-marker-alt"></i>{offer.location}
@@ -93,6 +93,16 @@ const OfferListItem = ({ offer, preview }) => {
           font-size: 18px;
           margin-bottom: 12px;
           text-align: right;
+        }
+        h3 span {
+          display: inline-block;
+          color: #949494;
+          font-size: 14px;
+          font-weight: 400;
+          padding: 4px 18px;
+          border: 1px solid #949494;
+          border-radius: 18px;
+          margin-left: 20px;
         }
         .item-details span {
           display: inline-block;

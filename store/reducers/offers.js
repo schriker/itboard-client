@@ -25,7 +25,10 @@ const reducer = (state = initialState, action) => {
     case actionTypes.NEW_OFFER_DETAILS: {
       return {
         ...state,
-        newOffer: action.payload
+        newOffer: {
+          ...state.newOffer,
+          ...action.payload
+        }
       }
     }
     case actionTypes.NEW_OFFER_CONTENT: {
@@ -33,7 +36,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         newOffer: {
           ...state.newOffer,
-          content: action.payload
+          content: action.payload,
+          raw: action.raw
         }
       }
     }

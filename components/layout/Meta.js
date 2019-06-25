@@ -51,6 +51,9 @@ const Meta = (props) => {
           border: 2px solid #ffe600;
           background-color: transparent;
         }
+        .btn--yellow-white:hover {
+          color: #2b2b2b;
+        }
         .btn--blue {
           background-color: #0766ee;
           color: #f0f1f7;
@@ -80,7 +83,7 @@ const Meta = (props) => {
           color: #015fff;
         }
         .white-box--content p {
-          padding: 0 35px;
+          padding: 0 80px;
         }
         .white-box--content h2 {
           font-size: 18px;
@@ -94,7 +97,7 @@ const Meta = (props) => {
           margin: 15px 60px;
         }
         .white-box--content ul {
-          margin: 15px 60px;
+          margin: 15px 100px;
           list-style: none;
         }
         .white-box--content ul li {
@@ -307,10 +310,7 @@ const Meta = (props) => {
         }
         .DraftEditor-editorContainer {
           min-height: 250px;
-          padding: 30px;
-        }
-        .h2-margin h2 {
-          margin: 0 -30px;
+          padding: 40px 80px 0 80px;
         }
         .public-DraftEditorPlaceholder-root {
           color: #d1d1d1;
