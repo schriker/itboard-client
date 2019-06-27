@@ -64,11 +64,14 @@ const OfferListItem = ({ offer, preview }) => {
           display: flex;
           padding: 0 25px;
           align-items: center;
+          justify-content: center;
           border-left: 4px solid ${color};
         }
         .item-logo img {
-          width: 100%;
+          max-height: 100%;
+          width: auto;
           height: auto;
+          max-width: 100%;
         }
         .item-company {
           flex: 1 1 auto;

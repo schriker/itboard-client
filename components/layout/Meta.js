@@ -192,8 +192,10 @@ const Meta = (props) => {
           margin-top: 5px;
         }
         input[type="file"] + div img {
-          width: 100%;
+          width: auto;
           height: auto;
+          max-height: 100%;
+          max-width: 100%;
         }
         input[type="file"] + div i {
           font-size: 72px;

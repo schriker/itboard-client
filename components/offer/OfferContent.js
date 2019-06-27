@@ -20,9 +20,7 @@ const OfferContent = ({ offer, preview }) => {
       <div className="white-box details">
         <div className="details-header">
           <div className="item-logo">
-          <a href={offer.company_website} target="_blank">
             <img src={thumb} alt={offer.company_name}/>
-          </a>
           </div>
           <div className="item-company">
             <h3>{offer.position_name}</h3>
@@ -73,7 +71,7 @@ const OfferContent = ({ offer, preview }) => {
         .details-header {
           display: flex;
           padding: 5px;
-          min-height: 110px;
+          height: 110px;
           align-items: center;
           border-bottom: 1px solid #dadce7;
         }
@@ -91,13 +89,16 @@ const OfferContent = ({ offer, preview }) => {
           height: 100%;
           flex: 0 1 220px;
           display: flex;
+          justify-content: center;
           padding: 0 25px;
           align-items: center;
           border-left: 4px solid ${color};
         }
         .item-logo img {
-          width: 100%;
+          max-height: 100%;
+          width: auto;
           height: auto;
+          max-width: 100%;
         }
         .item-company {
           flex: 1 1 auto;
