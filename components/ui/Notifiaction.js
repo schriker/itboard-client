@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import posed, { PoseGroup } from 'react-pose'
+// Other animation library: React Spring
 
 const Box = posed.div({
   enter: {

@@ -20,7 +20,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         isSending: false,
         authFailed: true,
-        authErr: action.payload
+        authErr: action.payload,
+        user: null
       }
     }
     case actionTypes.AUTH_SUCCESS: {

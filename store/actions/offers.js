@@ -1,4 +1,6 @@
 import * as actionTypes from './actionTypes'
+import api from '../../helpers/axios'
+import { authFailed } from './index'
 
 export const setLanguages = (payload) => ({
   type: actionTypes.SET_LANGUAGES,
@@ -15,6 +17,43 @@ export const newOfferContent = (payload, raw) => ({
   payload,
   raw
 })
+
+const saveOfferStart = () => ({
+  type: actionTypes.OFFER_SAVE_START
+})
+
+const saveOfferFailed = (err) => ({
+  type: actionTypes.OFFER_SAVE_FAILED,
+  err
+})
+
+const saveOfferSuccess = () => ({
+  type: actionTypes.OFFER_SAVE_SUCCESS
+})
+
+export const saveOfferClearError = () => ({
+  type: actionTypes.OFFER_SAVE_CLEAR_ERROR
+})
+
+export const saveOfferReset = () => ({
+  type: actionTypes.OFFER_SAVE_RESET
+})
+
+export const saveOffer = (payload) => {
+  return dispatch => {
+    dispatch(saveOfferStart())
+    api.post('/offer/create', payload)
+      .then(() => dispatch(saveOfferSuccess()))
+      .catch((err) =>  {
+        if (err.response.status === 401) {
+          dispatch(authFailed('User session timed out. Please login.'))
+        } else {
+          console.log('Server error: ', err.response)
+          dispatch(saveOfferFailed('Server error. Pleas try again later.'))
+        }
+      })
+  }
+}
 
 // const setTitle = (payload) => ({
 //   type: actionTypes.SET_TITLE,

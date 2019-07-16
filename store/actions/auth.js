@@ -12,7 +12,7 @@ const authSuccess = (authData) => ({
   payload: authData
 })
 
-const authFailed = (errMsg) => ({
+export const authFailed = (errMsg) => ({
   type: actionTypes.AUTH_FAILED,
   payload: errMsg
 })

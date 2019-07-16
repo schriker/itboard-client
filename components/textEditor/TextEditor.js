@@ -52,7 +52,7 @@ const TextEditor = ({ onSubmit, raw }) => {
       setWithErrors(true)
     } else {
       const html = stateToHTML(editorState.getCurrentContent())
-      onSubmit(html, editorState)
+      onSubmit(html)
     }
 
   }

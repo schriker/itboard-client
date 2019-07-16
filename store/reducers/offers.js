@@ -8,7 +8,10 @@ const initialState = {
     stack: null,
     salary: null
   },
-  newOffer: {}
+  newOffer: {},
+  isSending: false,
+  saved: false,
+  err: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -39,6 +42,45 @@ const reducer = (state = initialState, action) => {
           content: action.payload,
           raw: action.raw
         }
+      }
+    }
+    case actionTypes.OFFER_SAVE_START: {
+      return {
+        ...state,
+        isSending: true,
+        saved: false,
+        err: null
+      }
+    }
+    case actionTypes.OFFER_SAVE_SUCCESS: {
+      return {
+        ...state,
+        isSending: false,
+        saved: true,
+        err: null
+      }
+    }
+    case actionTypes.OFFER_SAVE_FAILED: {
+      return {
+        ...state,
+        isSending: false,
+        saved: false,
+        err: action.err
+      }
+    }
+    case actionTypes.OFFER_SAVE_CLEAR_ERROR: {
+      return {
+        ...state,
+        err: null
+      }
+    }
+    case actionTypes.OFFER_SAVE_RESET: {
+      return {
+        ...state,
+        newOffer: {},
+        isSending: false,
+        saved: false,
+        err: null
       }
     }
     default: return state

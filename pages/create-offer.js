@@ -7,12 +7,13 @@ import LoginForm from '../components/loginForm/LoginForm'
 import DetailsForm from '../components/createOffer/DetailsForm'
 import ContentForm from '../components/createOffer/ContentForm'
 import PreviewForm from '../components/createOffer/PreviewForm'
+import SubmitedForm from '../components/createOffer/SubmitedForm'
 
 class CreateOffer extends React.Component {
 
   state = {
     currentStep: !this.props.auth.user ? 1 : 2
-    // currentStep: 4,
+    // currentStep: 5
   }
 
   componentDidUpdate(prevProps) {
@@ -42,7 +43,11 @@ class CreateOffer extends React.Component {
     }
 
     if (this.state.currentStep === 4) {
-      content = <PreviewForm editOffer={() => this.setState({currentStep: 2})} />
+      content = <PreviewForm editOffer={() => this.setState({currentStep: 2})} submitOffer={() => this.setState({currentStep: 5})} />
+    }
+
+    if (this.state.currentStep === 5) {
+      content = <SubmitedForm />
     }
 
     return (

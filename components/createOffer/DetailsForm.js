@@ -7,31 +7,15 @@ import CustomInput from '../ui/CustomInput'
 import LocationMap from '../createOffer/LocationMap'
 import ImageUpload from '../ui/ImageUpload'
 import Notification from '../ui/Notifiaction'
-import { agreements } from '../../helpers/agreements'
-import { languagesArr } from '../../helpers/languages'
+import { agreements, languagesArr, experienceSelect, currencySelect, contractSelect } from '../../helpers/consts'
 import validationSchema from './validationSchema'
+import useScrollToTop from '../../hooks/useScrollToTop'
 
 const technologySelect = languagesArr.map((language) => language.name)
 
-const experienceSelect = [
-  'Junior',
-  'Mid',
-  'Senior'
-]
-
-const currencySelect = [
-  'PLN',
-  'USD',
-  'EUR'
-]
-
-const contractSelect = [
-  'Permanent',
-  'B2B',
-  'Contract'
-]
-
 const DetailsForm = ({ values, errors, touched, isValidating, isSubmitting }) => {
+
+  useScrollToTop()
 
   const [withErrors, setWithErrors] = useState(false)
 

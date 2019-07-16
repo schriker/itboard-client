@@ -1,11 +1,11 @@
 import useFileReader from '../../hooks/useFileReader'
-import { languagesArr } from '../../helpers/languages'
+import findColor from '../../helpers/findColor'
 
 const OfferListItem = ({ offer, preview }) => {
 
   let thumb
   
-  const color = languagesArr.filter(language => language.name.toLowerCase() === offer.technology.toLowerCase())[0].color
+  const color = findColor(offer.technology)
   const isNew = preview ? true : false // Calc if is older than 24h 
   
   preview ? thumb = useFileReader(offer.company_logo) : thumb = offer.company_logo

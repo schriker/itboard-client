@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { setLanguages } from '../../store/actions/index'
 import SidebarItem from '../sidebar/SidebarItem'
-import { languagesArr as languages } from '../../helpers/languages'
+import { languagesArr as languages } from '../../helpers/consts'
 
 const Sidebar = (props) => {
 

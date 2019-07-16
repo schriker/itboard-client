@@ -16,7 +16,7 @@ const FormSteps = ({ steps, currentStep }) => {
         )
         }
       )}
-      <li>
+      <li className={currentStep > steps.length + 1 ? 'active' : null}>
         <div>
           <span>
             <i className="fas fa-check"></i>
