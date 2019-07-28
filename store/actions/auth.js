@@ -22,9 +22,10 @@ export const authReset = () => ({
   type: actionTypes.AUTH_RESET
 })
 
-const authRegisterSuccess = () => {
+const authRegisterSuccess = (email) => {
   Router.push('/verify')
   return {
+    email: email,
   type: actionTypes.AUTH_REGISTER_SUCCESS
 }}
 
@@ -47,7 +48,7 @@ export const userRegister = ({ email, password }) => {
       password: password
     })
     .then(() => {
-      dispatch(authRegisterSuccess())
+      dispatch(authRegisterSuccess(email))
     })
     .catch(err => {
       if (err.response.data.detials.msg) {

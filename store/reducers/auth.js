@@ -60,7 +60,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         authUserCreated: true,        
         verified: false,
-        isSending: false
+        isSending: false,
+        email: action.email
       }
     }
     case actionTypes.AUTH_USER_NOT_VERIFIED: {

@@ -5,6 +5,7 @@ import { authVerifiedReset } from '../store/actions/index'
 import api from '../helpers/axios'
 import Layout from '../components/layout/Layout'
 import Logo from '../components/header/Logo'
+import Notification from '../components/ui/Notifiaction'
 
 class Verify extends React.Component {
   static async getInitialProps({ query }) {
@@ -25,12 +26,24 @@ class Verify extends React.Component {
     )
   }
 
+  state = {
+    resended: false,
+    isSending: false,
+    msg: '',
+    type: ''
+  }
+
   componentWillUnmount() {
     this.props.authVerifiedReset()
   }
 
   reSubmnitHandler = () => {
-    console.log(this.props.auth.email)
+    this.setState({isSending: true})
+    api.post('user/resend-token', {
+      userEmail: this.props.auth.email
+    })
+    .then(() => this.setState({resended: true, msg: 'Token sended! Check your email.', type: 'success', isSending: false}))
+    .catch(() => this.setState({resended: true, msg: 'Server error. Pleas contact us.', type: 'error', isSending: false}))
   }
 
   render() {
@@ -52,13 +65,21 @@ class Verify extends React.Component {
     }
     return (
       <Layout {...layoutSetings}>
+      <Notification open={this.state.resended} type={this.state.type} close={() => this.setState({resended: false})}>
+        <p>{this.state.type === 'success' ? 'Success!' : 'Something went wrong :('}</p>
+        <ul>
+          <li>{this.state.msg}</li>
+        </ul>
+      </Notification>
         <Logo black />
         <div className="white-box wrapper">
           <div>
             <p>{content}</p>
           </div>
           {this.props.auth.verified && <button className="btn btn--blue btn--blue-white" type="button" onClick={() => Router.push('/login')}>Login</button>}
-          {!this.props.auth.verified && <button className="btn btn--blue btn--blue-white" type="button" onClick={() => this.reSubmnitHandler()}>Send it again</button>}
+          {!this.props.auth.verified && <button disabled={this.state.isSending} className="btn btn--blue btn--blue-white" type="submit" onClick={() => this.reSubmnitHandler()}>
+            {this.state.isSending ? "Wait" : "Send it again"}
+          </button>}
         </div>
         <style jsx>{`
           .wrapper {
