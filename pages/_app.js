@@ -30,7 +30,7 @@ class MyApp extends App {
     return (
       <Container>
         <Provider store={reduxStore}>
-          <Component {...pageProps} />
+          <Component {...pageProps}/>
         </Provider>
       </Container>
     )

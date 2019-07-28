@@ -9,8 +9,10 @@ export {
 
 export {
   userLogin,
+  userRegister,
   onAuthStateChange,
   userLogOut,
   authReset,
-  authFailed
+  authFailed,
+  authVerifiedReset
 } from './auth'

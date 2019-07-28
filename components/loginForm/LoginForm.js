@@ -3,11 +3,11 @@ import { useEffect, useState, Fragment } from 'react'
 import * as Yup from 'yup'
 import Link from 'next/link'
 import { connect } from 'react-redux'
-import { userLogin, authReset } from '../../store/actions/index'
+import { userLogin, authReset, userRegister } from '../../store/actions/index'
 import Notification from '../ui/Notifiaction'
 import CustomInput from '../ui/CustomInput'
 
-const LoginForm = ({ errors, auth, resetAuth, isValidating, isSubmitting }) => {
+const LoginForm = ({ errors, auth, resetAuth, isValidating, isSubmitting, loginMode, setLoginMode }) => {
 
   useEffect(() => {
     return () => resetAuth()
@@ -53,13 +53,14 @@ const LoginForm = ({ errors, auth, resetAuth, isValidating, isSubmitting }) => {
             <Field name="email" component={CustomInput} placeholder="Email" />
             <Field name="password" component={CustomInput} placeholder="Password" password />
           <div className="links">
+            <a onClick={() => setLoginMode(!loginMode)}>{loginMode ? "Create new account" : "Login form."}</a>
             <Link href="/reset-password">
               <a>Forgot password?</a>
             </Link>
           </div>
           <div>
             <button disabled={auth.isSending} className="btn btn--blue btn--blue-white" type="submit">
-              {auth.isSending ? "Wait" : "Login"}
+              {auth.isSending ? "Wait" : loginMode ? "Login" : "Register"}
             </button>
           </div>
         </Form>
@@ -68,9 +69,13 @@ const LoginForm = ({ errors, auth, resetAuth, isValidating, isSubmitting }) => {
             flex: 0 1 600px;
             padding: 90px 100px;
           }
+          a:hover {
+            cursor: pointer;
+          }
           .links {
-            margin-bottom: 10px;
-            text-align: right;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
           }
           `}</style>
       </div>
@@ -91,8 +96,12 @@ const formikOptions = {
     email: '',
     password: ''
   }),
-  handleSubmit: (values, { props }) => {
-    props.login(values)
+  handleSubmit: (values, { props } ) => {
+    if (props.loginMode) {
+      props.login(values)
+    } else {
+      props.register(values)      
+    }
   },
   validateOnBlur: false,
   validateOnChange: false,
@@ -105,6 +114,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   login: (values) => dispatch(userLogin(values)),
+  register: (values) => dispatch(userRegister(values)),
   resetAuth: () => dispatch(authReset())
 })
 

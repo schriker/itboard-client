@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import Protect from './protect'
 import Layout from '../components/layout/Layout'
 import Logo from '../components/header/Logo'
 import FormSteps from '../components/createOffer/FormSteps'
@@ -12,14 +12,7 @@ import SubmitedForm from '../components/createOffer/SubmitedForm'
 class CreateOffer extends React.Component {
 
   state = {
-    currentStep: !this.props.auth.user ? 1 : 2
-    // currentStep: 5
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.auth.user !== prevProps.auth.user) {
-      this.setState({ currentStep: !this.props.auth.user ? 1 : 2 })
-    }
+    currentStep: 2
   }
 
   render() {
@@ -32,7 +25,7 @@ class CreateOffer extends React.Component {
 
     const formSteps = ['login', 'detials', 'content']
 
-    let content = <LoginForm />
+    let content = null
 
     if (this.state.currentStep === 2) {
       content = <DetailsForm submitOffer={() => this.setState({currentStep: 3})} />
@@ -60,8 +53,4 @@ class CreateOffer extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  auth: state.auth
-})
-
-export default connect(mapStateToProps)(CreateOffer)
+export default Protect(CreateOffer)

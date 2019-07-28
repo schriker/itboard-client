@@ -18,13 +18,13 @@ const Meta = (props) => {
 
         body {
           background-color: #dadce7;
-          color: #818181;
+          color: #1f1f1f;
           font-size: 14px;
           font-family: 'Montserrat', sans-serif;
         }  
         a {
           text-decoration: none;
-          color: #818181;
+          color: #1f1f1f;
           transition: all .1s ease-in-out;
         }
         a:hover {
@@ -111,6 +111,11 @@ const Meta = (props) => {
           content: "\\f111";
           color: #015fff;
           margin-right: 8px;
+        }
+        p {
+          color: #1f1f1f;
+          line-height: 25px;
+          margin: 0 0 20px; 0;
         }
         .wrapper {
           flex: 0 1 935px;

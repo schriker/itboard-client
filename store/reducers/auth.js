@@ -3,8 +3,11 @@ import * as actionTypes from '../actions/actionTypes'
 const initialState = {
   isSending: false,
   authFailed: false,
-  authErr: '',
-  user: null
+  authUserCreated: false,
+  verified: true,
+  authErr: null,
+  user: null,
+  email: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -12,7 +15,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.AUTH_START: {
       return {
         ...state,
-        isSending: true
+        isSending: true,
+        authFailed: false,
+        authErr: null
       }
     }
     case actionTypes.AUTH_FAILED: {
@@ -29,7 +34,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         isSending: false,
         authFailed: false,
-        authErr: '',
+        authErr: null,
         user: {
           ...action.payload
         }
@@ -45,7 +50,31 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         authFailed: false,
-        authErr: ''
+        isSending: false,
+        authUserCreated: false,
+        authErr: null
+      }
+    }
+    case actionTypes.AUTH_REGISTER_SUCCESS: {
+      return {
+        ...state,
+        authUserCreated: true,        
+        verified: false,
+        isSending: false
+      }
+    }
+    case actionTypes.AUTH_USER_NOT_VERIFIED: {
+      return {
+        ...state,
+        verified: false,
+        email: action.email,
+        isSending: false
+      }
+    }
+    case actionTypes.AUTH_VERIFIED_RESET: {
+      return {
+        ...state,
+        verified: true
       }
     }
     default: return state

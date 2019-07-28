@@ -24,6 +24,12 @@ app
       app.render(req, res, actualPage, queryParams)
     })
 
+    server.get('/verify', (req, res) => {
+      const actualPage = '/verify'
+      const queryParams = { token: req.query.token }
+      app.render(req, res, actualPage, queryParams)
+    })
+
     server.get('/login', (req, res) => {
       const actualPage = '/login'
       app.render(req, res, actualPage)

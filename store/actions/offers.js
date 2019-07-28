@@ -48,7 +48,7 @@ export const saveOffer = (payload) => {
         if (err.response.status === 401) {
           dispatch(authFailed('User session timed out. Please login.'))
         } else {
-          console.log('Server error: ', err.response)
+          console.log('Server error: ', err)
           dispatch(saveOfferFailed('Server error. Pleas try again later.'))
         }
       })

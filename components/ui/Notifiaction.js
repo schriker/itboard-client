@@ -56,6 +56,9 @@ const Notification = ({ open, close, type, children }) => {
               background-color: #f3fff6;
               border-left: #10b63b 4px solid;
             }
+            .success p {
+              color: #10b63b;
+            }
             .info {
               border-left: #0069ff 4px solid;
             }
@@ -63,6 +66,9 @@ const Notification = ({ open, close, type, children }) => {
               color: #dd0505;
               background-color: #fff8f8;
               border-left: #dd0505 4px solid;
+            }
+            .error p {
+              color: #dd0505;
             }
             `}</style>
         </Box> : null}

@@ -2,6 +2,7 @@ import * as actionTypes from './actionTypes'
 import api from '../../helpers/axios'
 import jwt from 'jsonwebtoken'
 import Cookies from 'js-cookie'
+import Router from 'next/router'
 
 const authStart = () => ({
   type: actionTypes.AUTH_START
@@ -20,6 +21,45 @@ export const authFailed = (errMsg) => ({
 export const authReset = () => ({
   type: actionTypes.AUTH_RESET
 })
+
+const authRegisterSuccess = () => {
+  Router.push('/verify')
+  return {
+  type: actionTypes.AUTH_REGISTER_SUCCESS
+}}
+
+const authUserNotVerified = (email) => {
+  Router.push('/verify')
+  return { 
+  email: email,
+  type: actionTypes.AUTH_USER_NOT_VERIFIED
+}}
+
+export const authVerifiedReset = () => ({
+  type: actionTypes.AUTH_VERIFIED_RESET
+})
+
+export const userRegister = ({ email, password }) => {
+  return dispatch => {
+    dispatch(authStart())
+    api.post('user/create', {
+      email: email,
+      password: password
+    })
+    .then(() => {
+      dispatch(authRegisterSuccess())
+    })
+    .catch(err => {
+      if (err.response.data.detials.msg) {
+        dispatch(authFailed(err.response.data.detials.msg))
+      } else if (err.response.data.message) {
+        dispatch(authFailed(err.response.data.message))
+      } else {
+        dispatch(authFailed(`You couldn't be loged in, please try again.`))
+      }
+    })
+  }
+}
 
 export const userLogin = ({ email, password }) => {
   return dispatch => {
@@ -43,17 +83,21 @@ export const userLogin = ({ email, password }) => {
     .catch(err => {
       const statusCode = err.response.status
       let errMsg = ''
-      switch (statusCode) {
-        case 404:
-          errMsg = `User with that email doesn't exist.`
-          break
-        case 422:
-          errMsg = `Wrong email or password.`
-          break
-        default: 
-          errMsg = `You couldn't be loged in, please try again.`    
+      if (statusCode === 401) {
+        dispatch(authUserNotVerified(email))
+      } else {
+        switch (statusCode) {
+          case 404:
+            errMsg = `User with that email doesn't exist.`
+            break
+          case 422:
+            errMsg = `Wrong email or password.`
+            break
+          default: 
+            errMsg = `You couldn't be loged in, please try again.`    
+        }
+        dispatch(authFailed(errMsg))
       }
-      dispatch(authFailed(errMsg))
     })
   }
 }
