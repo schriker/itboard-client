@@ -1,18 +1,21 @@
 import useFileReader from '../../hooks/useFileReader'
 import findColor from '../../helpers/findColor'
+import Link from 'next/link'
 
 const OfferListItem = ({ offer, preview }) => {
 
-  let thumb
+  let thumb = null
   
   const color = findColor(offer.technology)
   const isNew = preview ? true : false // Calc if is older than 24h 
+  const thumbURL = process.env.NODE_ENV === 'development' ? `http://localhost:8080/images/companies_logos/thumb/${offer.company_logo_thumb}` : `http://itboardapi.janusmarcin.pl/images/companies_logos/thumb/${offer.company_logo_thumb}`
+  const offerURl = preview ? '#' : `/offer?id=${offer._id}`
   
-  preview ? thumb = useFileReader(offer.company_logo) : thumb = offer.company_logo
+  preview ? thumb = useFileReader(offer.company_logo) : thumb = thumbURL
 
   return (
     <div className="item-wrapper">
-      <a href="#"></a>
+      <Link href={offerURl}><a></a></Link> 
       <div className="item-logo">
         <img src={thumb} alt={offer.company_name}/>
       </div>
@@ -49,6 +52,8 @@ const OfferListItem = ({ offer, preview }) => {
           box-shadow: 0px 0px 5px 0px rgba(104,111,151,0.2);
         }
         .item-wrapper a {
+          left: 0;
+          top: 0;
           width: 100%;
           height: 100%;
           position: absolute;
@@ -106,6 +111,9 @@ const OfferListItem = ({ offer, preview }) => {
           border: 1px solid #949494;
           border-radius: 18px;
           margin-left: 20px;
+        }
+        .item-details {
+          text-align: right;
         }
         .item-details span {
           display: inline-block;

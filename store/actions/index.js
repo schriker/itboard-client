@@ -4,7 +4,8 @@ export {
   newOfferContent,
   saveOffer,
   saveOfferReset,
-  saveOfferClearError
+  saveOfferClearError,
+  fetchOffers
 } from './offers'
 
 export {

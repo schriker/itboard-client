@@ -2,17 +2,17 @@ import React from 'react'
 import Link from 'next/link'
 import { connect } from 'react-redux'
 import Layout from '../components/layout/Layout'
+import { fetchOffers } from '../store/actions/index'
+import OfferListItem from '../components/offersList/OfferListItem'
 
 class Index extends React.Component {
 
-//   static async getInitialProps ({ reduxStore }) {
-//     // Fecth offers here
-//     // await reduxStore.dispatch(actions.fetchTitle())
-//     return {}
-// }
+  static async getInitialProps ({ reduxStore }) {
+    await reduxStore.dispatch(fetchOffers())
+    return {}
+}
 
   render() {
-
     const layoutSetings = {
       meta: {
       },
@@ -21,15 +21,26 @@ class Index extends React.Component {
 
     return (
       <Layout { ...layoutSetings }>
-        <Link href="/offer?id=2"><a>Offer pages</a></Link>
-        Test
+        <div className="fullpage-wrapper">
+          <div>Filters</div>
+          <div>Map</div>
+          <div className="offers">
+            {this.props.offers.map(offer => <OfferListItem offer={offer} />)}
+          </div>
+          <div>Pagination</div>
+        </div>
+        <style jsx>{`
+          .offers {
+            padding: 20px;
+          }
+          `}</style>
       </Layout>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  
+  offers: state.offers.offers
 })
 
 export default connect(mapStateToProps)(Index)

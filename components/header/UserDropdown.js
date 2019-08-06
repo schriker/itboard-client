@@ -42,6 +42,7 @@ const UserDropdown = (props) => {
           left: 50%;
           transform: translate(-50%, 0);
           position: absolute;
+          z-index: 1;
           transition: all .1s ease-in-out;
           list-style: none;
           border-radius: 5px;

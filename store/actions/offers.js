@@ -55,18 +55,20 @@ export const saveOffer = (payload) => {
   }
 }
 
-// const setTitle = (payload) => ({
-//   type: actionTypes.SET_TITLE,
-//   payload
-// })
+const fethcOffersSuccess = (offers) => ({
+  type: actionTypes.FETCH_OFFERS_SUCCESS,
+  offers
+})
 
-// export const fetchTitle = () => {
-//   return async dispatch => {
-//     await axios.get('https://jsonplaceholder.typicode.com/todos/1')
-//             .then(res => {
-//               console.log(res.data.title)
-//               dispatch(setTitle(res.data.title))
-//             })
-//             .catch(err => console.log(err))
-//   }
-// }
+const fetchOffersFailed = (err) => ({
+  type: actionTypes.FETCH_OFFERS_FAILED,
+  err
+}) 
+
+export const fetchOffers = () => {
+  return async dispatch => {
+    await api.get('/offer/all')
+            .then(response => dispatch(fethcOffersSuccess(response.data.offers)))
+            .catch(err => dispatch(fetchOffersFailed(err)))
+  }
+}

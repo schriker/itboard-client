@@ -1,6 +1,7 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
+  offers: [],
   filters: {
     language: [],
     location: null,
@@ -81,6 +82,18 @@ const reducer = (state = initialState, action) => {
         isSending: false,
         saved: false,
         err: null
+      }
+    }
+    case actionTypes.FETCH_OFFERS_SUCCESS: {
+      return {
+        ...state,
+        offers: action.offers
+      }
+    }
+    case actionTypes.FETCH_OFFERS_FAILED: {
+      return {
+        ...state,
+        err: 'Failed to fetch offers from server.'
       }
     }
     default: return state
