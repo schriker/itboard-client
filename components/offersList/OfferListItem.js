@@ -67,7 +67,7 @@ const OfferListItem = ({ offer, preview }) => {
           height: 100%;
           flex: 0 1 220px;
           display: flex;
-          padding: 0 25px;
+          padding: 10px 25px;
           align-items: center;
           justify-content: center;
           border-left: 4px solid ${color};

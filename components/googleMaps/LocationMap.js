@@ -10,14 +10,14 @@ const LocationMap = ({ form, field }) => {
     if (window.google) {
       initMap()
     }
-  },[])
+  }, [])
 
   const initMap = () => {
     const map = new window.google.maps.Map(mapRef.current, {
-      center: {lat: 51.509865, lng: -0.118092},
+      center: {lat: 52.22977, lng: 21.01178},
       zoom: 8,
       mapTypeControl: false
-    });
+    })
     const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current)
     autocomplete.bindTo('bounds', map)
     autocomplete.setFields(['address_components', 'formatted_address' , 'geometry', 'name'])

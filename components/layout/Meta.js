@@ -22,6 +22,9 @@ const Meta = (props) => {
           font-size: 14px;
           font-family: 'Montserrat', sans-serif;
         }  
+        .gm-ui-hover-effect {
+          display: none !important;
+        }
         a {
           text-decoration: none;
           color: #1f1f1f;
@@ -326,6 +329,26 @@ const Meta = (props) => {
           left: 50%;
           top: calc(50% + 40px);
           transform: translate(-50%, -50%);
+        }
+
+        .map-info-window {
+          display: flex;
+        }
+        .map-info-window img {
+          margin: auto 0;
+          display: block;
+          max-width: 70px;
+          max-height: 50px;
+        }
+        .map-info-window div {
+          margin-left: 15px;
+          display: flex;
+          flex-direction: column;
+        }
+        .map-info-window div span {
+          color: #2669e6;
+          margin: 3px 0;
+          font-weight: 500;
         }
       `}</style>
     </Fragment>
