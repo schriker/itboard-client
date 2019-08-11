@@ -3,24 +3,37 @@ import InfoWindowContent from './InfoWindowContent'
 
 const IndexMap = ({ offers }) => {
 
+  let map = null
+  let infoWindow = null
+  const markersArray = []
   const mapRef = useRef()
-  const infoWindow = useRef()
+  const infoWindowRef = useRef()
   const [infoWindowContent, setInfoWindowContent] = useState(null)
+  const [isMap, setIsMap] = useState(null)
+  const [markers, setMarkers] = useState([])
 
   useEffect(() => {
-      if (window.google) {
-        if ('geolocation' in window.navigator) {
-          window.navigator.geolocation.getCurrentPosition((position) => {
-            initMap(position.coords)
-          })
-        }
-      initMap()
+    if (window.google) {
+    infoWindow = new window.google.maps.InfoWindow()
+      if ('geolocation' in window.navigator) {
+        window.navigator.geolocation.getCurrentPosition((position) => {
+          initMap(position.coords)
+        }, () => initMap())
+      }
     }
   }, [])
 
-  const initMap = (cords) => {
+  useEffect(() => {
+    infoWindow = new window.google.maps.InfoWindow()
+    markers.forEach(marker => marker.setMap(null))
+    setMarkers([])
+    if (isMap) {
+      offers.forEach(placeMarker)
+      setMarkers(markersArray)
+    }
+  }, [offers])
 
-    const markersArray = []
+  const initMap = (cords) => {
     let initailPosition = {
       lat: 52.22977, 
       lng: 21.01178
@@ -33,71 +46,71 @@ const IndexMap = ({ offers }) => {
       }
     }
 
-    const infowindow = new window.google.maps.InfoWindow()
-    const map = new window.google.maps.Map(mapRef.current, {
+    map = new window.google.maps.Map(mapRef.current, {
       center: initailPosition,
-      zoom: 8,
+      zoom: cords ? 8 : 6,
       mapTypeControl: false
     })
+    offers.forEach(placeMarker)
+    setMarkers(markersArray)
+    setIsMap(map)
+  }
 
-    const placeMarker = (offer) => {
+  const placeMarker = (offer) => {
 
-      let position = new google.maps.LatLng(offer.lat, offer.lng)
+    let position = new window.google.maps.LatLng(offer.lat, offer.lng)
 
-      let placesCounter = 1
+    let placesCounter = 1
+
+    markersArray.forEach((arrMarker) => {
+      if (arrMarker.getPosition().equals(position)) {
+        placesCounter ++
+      }
+    })
+
+    const label = {
+      fontSize: '18px',
+      fontWeight: '500',
+      color: '#f0f1f6',
+      text: `${placesCounter}`
+    }
+
+    const marker = new google.maps.Marker({
+      position: position,
+      map: isMap || map,
+      icon: placesCounter > 1 ? `/static/badges/multiple.png` : `/static/badges/${offer.technology.toLowerCase()}.png`,
+      label: placesCounter > 1 ? label : null,
+      content: offer,
+      zIndex: placesCounter,
+      animation: window.google.maps.Animation.DROP // bounce on hover
+    })
+
+    window.google.maps.event.addListener(marker, 'click', () => {
+
+      let placesArray = []
 
       markersArray.forEach((arrMarker) => {
-        if (arrMarker.getPosition().equals(position)) {
-          placesCounter ++
+        if (arrMarker.getPosition().equals(marker.getPosition())) {
+          placesArray.push(arrMarker.content)
         }
       })
 
-      const label = {
-        fontSize: '16px',
-        fontWeight: '500',
-        color: '#f0f1f6',
-        text: `${placesCounter}`
-      }
+      setInfoWindowContent(placesArray)
 
-      var marker = new google.maps.Marker({
-        position: position,
-        map: map,
-        icon: placesCounter > 1 ? `/static/badges/multiple.png` : `/static/badges/${offer.technology.toLowerCase()}.png`,
-        label: placesCounter > 1 ? label : null,
-        content: offer,
-        zIndex: placesCounter
-      })
-
-      window.google.maps.event.addListener(marker, 'click', () => {
-
-        let placesArray = []
-
-        markersArray.forEach((arrMarker) => {
-          if (arrMarker.getPosition().equals(marker.getPosition())) {
-            placesArray.push(arrMarker.content)
-          }
-        })
-
-        setInfoWindowContent(placesArray)
-
-        infowindow.close()
-        infowindow.setContent(infoWindow.current)
-        infowindow.open(map, marker)
-      })
-      window.google.maps.event.addListener(map, 'click', () => {
-        infowindow.close()
-      })
-      markersArray.push(marker)
-    }
-    
-    offers.forEach(placeMarker)
+      infoWindow.close()
+      infoWindow.setContent(infoWindowRef.current)
+      infoWindow.open(isMap || map, marker)
+    })
+    window.google.maps.event.addListener(isMap || map, 'click', () => {
+      infoWindow.close()
+    })
+    markersArray.push(marker)
   }
-
 
   return (
     <div className='map-wrapper'>
       <div className='map' ref={mapRef}></div>
-      {infoWindowContent && <div className="info-widnow__wrapper" ref={infoWindow}>
+      {infoWindowContent && <div className="info-widnow__wrapper" ref={infoWindowRef}>
         <div className="info-widnow__content">
           {infoWindowContent.map((place) => <InfoWindowContent key={place._id} offer={place} />)}
         </div>
@@ -129,11 +142,9 @@ const IndexMap = ({ offers }) => {
           transform: translate(-50%, 0);
           overflow: hidden;
           pointer-events: none;
-          margin-top: -1px;
         }
         .info-widnow__arrow div {
           background: white;
-          box-shadow: 0 3px 14px rgba(0,0,0,0.4);
           width: 17px;
           height: 17px;
           padding: 1px;

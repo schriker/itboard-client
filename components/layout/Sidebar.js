@@ -11,14 +11,14 @@ const Sidebar = (props) => {
 
   const addLanguage = (language) => {
     const languages = [
-      ...props.filters.language,
+      ...props.filters.technology,
       language.toLowerCase()
     ]
     props.setLanguage(languages)
   }
 
   const removeLanguage = (language) => {
-    const languages = props.filters.language.filter(item => item !== language.toLowerCase())
+    const languages = props.filters.technology.filter(item => item !== language.toLowerCase())
     props.setLanguage(languages)
   }
 
@@ -27,7 +27,7 @@ const Sidebar = (props) => {
       <i className="far fa-file-code"></i>
       <ul>
         {languages.map(item => {
-          const isSelected = props.filters.language.includes(item.name.toLowerCase())
+          const isSelected = props.filters.technology.includes(item.name.toLowerCase())
           return (
               <SidebarItem isSelected={isSelected} item={item} onClickHandler={onClickHandler} key={item.name}/>
             )

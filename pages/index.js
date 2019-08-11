@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Layout from '../components/layout/Layout'
 import { fetchOffers } from '../store/actions/index'
+import { filter } from '../helpers/offerFilters'
 import IndexMap from '../components/googleMaps/IndexMap'
 import OfferListItem from '../components/offersList/OfferListItem'
 
@@ -12,7 +13,7 @@ class Index extends React.Component {
     return {}
 }
 
-  render() {
+render() {
     const layoutSetings = {
       meta: {
       },
@@ -40,7 +41,7 @@ class Index extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  offers: state.offers.offers
+  offers: filter(state.offers.filters, state.offers.offers)
 })
 
 export default connect(mapStateToProps)(Index)

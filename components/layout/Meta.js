@@ -340,6 +340,9 @@ const Meta = (props) => {
         .gm-style .gm-style-iw-t::after {
           display: none;
         }
+        .info-widnow__content div:last-child {
+          border: 0;
+        }
       `}</style>
     </Fragment>
   )

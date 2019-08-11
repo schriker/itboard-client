@@ -3,11 +3,11 @@ import * as actionTypes from '../actions/actionTypes'
 const initialState = {
   offers: [],
   filters: {
-    language: [],
-    location: null,
-    level: null,
-    stack: null,
-    salary: null
+    technology: [],
+    location: [],
+    level: [],
+    stack: [],
+    salary: []
   },
   newOffer: {},
   isSending: false,
@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         filters: {
           ...state.filters,
-          language: action.payload
+          technology: action.payload
         }
       }
     }
