@@ -22,9 +22,6 @@ const Meta = (props) => {
           font-size: 14px;
           font-family: 'Montserrat', sans-serif;
         }  
-        .gm-ui-hover-effect {
-          display: none !important;
-        }
         a {
           text-decoration: none;
           color: #1f1f1f;
@@ -330,25 +327,18 @@ const Meta = (props) => {
           top: calc(50% + 40px);
           transform: translate(-50%, -50%);
         }
-
-        .map-info-window {
-          display: flex;
+        .gm-style .gm-style-iw-c {
+          padding: 0 !important;
+          overflow: initial;
         }
-        .map-info-window img {
-          margin: auto 0;
-          display: block;
-          max-width: 70px;
-          max-height: 50px;
+        .gm-style .gm-style-iw-d {
+          overflow: auto !important;
         }
-        .map-info-window div {
-          margin-left: 15px;
-          display: flex;
-          flex-direction: column;
+        .gm-ui-hover-effect {
+          display: none !important;
         }
-        .map-info-window div span {
-          color: #2669e6;
-          margin: 3px 0;
-          font-weight: 500;
+        .gm-style .gm-style-iw-t::after {
+          display: none;
         }
       `}</style>
     </Fragment>

@@ -1,8 +1,11 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import InfoWindowContent from './InfoWindowContent'
 
 const IndexMap = ({ offers }) => {
 
   const mapRef = useRef()
+  const infoWindow = useRef()
+  const [infoWindowContent, setInfoWindowContent] = useState(null)
 
   useEffect(() => {
       if (window.google) {
@@ -17,6 +20,7 @@ const IndexMap = ({ offers }) => {
 
   const initMap = (cords) => {
 
+    const markersArray = []
     let initailPosition = {
       lat: 52.22977, 
       lng: 21.01178
@@ -32,55 +36,109 @@ const IndexMap = ({ offers }) => {
     const infowindow = new window.google.maps.InfoWindow()
     const map = new window.google.maps.Map(mapRef.current, {
       center: initailPosition,
-      zoom: 9,
+      zoom: 8,
       mapTypeControl: false
     })
 
     const placeMarker = (offer) => {
-      var position = new google.maps.LatLng(offer.lat, offer.lng)
+
+      let position = new google.maps.LatLng(offer.lat, offer.lng)
+
+      let placesCounter = 1
+
+      markersArray.forEach((arrMarker) => {
+        if (arrMarker.getPosition().equals(position)) {
+          placesCounter ++
+        }
+      })
+
+      const label = {
+        fontSize: '16px',
+        fontWeight: '500',
+        color: '#f0f1f6',
+        text: `${placesCounter}`
+      }
+
       var marker = new google.maps.Marker({
         position: position,
-        map: map
+        map: map,
+        icon: placesCounter > 1 ? `/static/badges/multiple.png` : `/static/badges/${offer.technology.toLowerCase()}.png`,
+        label: placesCounter > 1 ? label : null,
+        content: offer,
+        zIndex: placesCounter
       })
-      window.google.maps.event.addListener(marker, 'mouseover', () => {
-        const thumbURL = process.env.NODE_ENV === 'development' ? `http://localhost:8080/images/companies_logos/thumb/${offer.company_logo_thumb}` : `http://itboardapi.janusmarcin.pl/images/companies_logos/thumb/${offer.company_logo_thumb}`
 
-        const infoWindowContent = `
-          <div id="infowindow" class="map-info-window">
-            <img src=${thumbURL} alt=${offer.company_name} />
-            <div>
-              ${offer.position_name}
-              <span>${offer.salary_from} - ${offer.salary_to} ${offer.salary_currency}</span>
-              ${offer.company_name}
-            </div>
-          </div>
-        `
+      window.google.maps.event.addListener(marker, 'click', () => {
+
+        let placesArray = []
+
+        markersArray.forEach((arrMarker) => {
+          if (arrMarker.getPosition().equals(marker.getPosition())) {
+            placesArray.push(arrMarker.content)
+          }
+        })
+
+        setInfoWindowContent(placesArray)
 
         infowindow.close()
-        infowindow.setContent(infoWindowContent)
+        infowindow.setContent(infoWindow.current)
         infowindow.open(map, marker)
       })
-      window.google.maps.event.addListener(marker, 'mouseout', () => {
+      window.google.maps.event.addListener(map, 'click', () => {
         infowindow.close()
       })
-      window.google.maps.event.addListener(marker, 'click', () => {
-        console.log('Clicked!')
-      })
+      markersArray.push(marker)
     }
     
     offers.forEach(placeMarker)
   }
 
+
   return (
     <div className='map-wrapper'>
       <div className='map' ref={mapRef}></div>
+      {infoWindowContent && <div className="info-widnow__wrapper" ref={infoWindow}>
+        <div className="info-widnow__content">
+          {infoWindowContent.map((place) => <InfoWindowContent key={place._id} offer={place} />)}
+        </div>
+        <div className="info-widnow__arrow">
+          <div></div>
+        </div>
+      </div>}
       <style jsx>{`
         .map-wrapper {
           width: 100%;
-          height: 350px;
+          height: 400px;
         }
         .map {
           height: 100%;
+        }
+        .info-widnow__wrapper {
+          width: 100%;
+          height: 100%;
+        }
+        .info-widnow__content {
+          border-radius: 8px;
+          overflow: hidden;
+        }
+        .info-widnow__arrow {
+          width: 40px;
+          height: 20px;
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%, 0);
+          overflow: hidden;
+          pointer-events: none;
+          margin-top: -1px;
+        }
+        .info-widnow__arrow div {
+          background: white;
+          box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+          width: 17px;
+          height: 17px;
+          padding: 1px;
+          margin: -12px auto 0;
+          transform: rotate(45deg);
         }
       `}</style>
     </div>

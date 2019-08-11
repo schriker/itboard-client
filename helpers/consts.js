@@ -76,7 +76,7 @@ export const languagesArr = [
     color: '#add329'
   },
   {
-    name: 'UI/UX',
+    name: 'UI UX',
     color: '#d9400b'
   },
   {
