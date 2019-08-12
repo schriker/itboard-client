@@ -1,9 +1,13 @@
 import React from 'react'
+import dynamic from 'next/dynamic'
 import { connect } from 'react-redux'
 import Layout from '../components/layout/Layout'
 import { fetchOffers } from '../store/actions/index'
 import { filter } from '../helpers/offerFilters'
-import IndexMap from '../components/googleMaps/IndexMap'
+const IndexMap = dynamic(
+  () => import('../components/googleMaps/IndexMap'),
+  {ssr: false}
+)
 import OfferListItem from '../components/offersList/OfferListItem'
 
 class Index extends React.Component {
@@ -22,7 +26,6 @@ render() {
       },
       withSidebar: true
     }
-    console.log('Test')
 
     return (
       <Layout { ...layoutSetings }>

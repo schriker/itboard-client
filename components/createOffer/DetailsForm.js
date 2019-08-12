@@ -1,10 +1,14 @@
 import { withFormik, Form, Field } from 'formik'
 import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import { connect } from 'react-redux'
 import { newOfferDetials } from '../../store/actions/index'
 import CustomSelect from '../ui/CustomSelect'
 import CustomInput from '../ui/CustomInput'
-import LocationMap from '../googleMaps/LocationMap'
+const LocationMap = dynamic(
+  () => import('../googleMaps/LocationMap'),
+  {ssr: false}
+)
 import ImageUpload from '../ui/ImageUpload'
 import Notification from '../ui/Notifiaction'
 import { agreements, languagesArr, experienceSelect, currencySelect, contractSelect } from '../../helpers/consts'
