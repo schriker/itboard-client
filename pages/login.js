@@ -39,7 +39,20 @@ const Login = ({ auth }) => {
 
 
   if (auth.user) {
-    loginForm = <Index />
+    loginForm =     
+    <Layout {...layoutSettings}>
+      <Logo black />
+        <div className="white-box wrapper">
+          You are already loged in.
+        </div>
+        <style jsx>{`
+          .wrapper {
+            text-align: center;
+            flex: 0 1 750px;
+            padding: 60px 80px;
+          }
+        `}</style>
+    </Layout>
   }
 
   return (

@@ -9,9 +9,12 @@ import OfferListItem from '../components/offersList/OfferListItem'
 class Index extends React.Component {
 
   static async getInitialProps ({ reduxStore }) {
-    await reduxStore.dispatch(fetchOffers())
+    const state = reduxStore.getState()
+    if (state.offers.offers.length === 0) {
+      await reduxStore.dispatch(fetchOffers())
+    }
     return {}
-}
+  }
 
 render() {
     const layoutSetings = {
@@ -19,6 +22,7 @@ render() {
       },
       withSidebar: true
     }
+    console.log('Test')
 
     return (
       <Layout { ...layoutSetings }>
@@ -26,6 +30,7 @@ render() {
           <div>Filters</div>
           <IndexMap offers={this.props.offers} />
           <div className="offers">
+            {this.props.offers.length === 0 && <div className="noresults">No offers matches your critieria :(</div>}
             {this.props.offers.map(offer => <OfferListItem key={offer._id} offer={offer} />)}
           </div>
           <div>Pagination</div>
@@ -34,14 +39,21 @@ render() {
           .offers {
             padding: 20px;
           }
+          .noresults {
+            color: #a6a9b5;
+            text-align: center;
+            font-size: 28px;
+            padding: 60px 0;
+            font-weight: 500;
+          }
           `}</style>
       </Layout>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  offers: filter(state.offers.filters, state.offers.offers)
+const mapStateToProps = ({ offers }) => ({
+  offers: filter(offers.filters, offers.offers)
 })
 
 export default connect(mapStateToProps)(Index)
