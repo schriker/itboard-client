@@ -8,10 +8,9 @@ const OfferListItem = ({ offer, preview }) => {
   
   const color = findColor(offer.technology)
   const isNew = preview ? true : false // Calc if is older than 24h 
-  const thumbURL = process.env.NODE_ENV === 'development' ? `http://localhost:8080/images/companies_logos/thumb/${offer.company_logo_thumb}` : `http://itboardapi.janusmarcin.pl/images/companies_logos/thumb/${offer.company_logo_thumb}`
   const offerURl = preview ? '#' : `/offer?id=${offer._id}`
   
-  preview ? thumb = useFileReader(offer.company_logo) : thumb = thumbURL
+  preview ? thumb = useFileReader(offer.company_logo) : thumb = offer.company_logo
 
   return (
     <div className="item-wrapper">

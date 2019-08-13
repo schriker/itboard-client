@@ -1,12 +1,11 @@
 import Router from 'next/router'
 
 const InfoWindowContent = ({ offer }) => {
-  const thumbURL = process.env.NODE_ENV === 'development' ? `http://localhost:8080/images/companies_logos/thumb/${offer.company_logo_thumb}` : `http://itboardapi.janusmarcin.pl/images/companies_logos/thumb/${offer.company_logo_thumb}`
 
   return (
     <div onClick={() => Router.push(`/offer?id=${offer._id}`)} id="infowindow" className="map-info-window">
       <div className="map-info-window__logo">
-        <img src={thumbURL} alt={offer.company_name} />
+        <img src={offer.company_logo} alt={offer.company_name} />
       </div>
       <div className="map-info-window__content">
         <h4>{offer.position_name}</h4>
