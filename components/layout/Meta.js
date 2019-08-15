@@ -20,7 +20,7 @@ const Meta = (props) => {
           background-color: #dadce7;
           color: #1f1f1f;
           font-size: 14px;
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Roboto', sans-serif;
         }  
         a {
           text-decoration: none;

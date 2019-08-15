@@ -2,19 +2,26 @@ import useFileReader from '../../hooks/useFileReader'
 import findColor from '../../helpers/findColor'
 import Link from 'next/link'
 import ReactTooltip from 'react-tooltip'
+import TipModal from '../tipModal/TipModal'
+import Cookies from 'js-cookie'
 
-const OfferListItem = ({ offer, preview, findOnMap }) => {
+const OfferListItem = ({ offer, preview, findOnMap, index }) => {
 
   let thumb = null
   const todaysDate = new Date()
   const createdAt = new Date(offer.created_at)
   const publishedTime = Math.floor((todaysDate - createdAt) / (1000*60*60*24))
+  const firstVisit = Cookies.get('visited_before') 
   
   const color = findColor(offer.technology)
   const isNew = preview || publishedTime < 1 ? true : false 
   const offerURl = preview ? '#' : `/offer?id=${offer._id}`
   
   preview ? thumb = useFileReader(offer.company_logo) : thumb = offer.company_logo
+
+  const tipModalClose = () => {
+    Cookies.set('visited_before', true, {path: '/'})
+  }
 
   return (
     <div className="item-wrapper">
@@ -26,10 +33,11 @@ const OfferListItem = ({ offer, preview, findOnMap }) => {
         <h3>{offer.position_name}{offer.remote && <span>Remote</span>}</h3>
         <div className="company-location">
           <i className="far fa-building"></i>{offer.company_name}
-          <a onClick={() => findOnMap({lat: offer.lat, lng: offer.lng})} data-tip="Show on map">
+          <a  onClick={() => findOnMap({lat: offer.lat, lng: offer.lng})} data-tip="Show on map">
             <i className="fas fa-map-marker-alt"></i>{offer.location}
             <ReactTooltip />
           </a>
+          {index === 0 && !firstVisit ? <TipModal clickHandler={tipModalClose}>Click on address to show it on map!</TipModal> : null}
         </div>
       </div>
       <div>
@@ -89,14 +97,18 @@ const OfferListItem = ({ offer, preview, findOnMap }) => {
           flex: 1 1 auto;
         }
         .item-company h3 {
-          font-weight: 400;
+          font-weight: 500;
           font-size: 18px;
           color: #1f1f1f;
           margin-bottom: 12px;
         }
+        .company-location {
+          position: relative;
+          float: left;
+        }
         .company-location > a {
           margin-left: 20px;
-          position: absolute;
+          position: relative;
           cursor: pointer;
           z-index: 2;
         }

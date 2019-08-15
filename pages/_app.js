@@ -25,6 +25,14 @@ class MyApp extends App {
 
     return { pageProps }
   }
+
+  componentDidMount() {
+    const firstVisit = Cookies.get('visited_before')
+    if (!firstVisit) {
+      Cookies.set('visited_before', false, {path: '/'})
+    }
+  }
+
   render () {
     const { Component, pageProps, reduxStore } = this.props
     return (

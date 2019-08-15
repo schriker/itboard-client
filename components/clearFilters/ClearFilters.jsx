@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import posed, { PoseGroup } from 'react-pose'
 
 const ClearBox = posed.div({
@@ -27,11 +26,11 @@ const ClearBox = posed.div({
 
 const ClearFilters = ({ filtersNumber, clearFilters }) => {
   return (
-    <PoseGroup animateOnMount>
+    <PoseGroup animateOnMount={true}>
       {!!filtersNumber ? 
       <ClearBox key="clearBox" onClick={clearFilters} className="clearfilter">
         <div>
-          <i className="fas fa-times"></i>Clear filters: <span>{filtersNumber}</span>
+          <i className="fas fa-times"></i><div>Clear filters:</div><span>{filtersNumber}</span>
         </div>
         <style jsx global>{`
           .clearfilter {
@@ -47,14 +46,14 @@ const ClearFilters = ({ filtersNumber, clearFilters }) => {
           }
           .clearfilter i {
             color: #646464;
-            font-size: 12px;
+            font-size: 10px;
             margin-right: 5px;
           }
           .clearfilter:hover {
             cursor: pointer;
             box-shadow: 0px 0px 15px 0px rgba(104,111,151,0.2);
           }
-          .clearfilter div {
+          .clearfilter > div {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -63,8 +62,8 @@ const ClearFilters = ({ filtersNumber, clearFilters }) => {
             border-radius: 25px;
             transition: all ease-in-out .1s;
           }
-          .clearfilter:hover div {
-            border: 1px solid #2669e6;
+          .clearfilter:hover > div {
+            border: 1px solid #1f1f1f;
           }
           .clearfilter span {
             margin-left: 5px;

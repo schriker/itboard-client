@@ -41,7 +41,11 @@ const IndexMap = ({ offers, findOnMap }) => {
         return el.content.lat === findOnMap.lat && el.content.lng === findOnMap.lng
       })
       marker.setAnimation(window.google.maps.Animation.BOUNCE)
-      return () => marker.setAnimation(null)
+      marker.setZIndex(999)
+      return () => {
+       marker.setAnimation(null)
+       marker.setZIndex(1)
+      }
     }
   }, [findOnMap])
 
@@ -99,7 +103,6 @@ const IndexMap = ({ offers, findOnMap }) => {
     window.google.maps.event.addListener(marker, 'click', () => {
 
       let placesArray = []
-
       markersArray.forEach((arrMarker) => {
         if (arrMarker.getPosition().equals(marker.getPosition())) {
           placesArray.push(arrMarker.content)

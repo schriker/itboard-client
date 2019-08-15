@@ -44,7 +44,7 @@ render() {
           </div>
           <div className="offers">
             {this.props.offers.length === 0 && <div className="noresults">No offers matches your critieria :(</div>}
-            {this.props.offers.map(offer => <OfferListItem findOnMap={this.findOnMapHandler} key={offer._id} offer={offer} />)}
+            {this.props.offers.map((offer, index) => <OfferListItem index={index} findOnMap={this.findOnMapHandler} key={offer._id} offer={offer} />)}
           </div>
           <div>Pagination</div>
         </div>
@@ -58,6 +58,9 @@ render() {
             font-size: 28px;
             padding: 60px 0;
             font-weight: 500;
+            background-color: #f0f1f7;
+            border-bottom: 1px solid #cccfdd;
+            transition: all .1s ease-in-out;
           }
           .mapplaceholder {
             width: 100%;
