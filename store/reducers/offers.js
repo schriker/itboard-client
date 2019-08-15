@@ -26,6 +26,14 @@ const reducer = (state = initialState, action) => {
         }
       }
     }
+    case actionTypes.CLEAR_FILTERS: {
+      return { 
+        ...state,
+        filters: {
+          ...initialState.filters 
+        }
+      }
+    }
     case actionTypes.NEW_OFFER_DETAILS: {
       return {
         ...state,

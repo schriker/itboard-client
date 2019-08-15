@@ -1,4 +1,5 @@
 export const SET_LANGUAGES = 'SET_LANGUAGES'
+export const CLEAR_FILTERS = 'CLEAR_FILTERS'
 
 export const AUTH_START = 'AUTH_START'
 export const AUTH_SUCCESS = 'AUTH_SUCCESS'

@@ -1,9 +1,12 @@
 import { connect } from 'react-redux'
-import { setLanguages } from '../../store/actions/index'
+import { setLanguages, clearFilters } from '../../store/actions/index'
 import SidebarItem from '../sidebar/SidebarItem'
 import { languagesArr as languages } from '../../helpers/consts'
+import ClearFilters from '../clearFilters/ClearFilters'
 
 const Sidebar = (props) => {
+  let filtersCount = 0
+  Object.entries(props.filters).forEach(([key, value]) => filtersCount += value.length)
 
   const onClickHandler = (isSelected, language) => {
     isSelected ? removeLanguage(language) : addLanguage(language)
@@ -24,6 +27,7 @@ const Sidebar = (props) => {
 
   return (
     <aside>
+      <ClearFilters clearFilters={() => props.clearFilters()} filtersNumber={filtersCount} />
       <i className="far fa-file-code"></i>
       <ul>
         {languages.map(item => {
@@ -74,7 +78,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (disptach) => ({
-  setLanguage: (language) => disptach(setLanguages(language)) 
+  setLanguage: (language) => disptach(setLanguages(language)),
+  clearFilters: () => disptach(clearFilters())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

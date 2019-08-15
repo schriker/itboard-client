@@ -26,7 +26,7 @@ const OfferListItem = ({ offer, preview, findOnMap }) => {
         <h3>{offer.position_name}{offer.remote && <span>Remote</span>}</h3>
         <div className="company-location">
           <i className="far fa-building"></i>{offer.company_name}
-          <a onClick={() => findOnMap({lat: offer.lat, lng: offer.lng})} data-tip="Find on map">
+          <a onClick={() => findOnMap({lat: offer.lat, lng: offer.lng})} data-tip="Show on map">
             <i className="fas fa-map-marker-alt"></i>{offer.location}
             <ReactTooltip />
           </a>

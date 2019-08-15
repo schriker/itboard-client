@@ -7,6 +7,10 @@ export const setLanguages = (payload) => ({
   payload
 })
 
+export const clearFilters = () => ({
+  type: actionTypes.CLEAR_FILTERS
+})
+
 export const newOfferDetials = (payload) => ({
   type: actionTypes.NEW_OFFER_DETAILS,
   payload
