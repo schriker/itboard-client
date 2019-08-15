@@ -9,7 +9,8 @@ const ClearBox = posed.div({
       duration: 100
     },
     applyAtStart: { 
-      position: 'fixed'
+      position: 'fixed',
+      left: 'calc(50% - 90px)'
     }
   },
   exit: {
@@ -17,6 +18,9 @@ const ClearBox = posed.div({
     opacity: 0,
     transition: {
       duration: 100
+    },
+    applyAtEnd: { 
+      position: 'fixed'
     }
   }
 })
@@ -38,10 +42,8 @@ const ClearFilters = ({ filtersNumber, clearFilters }) => {
             color: #1f1f1f;
             position: fixed;
             background-color: #f0f1f6;
-            left: 50%;
+            width: 180px;
             bottom: 60px;
-            transform: translate(-50%, 0);
-            transition: all ease-in-out .2s;
           }
           .clearfilter i {
             color: #646464;
@@ -54,6 +56,7 @@ const ClearFilters = ({ filtersNumber, clearFilters }) => {
           }
           .clearfilter div {
             display: flex;
+            justify-content: center;
             align-items: center;
             border: 1px solid #d8d8d8;
             padding:10px 25px;
