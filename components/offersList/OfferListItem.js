@@ -1,8 +1,9 @@
 import useFileReader from '../../hooks/useFileReader'
 import findColor from '../../helpers/findColor'
 import Link from 'next/link'
+import ReactTooltip from 'react-tooltip'
 
-const OfferListItem = ({ offer, preview }) => {
+const OfferListItem = ({ offer, preview, findOnMap }) => {
 
   let thumb = null
   const todaysDate = new Date()
@@ -25,7 +26,10 @@ const OfferListItem = ({ offer, preview }) => {
         <h3>{offer.position_name}{offer.remote && <span>Remote</span>}</h3>
         <div className="company-location">
           <i className="far fa-building"></i>{offer.company_name}
-          <i className="fas fa-map-marker-alt"></i>{offer.location}
+          <a onClick={() => findOnMap({lat: offer.lat, lng: offer.lng})} data-tip="Find on map">
+            <i className="fas fa-map-marker-alt"></i>{offer.location}
+            <ReactTooltip />
+          </a>
         </div>
       </div>
       <div>
@@ -53,13 +57,14 @@ const OfferListItem = ({ offer, preview }) => {
         .item-wrapper:hover {
           box-shadow: 0px 0px 5px 0px rgba(104,111,151,0.2);
         }
-        .item-wrapper a {
+        .item-wrapper > a {
           left: 0;
           top: 0;
           width: 100%;
           height: 100%;
           position: absolute;
           display: block;
+          z-index: 1;
         }
         .item-wrapper i {
           color: #0766ee;
@@ -89,11 +94,14 @@ const OfferListItem = ({ offer, preview }) => {
           color: #1f1f1f;
           margin-bottom: 12px;
         }
-        .company-location i {
-          margin-left: 25px;
+        .company-location > a {
+          margin-left: 20px;
+          position: absolute;
+          cursor: pointer;
+          z-index: 2;
         }
-        .company-location i:first-of-type {
-          margin-left: 0;
+        .company-location > a:hover {
+          cursor: pointer;
         }
         .item-info {
           margin-right: 20px;
@@ -121,9 +129,9 @@ const OfferListItem = ({ offer, preview }) => {
           display: inline-block;
           color: #1f1f1f;
           font-size: 16px;
-          font-weight: 500;
+          font-weight: 400;
           padding: 4px 22px;
-          border: 2px solid ${isNew ? '#ffe600' : '#959595'};
+          border: 1px solid ${isNew ? '#ffe600' : '#959595'};
           background-color: ${isNew ? '#ffe600' : null};
           border-radius: 18px;
           margin-left: 20px;

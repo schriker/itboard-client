@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import InfoWindowContent from './InfoWindowContent'
 
-const IndexMap = ({ offers }) => {
+const IndexMap = ({ offers, findOnMap }) => {
 
   let map = null
   let infoWindow = null
@@ -33,6 +33,18 @@ const IndexMap = ({ offers }) => {
     }
   }, [offers])
 
+  useEffect(() => {
+    if (findOnMap) {
+      let marker = null
+      isMap.setCenter(findOnMap)
+      marker = markers.find(el => {
+        return el.content.lat === findOnMap.lat && el.content.lng === findOnMap.lng
+      })
+      marker.setAnimation(window.google.maps.Animation.BOUNCE)
+      return () => marker.setAnimation(null)
+    }
+  }, [findOnMap])
+
   const initMap = (cords) => {
     let initailPosition = {
       lat: 52.22977, 
@@ -57,7 +69,6 @@ const IndexMap = ({ offers }) => {
   }
 
   const placeMarker = (offer) => {
-
     let position = new window.google.maps.LatLng(offer.lat, offer.lng)
 
     let placesCounter = 1
