@@ -5,9 +5,12 @@ import Link from 'next/link'
 const OfferListItem = ({ offer, preview }) => {
 
   let thumb = null
+  const todaysDate = new Date()
+  const createdAt = new Date(offer.created_at)
+  const publishedTime = Math.floor((todaysDate - createdAt) / (1000*60*60*24))
   
   const color = findColor(offer.technology)
-  const isNew = preview ? true : false // Calc if is older than 24h 
+  const isNew = preview || publishedTime < 1 ? true : false 
   const offerURl = preview ? '#' : `/offer?id=${offer._id}`
   
   preview ? thumb = useFileReader(offer.company_logo) : thumb = offer.company_logo
@@ -32,7 +35,7 @@ const OfferListItem = ({ offer, preview }) => {
         </div>
         <div className="item-details">
         <i className="fas fa-chart-line"></i>{offer.experience_level}
-        <span>{ isNew ? 'New' : 'Day' }</span>
+        <span>{ isNew ? 'New' : `${publishedTime} Day${publishedTime > 1 ? 's' : ''}` }</span>
         </div>
       </div>
       </div>
