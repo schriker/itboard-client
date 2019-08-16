@@ -11,7 +11,6 @@ const OfferListItem = ({ offer, preview, findOnMap, index }) => {
   const todaysDate = new Date()
   const createdAt = new Date(offer.created_at)
   const publishedTime = Math.floor((todaysDate - createdAt) / (1000*60*60*24))
-  const firstVisit = Cookies.get('visited_before') 
   
   const color = findColor(offer.technology)
   const isNew = preview || publishedTime < 1 ? true : false 
@@ -37,7 +36,7 @@ const OfferListItem = ({ offer, preview, findOnMap, index }) => {
             <i className="fas fa-map-marker-alt"></i>{offer.location}
             <ReactTooltip />
           </a>
-          {index === 0 && !firstVisit ? <TipModal clickHandler={tipModalClose}>Click on address to show it on map!</TipModal> : null}
+          {index === 0 ? <TipModal clickHandler={tipModalClose}>Click on address to show it on map!</TipModal> : null}
         </div>
       </div>
       <div>
@@ -105,6 +104,7 @@ const OfferListItem = ({ offer, preview, findOnMap, index }) => {
         .company-location {
           position: relative;
           float: left;
+          display: flex;
         }
         .company-location > a {
           margin-left: 20px;

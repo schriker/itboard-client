@@ -1,19 +1,23 @@
 import {useState} from 'react'
 import posed, { PoseGroup } from 'react-pose'
+import Cookies from 'js-cookie'
 
 const TipBox = posed.div({
-  enter: {
+  enter: {  
     x: 0,
+    y: '-50%',
     opacity: 1,
     transition: {
       duration: 200,
-      delay: 3000
+      delay: 2000
     },
     applyAtStart: {
-      display: 'block'
+      display: 'block',
+      transform: 'translate(0, -50%)'
     }
   },
   exit: {
+    y: '-50%',
     x: 50,
     opacity: 0,    
     transition: {
@@ -31,9 +35,11 @@ const TipModal = ({ children, clickHandler }) => {
     setOpen(false)
   }
 
+  const firstVisit = Cookies.get('visited_before') 
+
   return (
     <PoseGroup animateOnMount={true}>
-      {open &&      
+      {open && !firstVisit ?       
       <TipBox key="tipBox" className="tipmodal">
         <div>
           {children}
@@ -52,9 +58,9 @@ const TipModal = ({ children, clickHandler }) => {
             padding: 5px;
             border-radius: 5px;
             left: calc(100% + 15px);
-            top: calc(-45px + 50%);
             font-size: 14px;
             color: #7f818b;
+            top: 50%;
           }
           .tipmodal > div:first-of-type {
             display: flex;
@@ -85,7 +91,7 @@ const TipModal = ({ children, clickHandler }) => {
             transform: translate(10px, 0) rotate(45deg);
           }
           `}</style>
-      </TipBox>}
+      </TipBox> : null}
     </PoseGroup>
   )
 }
