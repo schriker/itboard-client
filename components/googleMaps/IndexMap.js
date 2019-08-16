@@ -97,7 +97,7 @@ const IndexMap = ({ offers, findOnMap }) => {
       label: placesCounter > 1 ? label : null,
       content: offer,
       zIndex: placesCounter,
-      animation: window.google.maps.Animation.DROP // bounce on hover
+      animation: window.google.maps.Animation.DROP
     })
 
     window.google.maps.event.addListener(marker, 'click', () => {
@@ -108,6 +108,8 @@ const IndexMap = ({ offers, findOnMap }) => {
           placesArray.push(arrMarker.content)
         }
       })
+
+      markersArray.forEach(marker => marker.setAnimation(null))
 
       setInfoWindowContent(placesArray)
 

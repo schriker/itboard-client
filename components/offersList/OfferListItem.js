@@ -5,7 +5,7 @@ import ReactTooltip from 'react-tooltip'
 import TipModal from '../tipModal/TipModal'
 import Cookies from 'js-cookie'
 
-const OfferListItem = ({ offer, preview, findOnMap, index }) => {
+const OfferListItem = ({ offer, preview, findOnMap, index, firstVisit }) => {
 
   let thumb = null
   const todaysDate = new Date()
@@ -36,7 +36,7 @@ const OfferListItem = ({ offer, preview, findOnMap, index }) => {
             <i className="fas fa-map-marker-alt"></i>{offer.location}
             <ReactTooltip />
           </a>
-          {index === 0 ? <TipModal clickHandler={tipModalClose}>Click on address to show it on map!</TipModal> : null}
+          {index === 0 ? <TipModal firstVisit={firstVisit} clickHandler={tipModalClose}>Click on address to show it on map!</TipModal> : null}
         </div>
       </div>
       <div>

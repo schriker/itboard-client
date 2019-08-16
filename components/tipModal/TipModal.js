@@ -26,7 +26,7 @@ const TipBox = posed.div({
   }
 })
 
-const TipModal = ({ children, clickHandler }) => {
+const TipModal = ({ children, clickHandler, firstVisit }) => {
 
   const [open, setOpen] = useState(true)
 
@@ -35,11 +35,11 @@ const TipModal = ({ children, clickHandler }) => {
     setOpen(false)
   }
 
-  const firstVisit = Cookies.get('visited_before') 
+  const clientFirstVisit = Cookies.get('visited_before') || firstVisit
 
   return (
     <PoseGroup animateOnMount={true}>
-      {open && !firstVisit ?       
+      {open && !clientFirstVisit ?       
       <TipBox key="tipBox" className="tipmodal">
         <div>
           {children}
@@ -71,7 +71,7 @@ const TipModal = ({ children, clickHandler }) => {
           }
           .tipmodal div a {
             font-size: 18px;
-            margin: 10px 0 0 0;
+            margin: 10px 0 0 auto;
             cursor: pointer;
             align-self: end;
           }

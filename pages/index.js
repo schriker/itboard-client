@@ -12,12 +12,14 @@ import OfferListItem from '../components/offersList/OfferListItem'
 
 class Index extends React.Component {
 
-static async getInitialProps ({ reduxStore }) {
+static async getInitialProps ({ reduxStore, req }) {
   const state = reduxStore.getState()
   if (state.offers.offers.length === 0) {
     await reduxStore.dispatch(fetchOffers())
   }
-  return {}
+  return {
+    firstVisit: req.cookies.visited_before
+  }
 }
 
 state = {
@@ -44,7 +46,7 @@ render() {
           </div>
           <div className="offers">
             {this.props.offers.length === 0 && <div className="noresults">No offers matches your critieria :(</div>}
-            {this.props.offers.map((offer, index) => <OfferListItem index={index} findOnMap={this.findOnMapHandler} key={offer._id} offer={offer} />)}
+            {this.props.offers.map((offer, index) => <OfferListItem firstVisit={this.props.firstVisit} index={index} findOnMap={this.findOnMapHandler} key={offer._id} offer={offer} />)}
           </div>
           <div>Pagination</div>
         </div>
