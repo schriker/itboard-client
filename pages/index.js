@@ -13,13 +13,19 @@ import OfferListItem from '../components/offersList/OfferListItem'
 class Index extends React.Component {
 
 static async getInitialProps ({ reduxStore, req }) {
+  
   const state = reduxStore.getState()
   if (state.offers.offers.length === 0) {
     await reduxStore.dispatch(fetchOffers())
   }
-  return {
-    firstVisit: req.cookies.visited_before
-  }
+
+  const isServer = typeof window === 'undefined'
+  if (isServer) {
+    return {
+      firstVisit: req.cookies.visited_before
+    }
+  } 
+  return {}
 }
 
 state = {
