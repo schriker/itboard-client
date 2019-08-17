@@ -1,11 +1,15 @@
 import * as actionTypes from './actionTypes'
 import api from '../../helpers/axios'
 import { authFailed } from './index'
+import Router from 'next/router'
 
-export const setLanguages = (payload) => ({
+export const setLanguages = (payload) => {
+  Router.push('/')
+  return {
   type: actionTypes.SET_LANGUAGES,
   payload
-})
+  }
+}
 
 export const clearFilters = () => ({
   type: actionTypes.CLEAR_FILTERS

@@ -55,7 +55,7 @@ const OfferListItem = ({ offer, preview, findOnMap, index, firstVisit }) => {
           position: relative;
           align-items:center;
           display: flex;
-          height: 110px;
+          height: 100px;
           padding: 5px;
           background-color: #f0f1f7;
           border-bottom: 1px solid #cccfdd;
@@ -63,6 +63,7 @@ const OfferListItem = ({ offer, preview, findOnMap, index, firstVisit }) => {
         }
         .item-wrapper:hover {
           box-shadow: 0px 0px 5px 0px rgba(104,111,151,0.2);
+          z-index: 1;
         }
         .item-wrapper > a {
           left: 0;
@@ -79,7 +80,7 @@ const OfferListItem = ({ offer, preview, findOnMap, index, firstVisit }) => {
         }
         .item-logo {
           height: 100%;
-          flex: 0 1 220px;
+          flex: 0 1 180px;
           display: flex;
           padding: 10px 25px;
           align-items: center;

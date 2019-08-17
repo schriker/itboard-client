@@ -15,7 +15,8 @@ app
 
     server.get('/', (req, res) => {
       const actualPage = '/index'
-      app.render(req, res, actualPage)
+      const queryParams = { page: req.query.page }
+      app.render(req, res, actualPage, queryParams)
     })
 
     server.get('/offer', (req, res) => {
