@@ -10,12 +10,10 @@ class Offer extends React.Component {
   static async getInitialProps ({ query }) {
     try {
       const response = await api.get(`offer/details?_id=${query.id}`)
-      console.log('Test1')
       return {
         offer: response.data.offer[0]
       }
     } catch (error) {
-      console.log('Test')
       return {
         error: error.response.data
       }
@@ -25,7 +23,10 @@ class Offer extends React.Component {
   render() {
     const layoutSetings = {
       meta: {
-        pageTitle: 'Offer Page'
+        pageTitle: `${this.props.offer.position_name} - ${this.props.offer.company_name}`,
+        og_image: this.props.offer.company_header,
+        og_description: `${this.props.offer.salary_from} - ${this.props.offer.salary_to} ${this.props.offer.salary_currency} ${this.props.offer.location}`,
+
       },
       withSidebar: true
     }
