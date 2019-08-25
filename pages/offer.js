@@ -1,4 +1,5 @@
 import React from 'react'
+import Router from 'next/router'
 import Layout from '../components/layout/Layout'
 import OfferContent from '../components/offer/OfferContent'
 import { withRouter } from 'next/router'
@@ -25,7 +26,8 @@ class Offer extends React.Component {
       meta: {
         pageTitle: `${this.props.offer.position_name} - ${this.props.offer.company_name}`,
         og_image: this.props.offer.company_header,
-        og_description: `${this.props.offer.salary_from} - ${this.props.offer.salary_to} ${this.props.offer.salary_currency} ${this.props.offer.location}`,
+        og_url: `http://itboard.janusmarcin.pl/${Router.asPath}`,
+        og_description: `${this.props.offer.salary_from} - ${this.props.offer.salary_to}${this.props.offer.salary_currency} ${this.props.offer.location}`,
 
       },
       withSidebar: true

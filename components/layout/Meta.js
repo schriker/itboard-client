@@ -8,7 +8,7 @@ const Meta = (props) => {
         <title>{props.pageTitle || `ITBoard - Jobs Offers`}</title>
         <meta property="og:title" content={props.pageTitle || `ITBoard - Jobs Offers`} />
         <meta property="og:type" content="website" />
-        {/* <meta property="og:url" content="http://www.imdb.com/title/tt0117500/" /> */}
+        <meta property="og:url" content={props.og_url} />
         <meta property="og:image" content={props.og_image || ''} />
         <meta content='1800' property='og:image:width' />
         <meta content='950' property='og:image:height' />
