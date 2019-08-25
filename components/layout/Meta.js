@@ -10,6 +10,8 @@ const Meta = (props) => {
         <meta property="og:type" content="website" />
         {/* <meta property="og:url" content="http://www.imdb.com/title/tt0117500/" /> */}
         <meta property="og:image" content={props.og_image || ''} />
+        <meta content='1800' property='og:image:width' />
+        <meta content='950' property='og:image:height' />
         <meta property="og:description" content={props.og_description || ''} />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossOrigin="anonymous"></link>
       </Head>
