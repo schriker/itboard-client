@@ -11,7 +11,7 @@ const OfferContent = ({ offer, preview }) => {
       <div className="white-box white-box--content content">
         <div className="logo">
           <a href={offer.company_website} target="_blank">
-            <img src={thumb} alt={offer.company_name}/>
+          <img src={thumb} alt={offer.company_name}/>
           </a>
         </div>
         <div dangerouslySetInnerHTML={{__html: offer.content}}></div>
@@ -24,12 +24,12 @@ const OfferContent = ({ offer, preview }) => {
           align-items: start;
         }
         .logo {
+          height: 80px;
           text-align: center;
-          padding: 70px 0;
+          margin: 50px 0;
         }
         img {
-          width: 220px;
-          height: auto;
+          height: 100%;
         }
         .content {
           flex: 1 1 100%;

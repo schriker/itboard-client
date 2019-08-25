@@ -79,7 +79,7 @@ const OfferDetails = ({ offer, thumb }) => {
           flex: 0 1 220px;
           display: flex;
           justify-content: center;
-          padding: 0 25px;
+          padding: 10px 25px;
           align-items: center;
           border-left: 4px solid ${color};
         }

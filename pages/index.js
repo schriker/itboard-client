@@ -7,6 +7,7 @@ import { filter } from '../helpers/offerFilters'
 import OfferListItem from '../components/offersList/OfferListItem'
 import { offersPerPage } from '../helpers/consts'
 import Pagination from '../components/pagination/Pagination'
+import NoResult from '../components/ui/NoResult'
 const IndexMap = dynamic(
   () => import('../components/googleMaps/IndexMap'),
   {ssr: false}
@@ -54,24 +55,9 @@ render() {
     let lastItem = (this.props.page * offersPerPage)
 
     if (this.props.offers.length === 0) {
-      offers = 
-        <div className="noresults">
-          No offers matches your critieria :(
-            <style jsx>{`
-                  .noresults {
-                  color: #a6a9b5;
-                  text-align: center;
-                  font-size: 28px;
-                  padding: 60px 0;
-                  font-weight: 500;
-                  background-color: #f0f1f7;
-                  border-bottom: 1px solid #cccfdd;
-                  transition: all .1s ease-in-out;
-                }
-              `}</style>
-        </div>
+      offers = <NoResult />
     } else {
-      offers = this.props.offers
+      offers = <div className="offers">{this.props.offers
                 .slice(firsItem, lastItem)
                 .map((offer, index) => 
                   <OfferListItem 
@@ -80,7 +66,10 @@ render() {
                     findOnMap={this.findOnMapHandler} 
                     key={offer._id} 
                     offer={offer} />
-                )
+                )}
+                <style jsx>{`.offers{ margin-top: 20px; }`}</style>
+              </div>
+
     }
 
     lastPage = Math.ceil((this.props.offers.length) / offersPerPage);
@@ -92,14 +81,14 @@ render() {
           <div className="mapplaceholder">
             <IndexMap findOnMap={this.state.findOnMap} offers={this.props.offers} />
           </div>
-          <div className="offers">
-            {offers}
-          </div>
+            <div className="offers-wrapper">
+              {offers}
+            </div>
           {lastPage > 0 && <Pagination currentPage={this.props.page} lastPage={lastPage}/>}
         </div>
         <style jsx>{`
-          .offers {
-            padding: 20px;
+          .offers-wrapper {
+            padding: 0px 20px;
           }
           .mapplaceholder {
             width: 100%;
