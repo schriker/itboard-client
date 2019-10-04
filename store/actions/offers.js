@@ -11,14 +11,20 @@ export const setLanguages = (payload) => {
   }
 }
 
-export const setFilters = (payload) => ({
-  type: actionTypes.SET_FILTERS,
-  payload
-})
+export const setFilters = (payload) => {
+  Router.push('/')
+  return {
+    type: actionTypes.SET_FILTERS,
+    payload
+  }
+}
 
-export const clearFilters = () => ({
-  type: actionTypes.CLEAR_FILTERS
-})
+export const clearFilters = () => {
+  Router.push('/')
+  return {
+    type: actionTypes.CLEAR_FILTERS
+  }
+}
 
 export const newOfferDetials = (payload) => ({
   type: actionTypes.NEW_OFFER_DETAILS,
@@ -83,5 +89,23 @@ export const fetchOffers = () => {
     await api.get('/offer/all')
             .then(response => dispatch(fethcOffersSuccess(response.data.offers)))
             .catch(err => dispatch(fetchOffersFailed(err)))
+  }
+}
+
+const fethcCitiesSuccess = (cities) => ({
+  type: actionTypes.FETCH_CITIES_SUCCESS,
+  cities
+})
+
+const fetchCitiesFailed = (err) => ({
+  type: actionTypes.FETCH_CITIES_FAILED,
+  err
+}) 
+
+export const fetchCities = () => {
+  return async dispatch => {
+    await api.get('/offer/cities')
+      .then(response => dispatch(fethcCitiesSuccess(response.data.cities)))
+      .catch(err => dispatch(fetchCitiesFailed(err)))
   }
 }

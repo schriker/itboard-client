@@ -7,7 +7,8 @@ export {
   saveOffer,
   saveOfferReset,
   saveOfferClearError,
-  fetchOffers
+  fetchOffers,
+  fetchCities
 } from './offers'
 
 export {

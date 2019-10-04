@@ -2,6 +2,7 @@ import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
   offers: [],
+  cities: [],
   filters: {
     technology: [],
     location: [],
@@ -27,11 +28,21 @@ const reducer = (state = initialState, action) => {
       }
     }
     case actionTypes.SET_FILTERS: {
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          [action.payload.filter]: [action.payload.value.toLowerCase()]
+      if (action.payload.value === "All") {
+        return {
+          ...state,
+          filters: {
+            ...state.filters,
+            [action.payload.filter]: []
+          }
+        }
+      } else {
+        return {
+          ...state,
+          filters: {
+            ...state.filters,
+            [action.payload.filter]: [action.payload.value.toLowerCase()]
+          }
         }
       }
     }
@@ -111,6 +122,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         err: 'Failed to fetch offers from server.'
+      }
+    }
+    case actionTypes.FETCH_CITIES_SUCCESS: {
+      return {
+        ...state,
+        cities: action.cities
+      }
+    }
+    case actionTypes.FETCH_CITIES_FAILED: {
+      return {
+        ...state,
+        err: 'Failed to fetch cities from server.'
       }
     }
     default: return state

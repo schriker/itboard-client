@@ -51,6 +51,9 @@ const LocationMap = ({ form, field }) => {
       marker.setVisible(true)
       map.setCenter(marker.getPosition())
 
+      const city = place.address_components.filter(item => item.types.includes('locality'))
+
+      form.setFieldValue('city', city[0].short_name)
       form.setFieldValue('address_components', place.address_components)
       form.setFieldValue('lat', place.geometry.location.lat())
       form.setFieldValue('lng', place.geometry.location.lng())

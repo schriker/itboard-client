@@ -130,6 +130,7 @@ const formikOptions = {
     salary_to: offer.salary_to || '',
     salary_currency: offer.salary_currency || '',
     contract_type: offer.contract_type || '',
+    city: offer.city || '',
     location: offer.location || '',
     address_components: offer.address_components || [],
     lat: offer.lat || '',

@@ -262,6 +262,8 @@ const Meta = (props) => {
           font-family: 'Montserrat', sans-serif;
         }
         input:focus {
+          position: relative;
+          z-index: 2;
           border-color: #0069ff;
         }
         input.with-error,
@@ -282,6 +284,7 @@ const Meta = (props) => {
           top: 50%;
           transform: translate(0, -50%);
           position: absolute;
+          z-index: 3;
           transition: all .1s ease-in-out;
           user-select: none;
           cursor: text;
@@ -308,7 +311,7 @@ const Meta = (props) => {
           border-bottom: 5px solid #f0f1f7;
         }
         .notification {
-          z-index: 3;
+          z-index: 4;
         }
         .notification p {
           font-size: 16px;
@@ -349,6 +352,13 @@ const Meta = (props) => {
         }
         .info-widnow__content div:last-child {
           border: 0;
+        }
+        .filters__form {
+            width: 100%;
+            display: flex;
+        }
+        .filters__form div:not(:first-of-type) {
+          margin-left: -1px;
         }
       `}</style>
     </Fragment>
