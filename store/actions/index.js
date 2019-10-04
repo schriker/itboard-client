@@ -1,6 +1,7 @@
 export {
   clearFilters,
   setLanguages,
+  setFilters,
   newOfferDetials,
   newOfferContent,
   saveOffer,

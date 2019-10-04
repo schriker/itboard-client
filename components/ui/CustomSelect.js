@@ -1,25 +1,33 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import useDropdown from '../../hooks/useDropdown'
 
-const CustomSelect = ({ field, form, options, placeholder }) => {
+const CustomSelect = ({ field, form, options, placeholder, onSetFilter }) => {
 
-  const [inputValue, setInputValue] = useState(field.value)
   const [selectOptions, setSelectOptions] = useState(options)
   const [cursor, setCursor] = useState(0)
   const { ref, isOpen, setIsOpen } = useDropdown(false) 
   const inputRef = useRef()
   const dropdownRef = useRef()
 
+  useEffect(() => {
+    if (field.value === '') {
+      setSelectOptions(options)
+    }
+  }, [field.value])
+
   const handleSelect = (value, index) => {
-      form.setFieldValue(field.name, value)
+      if (value) {
+        form.setFieldValue(field.name, value)
+        if (onSetFilter) {
+          onSetFilter(field.name, value)
+        }
+      }
       setIsOpen(false)
-      setInputValue(value)
       setCursor(index)
   }
 
   const handleChange = (event) => {
     const value = event.target.value
-
     if (event.keyCode === 13 && isOpen) {
       event.preventDefault()
       handleSelect(selectOptions[cursor], 0)
@@ -33,7 +41,6 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
       const filterOptions = options.filter(option => option.toLowerCase().includes(value.toLowerCase()))
       setIsOpen(true)
       setSelectOptions(filterOptions)
-      setInputValue(value)
       form.setFieldValue(field.name, value)
     }
   }
@@ -43,7 +50,7 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
     form.setFieldTouched(field.name, true)
   }
 
-  let list = selectOptions.map((option, index) => <li aria-selected={inputValue === option} key={option} className={inputValue === option || index === cursor ? 'selected' : null} onMouseDown={() => handleSelect(option, index)}>{option}</li>)
+  let list = selectOptions.map((option, index) => <li aria-selected={field.value === option} key={option} className={field.value === option || index === cursor ? 'selected' : null} onMouseDown={() => handleSelect(option, index)}>{option}</li>)
 
   if (selectOptions.length === 0) {
     list = <li>No results.</li>
@@ -59,7 +66,7 @@ const CustomSelect = ({ field, form, options, placeholder }) => {
           onBlur={() => setIsOpen(false)}
           onKeyDown={(event) => handleChange(event)}
           type="text"
-          value={inputValue}
+          value={field.value}
           id={field.name} 
           name={field.name}
           autoComplete="off"

@@ -11,6 +11,11 @@ export const setLanguages = (payload) => {
   }
 }
 
+export const setFilters = (payload) => ({
+  type: actionTypes.SET_FILTERS,
+  payload
+})
+
 export const clearFilters = () => ({
   type: actionTypes.CLEAR_FILTERS
 })

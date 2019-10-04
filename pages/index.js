@@ -6,6 +6,7 @@ import { fetchOffers } from '../store/actions/index'
 import { filter } from '../helpers/offerFilters'
 import OfferListItem from '../components/offersList/OfferListItem'
 import { offersPerPage } from '../helpers/consts'
+import Filters from '../components/filters/Filters'
 import Pagination from '../components/pagination/Pagination'
 import NoResult from '../components/ui/NoResult'
 const IndexMap = dynamic(
@@ -77,7 +78,7 @@ render() {
     return (
       <Layout { ...layoutSetings }>
         <div className="fullpage-wrapper">
-          <div>Filters</div>
+          <Filters />
           <div className="mapplaceholder">
             <IndexMap findOnMap={this.state.findOnMap} offers={this.props.offers} />
           </div>

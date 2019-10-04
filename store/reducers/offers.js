@@ -5,7 +5,7 @@ const initialState = {
   filters: {
     technology: [],
     location: [],
-    level: [],
+    experience_level: [],
     stack: [],
     salary: []
   },
@@ -23,6 +23,15 @@ const reducer = (state = initialState, action) => {
         filters: {
           ...state.filters,
           technology: action.payload
+        }
+      }
+    }
+    case actionTypes.SET_FILTERS: {
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          [action.payload.filter]: [action.payload.value.toLowerCase()]
         }
       }
     }

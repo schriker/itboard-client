@@ -26,7 +26,7 @@ class Offer extends React.Component {
         pageTitle: `${this.props.offer.position_name} - ${this.props.offer.company_name}`,
         og_image: this.props.offer.company_header,
         og_url: `http://itboard.janusmarcin.pl/offer?id=${this.props.offer._id}`,
-        og_description: `${this.props.offer.salary_from} - ${this.props.offer.salary_to}${this.props.offer.salary_currency} ${this.props.offer.location}`,
+        og_description: `${this.props.offer.salary_from} - ${this.props.offer.salary_to} ${this.props.offer.salary_currency} ${this.props.offer.location}`,
 
       },
       withSidebar: true
@@ -34,17 +34,17 @@ class Offer extends React.Component {
 
     return(
       <Layout { ...layoutSetings }>
-      <div className="fullpage-wrapper">
-        {this.props.offer ? <OfferContent offer={this.props.offer} /> : <NoResult />}
-        <style jsx>{`
-          div {
-            padding: 0 20px;
-          }
-          h2 {
-            margin: 15px 0;
-          }
-          `}</style>
-      </div>
+        <div className="fullpage-wrapper">
+          {this.props.offer ? <OfferContent offer={this.props.offer} /> : <NoResult />}
+          <style jsx>{`
+            div {
+              padding: 0 20px;
+            }
+            h2 {
+              margin: 15px 0;
+            }
+            `}</style>
+        </div>
       </Layout>
     )
   }

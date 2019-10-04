@@ -42,7 +42,7 @@ class Verify extends React.Component {
     api.post('user/resend-token', {
       userEmail: this.props.auth.email
     })
-    .then(() => this.setState({resended: true, msg: 'Token sended! Check your email.', type: 'success', isSending: false}))
+    .then(() => this.setState({resended: true, msg: 'Token was send! Check your email.', type: 'success', isSending: false}))
     .catch(() => this.setState({resended: true, msg: 'Server error. Pleas contact us.', type: 'error', isSending: false}))
   }
 
