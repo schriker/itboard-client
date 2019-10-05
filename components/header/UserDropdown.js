@@ -29,6 +29,7 @@ const UserDropdown = (props) => {
         }
         .dropdown {
           position: relative;
+          z-index: 3;
           display: ${isOpen ? 'block' : 'none'};
         }
         .arrow-up {

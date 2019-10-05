@@ -91,21 +91,3 @@ export const fetchOffers = () => {
             .catch(err => dispatch(fetchOffersFailed(err)))
   }
 }
-
-const fethcCitiesSuccess = (cities) => ({
-  type: actionTypes.FETCH_CITIES_SUCCESS,
-  cities
-})
-
-const fetchCitiesFailed = (err) => ({
-  type: actionTypes.FETCH_CITIES_FAILED,
-  err
-}) 
-
-export const fetchCities = () => {
-  return async dispatch => {
-    await api.get('/offer/cities')
-      .then(response => dispatch(fethcCitiesSuccess(response.data.cities)))
-      .catch(err => dispatch(fetchCitiesFailed(err)))
-  }
-}

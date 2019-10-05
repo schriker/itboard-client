@@ -103,7 +103,7 @@ const CustomSelect = ({ field, form, options, placeholder, onSetFilter }) => {
           }
           .dropdown {
             background-color: #f0f1f7;
-            z-index: 999;
+            z-index: 5;
             width: 100%;
             max-height: 232px;
             box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
@@ -116,6 +116,7 @@ const CustomSelect = ({ field, form, options, placeholder, onSetFilter }) => {
             right: 25px;
             font-size: 20px;
             position: absolute;
+            z-index: 6;
             color: #0069ff;
             transition: all .1s ease-in-out;
             transform: translate(0,-50%);

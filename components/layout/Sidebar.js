@@ -43,7 +43,7 @@ const Sidebar = (props) => {
           min-height: calc(100vh - 70px); 
           position: relative;
           background-color: #08294f;
-          width: 280px;
+          width: 250px;
           color: #fff;
           grid-area: sidebar;
           padding-top: 30px;

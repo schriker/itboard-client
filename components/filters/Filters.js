@@ -24,8 +24,8 @@ const Filters = ({ setFilters, resetForm, offers }) => {
     }
   }
 
-  for (let city of offers.cities) {
-    cities.push(city.name)
+  for (let offer of offers.offers) {
+    cities.push(offer.city)
   }
 
   return (
@@ -33,7 +33,7 @@ const Filters = ({ setFilters, resetForm, offers }) => {
       <div className="filters">
         <p>Filters:</p>
         <Form className="filters__form">
-          <Field onSetFilter={handleSetFilter} name="city" component={CustomSelect} placeholder="City" options={['All', ...cities]}/>
+          <Field onSetFilter={handleSetFilter} name="city" component={CustomSelect} placeholder="City" options={['All', ...new Set(cities)]}/>
           <Field onSetFilter={handleSetFilter} name="experience_level" component={CustomSelect} placeholder="Experience" options={['All', ...experienceSelect]}/>
         </Form>
       </div>
@@ -41,12 +41,12 @@ const Filters = ({ setFilters, resetForm, offers }) => {
         {`
           .wrapper {
             position: relative;
-            z-index: 999;
+            z-index: 2;
             width: 100%;
             background-color: #f0f1f7;
             display: flex;
             justify-content: center;
-            padding: 20px 0;
+            padding: 10px 0;
             box-shadow: 0px 4px 5px 0px rgba(104,111,151,0.2);
           }
           .filters p {

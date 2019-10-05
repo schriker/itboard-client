@@ -2,7 +2,7 @@ import React from 'react'
 import dynamic from 'next/dynamic'
 import { connect } from 'react-redux'
 import Layout from '../components/layout/Layout'
-import { fetchOffers, fetchCities } from '../store/actions/index'
+import { fetchOffers } from '../store/actions/index'
 import { filter } from '../helpers/offerFilters'
 import OfferListItem from '../components/offersList/OfferListItem'
 import { offersPerPage } from '../helpers/consts'
@@ -21,7 +21,6 @@ static async getInitialProps ({ reduxStore, req, query }) {
   const state = reduxStore.getState()
   if (state.offers.offers.length === 0) {
     await reduxStore.dispatch(fetchOffers())
-    await reduxStore.dispatch(fetchCities())
   }
 
   const isServer = typeof window === 'undefined'
