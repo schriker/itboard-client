@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import 'rheostat/initialize'
-import Rheostat from 'rheostat'
-import 'rheostat/css/rheostat.css'
 import { connect } from 'react-redux'
 import { setFilters } from '../../store/actions/index'
 import { withFormik, Form, Field } from 'formik'
 import CustomSelect from '../ui/CustomSelect'
+import Slider from './Slider'
 import { experienceSelect } from '../../helpers/consts'
 
 const Filters = ({ setFilters, resetForm, offers }) => {
@@ -62,21 +60,17 @@ const Filters = ({ setFilters, resetForm, offers }) => {
   return (
     <div className="wrapper">
       <div className="filters">
-        <p>Filters:</p>
-        <Form className="filters__form">
-          <Field onSetFilter={handleSetFilter} name="city" component={CustomSelect} placeholder="City" options={['All', ...new Set(cities)]}/>
-          <Field onSetFilter={handleSetFilter} name="experience_level" component={CustomSelect} placeholder="Experience" options={['All', ...experienceSelect]}/>
-          <Field onSetFilter={handleSetFilter} name="remote" component={CustomSelect} placeholder="Remote" options={['All', 'Remote Only', 'Office Only']}/>
-          <div className="slider">
-            <Rheostat
-              onChange={(value) => handleSliderChange(value)} 
-              //onValuesUpdated={(value => console.log(value))}
-              min={minmaxWage[0]} 
-              max={minmaxWage[1]} 
-              values={wagesRange}
-            />
+        <Form >
+          <p>Filters:</p>
+          <div className="filters__form">         
+            <Field onSetFilter={handleSetFilter} name="city" component={CustomSelect} placeholder="City" options={['All', ...new Set(cities)]}/>
+            <Field onSetFilter={handleSetFilter} name="experience_level" component={CustomSelect} placeholder="Experience" options={['All', ...experienceSelect]}/>
+            <Field onSetFilter={handleSetFilter} name="remote" component={CustomSelect} placeholder="Remote" options={['All', 'Remote Only', 'Office Only']}/>
           </div>
         </Form>
+        <div className="slider">
+            <Slider handleSliderChange={handleSliderChange}  minmaxWage={minmaxWage} wagesRange={wagesRange}/>
+        </div>
       </div>
       <style jsx>
         {`
@@ -89,6 +83,10 @@ const Filters = ({ setFilters, resetForm, offers }) => {
             justify-content: center;
             padding: 10px 0;
             box-shadow: 0px 4px 5px 0px rgba(104,111,151,0.2);
+          }
+          .filters {
+            display: flex;
+            align-items: center;
           }
           .filters p {
             margin: 0 0 10px 0;
