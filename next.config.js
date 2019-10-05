@@ -1,4 +1,5 @@
-module.exports = {
+const withCSS = require('@zeit/next-css')
+module.exports = withCSS({
   useFileSystemPublicRoutes: false,
   webpack(config) {
     config.module.rules.push({
@@ -8,4 +9,4 @@ module.exports = {
 
     return config;
   }
-}
+})
