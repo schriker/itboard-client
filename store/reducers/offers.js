@@ -6,7 +6,7 @@ const initialState = {
     technology: [],
     location: [],
     experience_level: [],
-    stack: [],
+    remote: [],
     salary: []
   },
   newOffer: {},
@@ -27,7 +27,7 @@ const reducer = (state = initialState, action) => {
       }
     }
     case actionTypes.SET_FILTERS: {
-      if (action.payload.value === "All") {
+      if (action.payload.value === 'all') {
         return {
           ...state,
           filters: {
@@ -40,7 +40,7 @@ const reducer = (state = initialState, action) => {
           ...state,
           filters: {
             ...state.filters,
-            [action.payload.filter]: [action.payload.value.toLowerCase()]
+            [action.payload.filter]: [action.payload.value]
           }
         }
       }

@@ -17,10 +17,18 @@ const Filters = ({ setFilters, resetForm, offers }) => {
 
   const handleSetFilter = (fieldName, value) => {
     if (value && fieldName) {
-      setFilters({
-        filter: fieldName,
-        value
-      })
+      if (fieldName === 'remote') {
+        const isRemote = value === 'Remote Only' ? true : false
+        setFilters({
+          filter: fieldName,
+          value: isRemote
+        })
+      } else {
+        setFilters({
+          filter: fieldName,
+          value: value.toLowerCase()
+        })
+      }
     }
   }
 
@@ -35,6 +43,7 @@ const Filters = ({ setFilters, resetForm, offers }) => {
         <Form className="filters__form">
           <Field onSetFilter={handleSetFilter} name="city" component={CustomSelect} placeholder="City" options={['All', ...new Set(cities)]}/>
           <Field onSetFilter={handleSetFilter} name="experience_level" component={CustomSelect} placeholder="Experience" options={['All', ...experienceSelect]}/>
+          <Field onSetFilter={handleSetFilter} name="remote" component={CustomSelect} placeholder="Remote" options={['All', 'Remote Only', 'Office Only']}/>
         </Form>
       </div>
       <style jsx>
@@ -62,6 +71,7 @@ const formikOptions = {
   mapPropsToValues: () => ({
     city: '',
     experience_level: '',
+    remote: ''
   }),
   handleSubmit: () => {
 
