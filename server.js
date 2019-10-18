@@ -41,6 +41,12 @@ app
       app.render(req, res, actualPage)
     })
 
+    server.get('/reset-password', (req, res) => {
+      const actualPage = '/reset-password'
+      const queryParams = { token: req.query.token }
+      app.render(req, res, actualPage, queryParams)
+    })
+
     server.get('*', (req, res) => {
       return handle(req, res)
     })

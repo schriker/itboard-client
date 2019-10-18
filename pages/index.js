@@ -17,7 +17,6 @@ const IndexMap = dynamic(
 class Index extends React.Component {
 
 static async getInitialProps ({ reduxStore, req, query }) {
-  
   const state = reduxStore.getState()
   if (state.offers.offers.length === 0) {
     await reduxStore.dispatch(fetchOffers())

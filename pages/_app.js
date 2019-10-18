@@ -4,6 +4,17 @@ import withReduxStore from '../lib/with-redux-store'
 import { Provider } from 'react-redux'
 import * as actions from '../store/actions/index'
 import Cookies from 'js-cookie'
+import './nprogress.css'
+
+import NProgress from 'nprogress'
+import Router from 'next/router'
+
+Router.events.on('routeChangeStart', url => {
+  NProgress.start()
+})
+Router.events.on('routeChangeComplete', () => NProgress.done())
+Router.events.on('routeChangeError', () => NProgress.done())
+
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
