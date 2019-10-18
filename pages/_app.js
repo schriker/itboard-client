@@ -29,7 +29,7 @@ class MyApp extends App {
     if (!isServer) {
       Cookies.set('previous_url', window.location.href, {path: '/'})
     }
-
+ 
     if (isServer && req.cookies.session_cookie && req.cookies.payload_cookie) {
       await reduxStore.dispatch(actions.onAuthStateChange(req.headers.cookie))
     }

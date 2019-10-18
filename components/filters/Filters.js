@@ -53,10 +53,17 @@ const Filters = ({ setFilters, resetForm, offers }) => {
   }
 
   const handleSliderChange = (value) => {
-    setFilters({
-      filter: 'salary',
-      value: value.values
-    })
+    if (value.max === value.values[1] && value.min === value.values[0]) {
+      setFilters({
+        filter: 'salary',
+        value: 'all'
+      })
+    } else {
+      setFilters({
+        filter: 'salary',
+        value: value.values
+      })
+    }
     setWagesRange(value.values)
   }
 
