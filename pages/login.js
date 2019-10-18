@@ -1,7 +1,6 @@
 import Layout from '../components/layout/Layout'
 import Logo from '../components/header/Logo'
 import LoginForm from '../components/loginForm/LoginForm'
-import Index from '../pages/index'
 import Router from 'next/router'
 import Cookies from 'js-cookie'
 import { connect } from 'react-redux'
@@ -10,6 +9,16 @@ import { useEffect, useState } from 'react'
 const Login = ({ auth }) => {
 
   const prevUrl = Cookies.get('previous_url')
+
+  const [captchaToken, setCaptchaToken] = useState()
+  useEffect(() => {
+    window.grecaptcha.ready(() => {
+      window.grecaptcha.execute('6LeRQb4UAAAAAPNbFLigCEAEA0dcz8Lj1JReAKVb', {action: 'login'})
+      .then(token => {
+        setCaptchaToken(token)
+      })
+    })
+  }, [])
 
   useEffect(() => {
     if (auth.user) {
@@ -34,7 +43,7 @@ const Login = ({ auth }) => {
   let loginForm = 
     <Layout {...layoutSettings}>
       <Logo black />
-      <LoginForm loginMode={loginMode} setLoginMode={setLoginMode} />
+      <LoginForm captchaToken={captchaToken} loginMode={loginMode} setLoginMode={setLoginMode} />
     </Layout>
 
 

@@ -40,12 +40,14 @@ export const authVerifiedReset = () => ({
   type: actionTypes.AUTH_VERIFIED_RESET
 })
 
-export const userRegister = ({ email, password }) => {
+export const userRegister = ({ email, password, confirmPassword, captchaToken }) => {
   return dispatch => {
     dispatch(authStart())
     api.post('user/create', {
       email: email,
-      password: password
+      password: password,
+      confirmPassword: confirmPassword,
+      captchaToken: captchaToken
     })
     .then(() => {
       dispatch(authRegisterSuccess(email))

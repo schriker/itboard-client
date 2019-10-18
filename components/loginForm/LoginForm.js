@@ -7,7 +7,13 @@ import { userLogin, authReset, userRegister } from '../../store/actions/index'
 import Notification from '../ui/Notifiaction'
 import CustomInput from '../ui/CustomInput'
 
-const LoginForm = ({ errors, auth, resetAuth, isValidating, isSubmitting, loginMode, setLoginMode }) => {
+const LoginForm = ({ errors, 
+  auth, 
+  resetAuth, 
+  isValidating, 
+  isSubmitting, 
+  loginMode, 
+  setLoginMode }) => {
 
   useEffect(() => {
     return () => resetAuth()
@@ -52,6 +58,12 @@ const LoginForm = ({ errors, auth, resetAuth, isValidating, isSubmitting, loginM
         <Form>
             <Field name="email" component={CustomInput} placeholder="Email" />
             <Field name="password" component={CustomInput} placeholder="Password" password />
+            {!loginMode && <Field name="confirmPassword" component={CustomInput} placeholder="Confirm Password" password/>}
+            {!loginMode && 
+              <p className="captcha">
+                This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+              </p>
+            }
           <div className="links">
             <a onClick={() => setLoginMode(!loginMode)}>{loginMode ? "Create new account" : "Login form."}</a>
             <Link href="/reset-password">
@@ -72,6 +84,13 @@ const LoginForm = ({ errors, auth, resetAuth, isValidating, isSubmitting, loginM
           a:hover {
             cursor: pointer;
           }
+          .captcha {
+            font-size: 12px;
+            color: #cacaca;
+          }
+          .captcha a {
+            color: #095beb;
+          }
           .links {
             margin-bottom: 20px;
             display: flex;
@@ -83,7 +102,18 @@ const LoginForm = ({ errors, auth, resetAuth, isValidating, isSubmitting, loginM
   )
 }
 
-const validationSchema = Yup.object().shape({
+const registerValidationSchema = Yup.object().shape({
+  email: Yup.string().
+    required('Email is required.').
+    email('Invalid email.'),
+  password: Yup.string().
+    required('Password is required.'),
+  confirmPassword: Yup.string().
+    required('Please confirm your password.').
+    oneOf([Yup.ref('password')], 'Passwords dosen\'t match.')
+})
+
+const loginValidationSchema = Yup.object().shape({
   email: Yup.string().
     required('Email is required.').
     email('Invalid email.'),
@@ -94,18 +124,28 @@ const validationSchema = Yup.object().shape({
 const formikOptions = {
   mapPropsToValues: () => ({
     email: '',
-    password: ''
+    password: '',
+    confirmPassword: ''
   }),
   handleSubmit: (values, { props } ) => {
     if (props.loginMode) {
       props.login(values)
     } else {
-      props.register(values)      
+      props.register({
+        ...values,
+        captchaToken: props.captchaToken
+      })      
     }
   },
   validateOnBlur: false,
   validateOnChange: false,
-  validationSchema
+  validationSchema: ({ loginMode }) => {
+    if (loginMode) {
+      return loginValidationSchema
+    } else {
+      return registerValidationSchema
+    }
+  }
 }
 
 const mapStateToProps = (state) => ({

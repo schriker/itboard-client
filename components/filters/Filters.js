@@ -18,6 +18,8 @@ const Filters = ({ setFilters, resetForm, offers }) => {
     wages.push(offer.salary_to)
     minmaxWage = [Math.min(...wages), Math.max(...wages)]
   }
+
+  const [currentValues, setCurrentValues] = useState([minmaxWage[0], minmaxWage[1]])
   
   const [wagesRange, setWagesRange] = useState([])
 
@@ -28,6 +30,7 @@ const Filters = ({ setFilters, resetForm, offers }) => {
   useEffect(() => {
     if (Object.values(offers.filters).flat().length === 0) {
       setWagesRange([minmaxWage[0], minmaxWage[1]])
+      setCurrentValues([minmaxWage[0], minmaxWage[1]])
       resetForm()
     }
   }, [offers.filters])
@@ -69,7 +72,7 @@ const Filters = ({ setFilters, resetForm, offers }) => {
           </div>
         </Form>
         <div className="slider">
-            <Slider handleSliderChange={handleSliderChange}  minmaxWage={minmaxWage} wagesRange={wagesRange}/>
+            <Slider currentValues={currentValues} setCurrentValues={setCurrentValues} handleSliderChange={handleSliderChange}  minmaxWage={minmaxWage} wagesRange={wagesRange}/>
         </div>
       </div>
       <style jsx>

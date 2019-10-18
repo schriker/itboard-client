@@ -337,6 +337,9 @@ const Meta = (props) => {
           top: calc(50% + 40px);
           transform: translate(-50%, -50%);
         }
+        .grecaptcha-badge { 
+          visibility: hidden;
+        }
         .gm-style .gm-style-iw-c {
           padding: 0 !important;
           overflow: initial;

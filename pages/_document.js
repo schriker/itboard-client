@@ -17,6 +17,7 @@ class MyDocument extends Document {
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap&subset=latin-ext" rel="stylesheet" />
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvaXqB12NxSUnXqC22jDpJ-fyxNNeNWc8&language=en&libraries=places"
   type="text/javascript"></script>
+        <script src="https://www.google.com/recaptcha/api.js?render=6LeRQb4UAAAAAPNbFLigCEAEA0dcz8Lj1JReAKVb"></script>
         </Head>
         <body>
           <Main />

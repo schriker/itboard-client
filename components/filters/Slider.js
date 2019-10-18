@@ -1,11 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Rheostat from 'rheostat'
 import 'rheostat/initialize'
 import './rheostat.css'
 
-const Slider = ({ handleSliderChange, minmaxWage, wagesRange }) => {
-
-  const [currentValues, setCurrentValues] = useState([minmaxWage[0], minmaxWage[1]])
+const Slider = ({ handleSliderChange, minmaxWage, wagesRange, setCurrentValues, currentValues }) => {
 
   return (
     <div className="slider">
@@ -18,8 +16,8 @@ const Slider = ({ handleSliderChange, minmaxWage, wagesRange }) => {
         values={wagesRange}
       />
       <div className="slider__values">
-        <span>{currentValues[0]}</span>
-        <span>{currentValues[1]}</span>
+        <span>{currentValues[0]}$</span>
+        <span>{currentValues[1]}$</span>
       </div>
       <style jsx>{`
         .slider{ 
