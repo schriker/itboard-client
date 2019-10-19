@@ -57,7 +57,7 @@ const OfferListItem = ({ offer, preview, findOnMap, index, firstVisit }) => {
           display: flex;
           height: 100px;
           padding: 5px;
-          background-color: #f0f1f7;
+          background-color: #fff;
           border-bottom: 1px solid #cccfdd;
           transition: all .1s ease-in-out;
         }

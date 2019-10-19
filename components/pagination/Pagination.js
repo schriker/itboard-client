@@ -41,7 +41,7 @@ const Pagination = ({ currentPage, lastPage }) => {
           display: block;
           position: relative;
           padding: 10px 15px;
-          background-color: #f0f1f7;
+          background-color: #fff;
           border-bottom: 1px solid #cccfdd;
           border-right: 1px solid #cccfdd;
         }

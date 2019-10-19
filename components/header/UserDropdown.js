@@ -52,7 +52,7 @@ const UserDropdown = (props) => {
           color: #1f1f1f;
           padding: 10px 30px;
           display: block;
-          border-bottom: 1px solid #c3c6d8;
+          border-bottom: 1px solid #1f1f1f;
         }
         div ul li:first-child a{
           border-top-left-radius: 5px;
@@ -63,7 +63,8 @@ const UserDropdown = (props) => {
           border-bottom-left-radius: 5px;
         }
         div ul li a:hover {
-          background-color: #e5e6ef;
+          color: #fff;
+          background-color: #2669e6;
           cursor: pointer;
         }
         `}</style>

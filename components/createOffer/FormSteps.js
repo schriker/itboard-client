@@ -48,12 +48,12 @@ const FormSteps = ({ steps, currentStep }) => {
             padding-bottom: 3px;
             font-size: 16px;
             text-align: center;
-            border-bottom: 1px solid #f0f1f7;
+            border-bottom: 1px solid #fff;
             transition: all .2s ease-in-out;
           }
           li div {
             padding: 7px;
-            border: 1px solid #f0f1f7;
+            border: 1px solid #fff;
             border-radius: 50%;
             transition: all .2s ease-in-out;
           }
@@ -67,7 +67,7 @@ const FormSteps = ({ steps, currentStep }) => {
             display: inline-block;
             font-size: 20px;
             color: #1f1f1f;
-            background-color: #f0f1f7;
+            background-color: #fff;
             width: 40px;
             height: 40px;
             transition: all .2s ease-in-out;
@@ -79,7 +79,7 @@ const FormSteps = ({ steps, currentStep }) => {
             border-color: #0069ff;
           }
           li.active div span {
-            color: #f0f1f7;
+            color: #fff;
             background-color: #0069ff;
           }
       `}</style>

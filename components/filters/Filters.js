@@ -88,7 +88,7 @@ const Filters = ({ setFilters, resetForm, offers }) => {
             position: relative;
             z-index: 2;
             width: 100%;
-            background-color: #f0f1f7;
+            background-color: #fff;
             display: flex;
             justify-content: center;
             padding: 10px 0;

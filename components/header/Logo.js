@@ -21,12 +21,12 @@ const Logo = (props) => {
           flex: 0 1 250px;
           align-items: center;
           margin-right: 22px;
-          color: #f0f1f7;
+          color: #fff;
           font-weight: 600;
           font-size: 24px;
         }
         a:hover {
-          color: #f0f1f7;
+          color: #fff;
         }
         span {
           margin-left: 8px;

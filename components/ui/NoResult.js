@@ -10,7 +10,7 @@ const NoResult = () => {
               padding: 60px 0;
               font-weight: 500;
               margin-top: 20px;
-              background-color: #f0f1f7;
+              background-color: #fff;
               border-bottom: 1px solid #cccfdd;
               transition: all .1s ease-in-out;
             }

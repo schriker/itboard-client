@@ -10,7 +10,7 @@ const SummaryBar = ({ editOffer, submitOffer, isSending }) => {
         .bar {
           left: 0;
           bottom: 0;
-          color: #f0f1f7;
+          color: #fff;
           height: 70px;
           display: flex;
           justify-content: space-between;

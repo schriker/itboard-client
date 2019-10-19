@@ -53,7 +53,7 @@ const Menu = ({ router }) => {
         }
         a:hover,
         .active {
-          color: #f0f1f7;
+          color: #fff;
           border-bottom: 2px solid #0766ee;
         }
         `}</style>

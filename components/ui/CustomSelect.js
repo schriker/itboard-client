@@ -84,17 +84,19 @@ const CustomSelect = ({ field, form, options, placeholder, onSetFilter }) => {
             color: #1f1f1f;
             padding: 10px 15px;
             list-style: none;
-            border-bottom: 1px solid #c3c6d8;
+            border-bottom: 1px solid #1f1f1f;
           }
           .selected {
-            background-color: #e5e6ef;  
+            color: #fff !important;
+            background-color: #2669e6;  
           }
           .select-list li:last-child {
             border-bottom: 0;
           }
           .select-list li:hover {
             cursor: pointer;
-            background-color: #e5e6ef;  
+            color: #fff;
+            background-color: #2669e6;  
           }
           `}</style>
         <style jsx>{`
@@ -102,8 +104,8 @@ const CustomSelect = ({ field, form, options, placeholder, onSetFilter }) => {
             position: relative;
           }
           .dropdown {
-            background-color: #f0f1f7;
-            z-index: 5;
+            background-color: #fff;
+            z-index: 7;
             width: 100%;
             max-height: 232px;
             box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;

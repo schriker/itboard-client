@@ -10,7 +10,7 @@ const ToolbarButton = ({ icon, mouseDown, active, style }) => {
       <i className={icon}></i>
       <style jsx>{`
         span {
-          color: ${active ? '#f0f1f7' : '#1f1f1f'};
+          color: ${active ? '#fff' : '#1f1f1f'};
           background-color: ${active ? '#0069ff' : '#e5e5e5'};
           width: 30px;
           height: 30px;
@@ -22,7 +22,7 @@ const ToolbarButton = ({ icon, mouseDown, active, style }) => {
         }
         span:hover {
           cursor: pointer;
-          color: #f0f1f7;
+          color: #fff;
           background-color: #0069ff;
         } 
         span:last-of-type {

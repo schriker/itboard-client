@@ -54,7 +54,7 @@ const Meta = (props) => {
           color: #2b2b2b;
         }
         .btn--yellow:hover {
-          color: #f0f1f7;
+          color: #fff;
           border: 2px solid #ffe600;
           background-color: transparent;
         }
@@ -63,10 +63,10 @@ const Meta = (props) => {
         }
         .btn--blue {
           background-color: #0766ee;
-          color: #f0f1f7;
+          color: #fff;
         }
         .btn--blue:hover {
-          color: #f0f1f7;
+          color: #fff;
           border: 2px solid #0766ee;
           background-color: transparent;
         }
@@ -80,7 +80,7 @@ const Meta = (props) => {
           color: #0766ee;
         }
         .white-box {
-          background-color: #f0f1f7;
+          background-color: #fff;
           box-shadow: 0px 2px 1px 0px rgba(104,111,151,0.2);
         }
         .white-box div:last-of-type {
@@ -134,12 +134,12 @@ const Meta = (props) => {
           font-family: 'Montserrat', sans-serif;
         }
         button:disabled {
-          background-color: #c3c6d8;
+          background-color: #1f1f1f;
         }
         button[disabled]:hover {
-          color: #f0f1f7;
+          color: #fff;
           border-color: transparent;
-          background-color: #c3c6d8;
+          background-color: #1f1f1f;
         }
         button[disabled]:after {
           position: absolute;
@@ -168,9 +168,9 @@ const Meta = (props) => {
           width: 100%;
           font-size 14px;
           padding: 15px 25px;
-          background-color: #f0f1f7;
-          border: 1px solid #c3c6d8;
-          border-bottom: 5px solid #c3c6d8;
+          background-color: #fff;
+          border: 1px solid #1f1f1f;
+          border-bottom: 5px solid #1f1f1f;
           transition: all .1s ease-in-out; 
           outline: none;
         }
@@ -211,7 +211,7 @@ const Meta = (props) => {
         }
         input[type="file"] + div i {
           font-size: 72px;
-          color: #f0f1f7;
+          color: #fff;
         }
         input[type="checkbox"] {
           display: none;
@@ -264,7 +264,7 @@ const Meta = (props) => {
         input:focus {
           position: relative;
           z-index: 2;
-          border-color: #0069ff;
+          border-color: #2669e6;
         }
         input.with-error,
         input:invalid,
@@ -278,7 +278,7 @@ const Meta = (props) => {
           margin-bottom: 30px;
         }
         .input-row label {
-          background-color: #f0f1f7;
+          background-color: #fff;
           padding: 0 4px; 
           left: 25px;
           top: 50%;
@@ -296,7 +296,7 @@ const Meta = (props) => {
           font-size: 12px;
         }
         input:-webkit-autofill {
-          box-shadow: 0 0 0 100px #f0f1f7 inset;
+          box-shadow: 0 0 0 100px #fff inset;
         }
         .errors {
           color: #e61340;
@@ -308,7 +308,7 @@ const Meta = (props) => {
           height: 0; 
           border-left: 5px solid transparent;
           border-right: 5px solid transparent;
-          border-bottom: 5px solid #f0f1f7;
+          border-bottom: 5px solid #fff;
         }
         .notification {
           z-index: 4;
