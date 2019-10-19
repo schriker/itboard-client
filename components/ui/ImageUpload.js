@@ -10,7 +10,7 @@ const ImageUpload = ({ field, form }) => {
 
   let thumbContent = <Fragment>
                       <i className="fas fa-image"></i>
-                      <span>Upload photo.</span>
+                      <span>Comapny Logo</span>
                     </Fragment>
 
   if (thumb) {

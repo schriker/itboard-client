@@ -179,6 +179,7 @@ const Meta = (props) => {
           width: 100%;
           height: 250px;
           position: absolute;
+          cursor: pointer;
           z-index: 2;
         }
         input[type="file"] + div {

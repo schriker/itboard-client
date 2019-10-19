@@ -43,7 +43,13 @@ class Verify extends React.Component {
       userEmail: this.props.auth.email
     })
     .then(() => this.setState({resended: true, msg: 'Token was send! Check your email.', type: 'success', isSending: false}))
-    .catch(() => this.setState({resended: true, msg: 'Server error. Pleas contact us.', type: 'error', isSending: false}))
+    .catch((err) => {
+      let msg = 'Server error. Pleas contact us.'
+      if (err.response.status === 429) {
+        msg = 'You have to wait 15min. to retry.'
+      }
+      this.setState({resended: true, msg: msg, type: 'error', isSending: false})
+    })
   }
 
   render() {

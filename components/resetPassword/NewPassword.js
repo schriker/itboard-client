@@ -46,7 +46,7 @@ const UserEmail = ({ errors,
         </ul>
       </Notification>
       <div className="white-box wrapper">
-        <p>Pleas enter new password.</p>
+        <p>Please enter new password.</p>
         <Form>
           <Field name="password" component={CustomInput} placeholder="Password" password />
           <Field name="confirmPassword" component={CustomInput} placeholder="Confirm Password" password/>

@@ -88,7 +88,7 @@ const CustomSelect = ({ field, form, options, placeholder, onSetFilter }) => {
           }
           .selected {
             color: #fff !important;
-            background-color: #2669e6;  
+            background-color: #1f1f1f;  
           }
           .select-list li:last-child {
             border-bottom: 0;
@@ -96,7 +96,7 @@ const CustomSelect = ({ field, form, options, placeholder, onSetFilter }) => {
           .select-list li:hover {
             cursor: pointer;
             color: #fff;
-            background-color: #2669e6;  
+            background-color: #1f1f1f;  
           }
           `}</style>
         <style jsx>{`

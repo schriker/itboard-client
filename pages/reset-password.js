@@ -34,9 +34,12 @@ class ResetPassword extends React.Component {
       })
     })
     .catch(err => {
+      console.log(err.response)
       let msg = 'Server error!'
       if (err.response.status === 404) {
         msg = 'User with that email dosen\'t exist!'
+      } else if (err.response.status === 429) {
+        msg = 'You have to wait 15min. to retry.'
       }
       this.setState({
         isSending: false,
