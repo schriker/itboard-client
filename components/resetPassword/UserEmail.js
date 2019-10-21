@@ -8,12 +8,16 @@ const UserEmail = ({ errors,
   isValidating,
   isSending,
   apiMessage,
-  type
+  type,
+  resetForm
  }) => {
   
   const [withErrors, setWithErrors] = useState(false)
   
   useEffect(() => {
+    if (type ==='success') {
+      resetForm()
+    }
     if ((errorsArray.length > 0  && !isSending && !isValidating)) {
       setWithErrors(true)
     } else if (withErrors) {

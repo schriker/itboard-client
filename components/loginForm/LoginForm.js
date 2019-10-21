@@ -84,13 +84,6 @@ const LoginForm = ({ errors,
           a:hover {
             cursor: pointer;
           }
-          .captcha {
-            font-size: 12px;
-            color: #cacaca;
-          }
-          .captcha a {
-            color: #095beb;
-          }
           .links {
             margin-bottom: 20px;
             display: flex;

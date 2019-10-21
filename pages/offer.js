@@ -19,6 +19,40 @@ class Offer extends React.Component {
     }
   }
 
+  state = {
+    submited: false,
+    isSending: false,
+    type: '',
+    errors: [],
+  }
+
+  handleApply = (formData) => {
+    this.setState({isSending: true})
+    api.post(`offer/apply?_id=${this.props.offer._id}`, formData)
+    .then(response => {
+      this.setState({
+        isSending: false,
+        submited: true,
+        type: 'success',
+        errors: ['Your cv was sent! Good luck.']
+      })
+    })
+    .catch(err => {
+      console.log(err.response)
+      let msg = 'Server error!'
+      if (err.response.status === 404) {
+        msg = 'User with that email dosen\'t exist!'
+      } else if (err.response.status === 429) {
+        msg = 'You have to wait 15min. to retry.'
+      }
+      this.setState({
+        isSending: false,
+        type: 'error',
+        errors: [msg]
+      })
+    })
+  }
+
   render() {
     const layoutSetings = {
       meta: {
@@ -34,7 +68,7 @@ class Offer extends React.Component {
     return(
       <Layout { ...layoutSetings }>
         <div className="fullpage-wrapper">
-          {this.props.offer ? <OfferContent offer={this.props.offer} /> : <NoResult />}
+          {this.props.offer ? <OfferContent type={this.state.type} apiMessage={this.state.errors} isSending={this.state.isSending} handleApply={this.handleApply} offer={this.props.offer} /> : <NoResult />}
           <style jsx>{`
             div {
               padding: 0 20px;

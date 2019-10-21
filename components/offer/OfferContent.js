@@ -2,8 +2,7 @@ import useFileReader from '../../hooks/useFileReader'
 import OfferDetails from './OfferDetails'
 import OfferContactForm from './OfferContactForm'
 
-const OfferContent = ({ offer, preview }) => {
-
+const OfferContent = ({ offer, preview, isSending, handleApply, apiMessage, type }) => {
   let thumb
   preview ? thumb = useFileReader(offer.company_logo) : thumb = offer.company_logo
   const mailRe = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/)
@@ -22,7 +21,7 @@ const OfferContent = ({ offer, preview }) => {
         </div>
         {isEmail && 
           <div id="offer-form" className="white-box white-box--content content">
-            <OfferContactForm />
+            <OfferContactForm apiMessage={apiMessage} type={type} isSending={isSending} handleApply={handleApply} />
           </div>
         }
       </div>

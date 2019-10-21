@@ -5,8 +5,7 @@ import CustomInput from '../ui/CustomInput'
 import CustomFileInput from '../ui/CustomFileInput'
 import Notification from '../ui/Notifiaction'
 
-const OfferContactForm = ({ values, errors, setFieldValue, isSubmitting, isValidating, touched }) => {
-  const [withErrors, setWithErrors] = useState(false)
+const OfferContactForm = ({ values, errors, setFieldValue, resetForm, isValidating, touched, isSending, apiMessage, type }) => {
   useEffect(() => {
     window.grecaptcha.ready(() => {
       window.grecaptcha.execute('6LeRQb4UAAAAAPNbFLigCEAEA0dcz8Lj1JReAKVb', {action: 'apply'})
@@ -15,20 +14,33 @@ const OfferContactForm = ({ values, errors, setFieldValue, isSubmitting, isValid
       })
     })
   }, [])
+
+  let errorsArray = Object.values(errors)
+
+  if (apiMessage.length > 0) {
+    errorsArray = [
+      ...errorsArray,
+      ...apiMessage
+    ]
+  }
+
+  const [withErrors, setWithErrors] = useState(false)
   useEffect(() => {
-    if ((errorsArray.length > 0  && !isSubmitting && !isValidating)) {
+    if (type ==='success') {
+      resetForm()
+    }
+    if ((errorsArray.length > 0  && !isSending && !isValidating)) {
       setWithErrors(true)
     } else if (withErrors) {
       setWithErrors(false)
     }
-  }, [isValidating, isSubmitting])
+  }, [isValidating, isSending])
 
-  const errorsArray = Object.values(errors)
 
   return (
     <div className="wrapper">
-      <Notification open={withErrors} type="error" close={() => setWithErrors(false)}>
-        <p>Something went wrong :(</p>
+      <Notification open={withErrors} type={type ? type : 'error'} close={() => setWithErrors(false)}>
+      <p>{type === 'success' ? 'Success!' : 'Something went wrong :('}</p>
         <ul>
           {errorsArray.map((error, index) => {
               return <li key={index}>{error}</li>
@@ -49,10 +61,13 @@ const OfferContactForm = ({ values, errors, setFieldValue, isSubmitting, isValid
           <label className={errors.agree && touched.agree ? 'with-error' : values.agree !== '' ? 'touched' : touched.agree ? 'touched' : null} htmlFor="agree">I agree to recruitmen agreements.</label>
         </div>
         <div>
-          <button disabled={false} className="btn btn--blue btn--blue-white" type="submit">
-            {false ? "Wait" : "Submit"}
+          <button disabled={isSending} className="btn btn--blue btn--blue-white" type="submit">
+            {isSending ? "Wait" : "Submit"}
           </button>
         </div>
+        <p className="captcha">
+          This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+        </p>
       </Form>
       <style jsx>{`
         .wrapper {
@@ -71,8 +86,11 @@ const OfferContactForm = ({ values, errors, setFieldValue, isSubmitting, isValid
         .with-error {
           color: #dd0505;
         }
+        p {
+          margin: 0;
+        }
         button {
-          margin: 40px 0 0 0;
+          margin: 25px 0;
         }
       `}</style>
     </div>
@@ -101,12 +119,12 @@ const formikOptions = {
     cv: null,
     captcha: ''
   }),
-  handleSubmit: (values) => {
+  handleSubmit: (values, { props }) => {
     const formData = new FormData()
     for (let key in values) {
       formData.append(key, values[key])
     }
-    console.log(formData)
+    props.handleApply(formData)
   },
   validateOnBlur: false,
   validateOnChange: false,

@@ -164,6 +164,9 @@ const Meta = (props) => {
           transition: all .1s ease-in-out; 
           outline: none;
         }
+        textarea:focus {
+          border-color: #095beb;
+        }
         .image-input {
           opacity: 0;
           width: 100%;
@@ -355,6 +358,14 @@ const Meta = (props) => {
         }
         .filters__form div:not(:first-of-type) {
           margin-left: -1px;
+        }
+        .captcha {
+          font-size: 12px;
+          color: #cacaca;
+          padding: 0 !important;
+        }
+        .captcha a {
+          color: #095beb;
         }
       `}</style>
     </Fragment>

@@ -29,6 +29,9 @@ const CustomFileInput = ({ field, form }) => {
           border: 1px solid #1f1f1f;
           border-bottom: 5px solid #1f1f1f;
         }
+        label:hover {
+          border-color: #095beb;
+        }
         label i {
           font-size: 32px;
           margin: 0 20px 0 0;
