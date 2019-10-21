@@ -104,6 +104,7 @@ const LoginForm = ({ errors,
 
 const registerValidationSchema = Yup.object().shape({
   email: Yup.string().
+    trim().
     required('Email is required.').
     email('Invalid email.'),
   password: Yup.string().
@@ -115,6 +116,7 @@ const registerValidationSchema = Yup.object().shape({
 
 const loginValidationSchema = Yup.object().shape({
   email: Yup.string().
+    trim().
     required('Email is required.').
     email('Invalid email.'),
   password: Yup.string().

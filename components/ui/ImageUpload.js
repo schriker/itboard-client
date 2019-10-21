@@ -19,8 +19,8 @@ const ImageUpload = ({ field, form }) => {
 
   return (
   <div className="file-input">
-    <input accept="image/png, image/jpeg" className={form.errors[field.name] && form.touched[field.name] ? 'with-error' : form.values[field.name] !== '' ? 'touched' : form.touched[field.name] ? 'touched' : null} id={field.name} name={field.name} type="file" onChange={(event) => {
-      form.setFieldValue(field.name, event.currentTarget.files[0]);
+    <input accept="image/png, image/jpeg" className={form.errors[field.name] && form.touched[field.name] ? 'with-error image-input' : form.values[field.name] !== '' ? 'touched image-input' : form.touched[field.name] ? 'touched image-input' : null} id={field.name} name={field.name} type="file" onChange={(event) => {
+      form.setFieldValue(field.name, event.currentTarget.files[0])
     }} />
     <div className="thumb-preview">
       {thumbContent}

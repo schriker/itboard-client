@@ -20,7 +20,6 @@ const technologySelect = languagesArr.map((language) => language.name)
 const DetailsForm = ({ values, errors, touched, isValidating, isSubmitting }) => {
 
   useScrollToTop()
-
   const [withErrors, setWithErrors] = useState(false)
 
   useEffect(() => {

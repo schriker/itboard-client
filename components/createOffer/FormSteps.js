@@ -3,7 +3,7 @@ const FormSteps = ({ steps, currentStep }) => {
     <ul>
       {steps.map((step, index) => {
         return (
-          <li className={index + 1 < currentStep ? 'active' : null} key={index}>
+          <li className={index < currentStep ? 'active' : null} key={index}>
             <div>
               <span>
                 {index + 1} 
@@ -16,7 +16,7 @@ const FormSteps = ({ steps, currentStep }) => {
         )
         }
       )}
-      <li className={currentStep > steps.length + 1 ? 'active' : null}>
+      <li className={currentStep > steps.length ? 'active' : null}>
         <div>
           <span>
             <i className="fas fa-check"></i>

@@ -55,6 +55,7 @@ const OfferDetails = ({ offer, thumb, isEmail }) => {
           font-size: 16px;
           color: #0766ee;
           margin-right: 8px;
+          width: 25px;
         }
         .details-header {
           display: flex;

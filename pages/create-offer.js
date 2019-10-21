@@ -11,7 +11,7 @@ import SubmitedForm from '../components/createOffer/SubmitedForm'
 class CreateOffer extends React.Component {
 
   state = {
-    currentStep: 2
+    currentStep: 1
   }
 
   render() {
@@ -26,19 +26,19 @@ class CreateOffer extends React.Component {
 
     let content = null
 
+    if (this.state.currentStep === 1) {
+      content = <DetailsForm submitOffer={() => this.setState({currentStep: 2})} />
+    }
+
     if (this.state.currentStep === 2) {
-      content = <DetailsForm submitOffer={() => this.setState({currentStep: 3})} />
+      content = <ContentForm submitOffer={() => this.setState({currentStep: 3})} />
     }
 
     if (this.state.currentStep === 3) {
-      content = <ContentForm submitOffer={() => this.setState({currentStep: 4})} />
+      content = <PreviewForm editOffer={() => this.setState({currentStep: 1})} submitOffer={() => this.setState({currentStep: 4})} />
     }
 
     if (this.state.currentStep === 4) {
-      content = <PreviewForm editOffer={() => this.setState({currentStep: 2})} submitOffer={() => this.setState({currentStep: 5})} />
-    }
-
-    if (this.state.currentStep === 5) {
       content = <SubmitedForm />
     }
 

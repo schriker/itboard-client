@@ -68,6 +68,7 @@ const UserEmail = ({ errors,
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().
+    trim().
     required('Email is required.').
     email('Invalid email.')
 })

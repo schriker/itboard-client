@@ -22,7 +22,9 @@ const Meta = (props) => {
           padding: 0;
           box-sizing: border-box;
         }
-
+        .hide {
+          display: none;
+        }
         body {
           background-color: #dadce7;
           color: #1f1f1f;
@@ -86,9 +88,6 @@ const Meta = (props) => {
         .white-box div:last-of-type {
           border-bottom: 0;
         }
-        .white-box--content strong {
-          color: #015fff;
-        }
         .white-box--content p {
           padding: 0 80px;
         }
@@ -105,20 +104,10 @@ const Meta = (props) => {
         }
         .white-box--content ul {
           margin: 15px 100px;
-          list-style: none;
         }
         .white-box--content ul li {
-          display: flex;
-          align-items: center;
-          margin: 5px 0;
-        }
-        .white-box--content ul li::before {
-          font-family: "Font Awesome 5 Free";
-          font-weight: bold;
-          font-size: 5px;
-          content: "\\f111";
-          color: #015fff;
-          margin-right: 8px;
+          line-height: 16px;
+          margin: 8px 0;
         }
         p {
           color: #1f1f1f;
@@ -175,7 +164,7 @@ const Meta = (props) => {
           transition: all .1s ease-in-out; 
           outline: none;
         }
-        input[type="file"] {
+        .image-input {
           opacity: 0;
           width: 100%;
           height: 250px;
@@ -183,7 +172,7 @@ const Meta = (props) => {
           cursor: pointer;
           z-index: 2;
         }
-        input[type="file"] + div {
+        .image-input + div {
           color: #1f1f1f;
           display: flex;
           flex-direction: column;
@@ -197,21 +186,21 @@ const Meta = (props) => {
           height: 250px;
           background-color: #dadce7;
         }
-        input[type="file"].with-error + div {
+        .image-input.with-error + div {
           color: white;
           background-color: #e61340;
         }
-        input[type="file"] + div span {
+        .image-input + div span {
           font-size: 14px;
           margin-top: 5px;
         }
-        input[type="file"] + div img {
+        .image-input + div img {
           width: auto;
           height: auto;
           max-height: 100%;
           max-width: 100%;
         }
-        input[type="file"] + div i {
+        .image-input + div i {
           font-size: 72px;
           color: #fff;
         }
@@ -318,6 +307,7 @@ const Meta = (props) => {
         }
         .notification p {
           font-size: 16px;
+          padding: 0 !important;
         }
         .notification ul {
           margin: 10px 0 5px 25px;
