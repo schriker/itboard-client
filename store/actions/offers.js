@@ -86,7 +86,7 @@ const fetchOffersFailed = (err) => ({
 
 export const fetchOffers = () => {
   return async dispatch => {
-    await api.get('/offer/all')
+    await api.get('/offer/get')
             .then(response => dispatch(fethcOffersSuccess(response.data.offers)))
             .catch(err => dispatch(fetchOffersFailed(err)))
   }

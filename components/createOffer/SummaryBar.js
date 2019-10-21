@@ -18,9 +18,11 @@ const SummaryBar = ({ editOffer, submitOffer, isSending }) => {
           background-color: #1f1f1f;
           padding: 0 50px;
           position: fixed;
+          z-index: 4;
           width: 100%;
         }
         p {
+          color: #fff;
           font-size: 16px;
         }
         button:last-of-type {

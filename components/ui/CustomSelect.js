@@ -11,6 +11,7 @@ const CustomSelect = ({ field, form, options, placeholder, onSetFilter }) => {
 
   useEffect(() => {
     if (field.value === '') {
+      setCursor(0)
       setSelectOptions(options)
     }
   }, [field.value])

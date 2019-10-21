@@ -4,7 +4,7 @@ export const filter = (filters, offers) => {
       if (type === 'salary') {
         const [min, max] = [...filters[type][0]]
         offers = offers.filter(offer => {
-          return offer.salary_from >= min && offer.salary_to <= max
+          return offer.salary_to >= min && offer.salary_from <= max
         })
       } else if (type === 'remote') {
         offers = offers.filter(offer => {

@@ -1,5 +1,4 @@
 import React from 'react'
-import Router from 'next/router'
 import Layout from '../components/layout/Layout'
 import OfferContent from '../components/offer/OfferContent'
 import api from '../helpers/axios'
@@ -9,9 +8,9 @@ class Offer extends React.Component {
 
   static async getInitialProps ({ query }) {
     try {
-      const response = await api.get(`offer/details?_id=${query.id}`)
+      const response = await api.get(`offer/get?_id=${query.id}`)
       return {
-        offer: response.data.offer[0]
+        offer: response.data.offers[0]
       }
     } catch (error) {
       return {

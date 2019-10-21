@@ -110,6 +110,7 @@ const Meta = (props) => {
         .white-box--content ul li {
           display: flex;
           align-items: center;
+          margin: 5px 0;
         }
         .white-box--content ul li::before {
           font-family: "Font Awesome 5 Free";
@@ -259,8 +260,9 @@ const Meta = (props) => {
           color: #818181;
           font-size: 14px;
           line-height: 20px;
-          height: 350px;
+          height: 150px;
           font-family: 'Montserrat', sans-serif;
+          resize: vertical;
         }
         input:focus {
           position: relative;

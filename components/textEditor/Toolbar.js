@@ -4,7 +4,7 @@ const Toolbar = ({ children }) => {
       {children}
       <style jsx>{`
         div {
-          background-color: #eeeff6;
+          background-color: #fff;
           position: sticky;
           z-index: 3;
           top: 0;

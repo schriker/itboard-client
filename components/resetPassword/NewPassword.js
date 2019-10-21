@@ -59,7 +59,7 @@ const UserEmail = ({ errors,
         <style jsx>{`
           .wrapper {
             flex: 0 1 600px;
-            padding: 90px 100px;
+            padding: 80px;
           }
           `}</style>
       </div>

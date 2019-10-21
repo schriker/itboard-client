@@ -1,8 +1,9 @@
 import findColor from '../../helpers/findColor'
 
-const OfferDetails = ({ offer, thumb }) => {
+const OfferDetails = ({ offer, thumb, isEmail }) => {
 
   const color = findColor(offer.technology)
+
 
   return (
     <div className="white-box details">
@@ -28,7 +29,7 @@ const OfferDetails = ({ offer, thumb }) => {
         <div>
           {offer.salary_from} - {offer.salary_to} {offer.salary_currency}
         </div>
-        <a className="btn btn--yellow btn--yellow-white" href="#">Apply</a>
+        <a target={!isEmail ? "_blank" : "_self"} className="btn btn--yellow btn--yellow-white" href={isEmail ? '#offer-form' : offer.apply_link}>Apply</a>
       </div>
       <style jsx>{`
       .details-salary {
