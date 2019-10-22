@@ -48,7 +48,7 @@ const InfoWindowContent = ({ offer }) => {
         .map-info-window__content span {
           color: #2669e6;
           margin: 3px 0;
-          font-weight: 500;
+          font-weight: 400;
         }
         `}</style>
     </div>

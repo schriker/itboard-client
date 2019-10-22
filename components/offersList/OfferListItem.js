@@ -97,7 +97,7 @@ const OfferListItem = ({ offer, preview, findOnMap, index, firstVisit }) => {
           flex: 1 1 auto;
         }
         .item-company h3 {
-          font-weight: 500;
+          font-weight: 400;
           font-size: 18px;
           color: #1f1f1f;
           margin-bottom: 12px;

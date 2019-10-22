@@ -29,7 +29,7 @@ const Meta = (props) => {
           background-color: #dadce7;
           color: #1f1f1f;
           font-size: 14px;
-          font-family: 'Roboto', sans-serif;
+          font-family: 'Lato', sans-serif;
         }  
         a {
           text-decoration: none;
@@ -42,7 +42,7 @@ const Meta = (props) => {
         .btn {
           border-radius: 18px;
           font-size: 16px;
-          font-weight: 500;
+          font-weight: 400;
           padding: 6px 25px;
           white-space: nowrap;
           border: 2px solid transparent;

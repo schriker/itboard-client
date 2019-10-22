@@ -25,7 +25,7 @@ const OfferContactForm = ({ values,
         setFieldValue('captcha', token)
       })
     })
-  }, [])
+  }, [type])
   const [ withErrors, setWithErrors, errorsArray ] = useFormError(isSending, isValidating, errors, apiMessage)
 
   return (

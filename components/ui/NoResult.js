@@ -8,7 +8,7 @@ const NoResult = () => {
               text-align: center;
               font-size: 28px;
               padding: 60px 0;
-              font-weight: 500;
+              font-weight: 400;
               margin-top: 20px;
               background-color: #fff;
               border-bottom: 1px solid #cccfdd;

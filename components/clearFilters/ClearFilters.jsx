@@ -64,7 +64,7 @@ const ClearFilters = ({ filtersNumber, clearFilters }) => {
           .clearfilter span {
             margin-left: 5px;
             color: #eeeff6;
-            font-weight: 500;
+            font-weight: 400;
           }
         `}</style>
     </ClearBox> : null}
