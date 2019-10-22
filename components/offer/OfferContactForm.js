@@ -1,11 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { withFormik, Form, Field } from 'formik'
+import useFormError from '../../hooks/useSimpleFormErrors'
+import useResetForm from '../../hooks/useResetForm'
 import * as Yup from 'yup'
 import CustomInput from '../ui/CustomInput'
 import CustomFileInput from '../ui/CustomFileInput'
 import Notification from '../ui/Notifiaction'
 
-const OfferContactForm = ({ values, errors, setFieldValue, resetForm, isValidating, touched, isSending, apiMessage, type }) => {
+const OfferContactForm = ({ values, 
+  errors, 
+  setFieldValue, 
+  resetForm, 
+  isValidating, 
+  touched, 
+  isSending, 
+  apiMessage, 
+  type }) => {
+
+  useResetForm(resetForm, type === 'success' ? true : false, isSending)
   useEffect(() => {
     window.grecaptcha.ready(() => {
       window.grecaptcha.execute('6LeRQb4UAAAAAPNbFLigCEAEA0dcz8Lj1JReAKVb', {action: 'apply'})
@@ -14,28 +26,7 @@ const OfferContactForm = ({ values, errors, setFieldValue, resetForm, isValidati
       })
     })
   }, [])
-
-  let errorsArray = Object.values(errors)
-
-  if (apiMessage.length > 0) {
-    errorsArray = [
-      ...errorsArray,
-      ...apiMessage
-    ]
-  }
-
-  const [withErrors, setWithErrors] = useState(false)
-  useEffect(() => {
-    if (type ==='success') {
-      resetForm()
-    }
-    if ((errorsArray.length > 0  && !isSending && !isValidating)) {
-      setWithErrors(true)
-    } else if (withErrors) {
-      setWithErrors(false)
-    }
-  }, [isValidating, isSending])
-
+  const [ withErrors, setWithErrors, errorsArray ] = useFormError(isSending, isValidating, errors, apiMessage)
 
   return (
     <div className="wrapper">

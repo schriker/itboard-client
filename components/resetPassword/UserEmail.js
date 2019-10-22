@@ -1,5 +1,7 @@
 import { withFormik, Form, Field } from 'formik'
-import { useEffect, useState, Fragment } from 'react'
+import { Fragment } from 'react'
+import useFormError from '../../hooks/useSimpleFormErrors'
+import useResetForm from '../../hooks/useResetForm'
 import * as Yup from 'yup'
 import Notification from '../ui/Notifiaction'
 import CustomInput from '../ui/CustomInput'
@@ -12,35 +14,12 @@ const UserEmail = ({ errors,
   resetForm
  }) => {
   
-  const [withErrors, setWithErrors] = useState(false)
-  
-  useEffect(() => {
-    if (type ==='success') {
-      resetForm()
-    }
-    if ((errorsArray.length > 0  && !isSending && !isValidating)) {
-      setWithErrors(true)
-    } else if (withErrors) {
-      setWithErrors(false)
-    }
-  }, [isValidating, isSending])
-
-  let errorsArray = Object.values(errors)
-
-  if (apiMessage.length > 0) {
-    errorsArray = [
-      ...errorsArray,
-      ...apiMessage
-    ]
-  }
-
-  const handleCloseNotification = () => {
-    setWithErrors(false)
-  }
+  const [ withErrors, setWithErrors, errorsArray ] = useFormError(isSending, isValidating, errors, apiMessage)
+  useResetForm(resetForm, type === 'success' ? true : false, isSending)
 
   return (
     <Fragment>
-      <Notification open={withErrors} type={type ? type : 'error'} close={() => handleCloseNotification()}>
+      <Notification open={withErrors} type={type ? type : 'error'} close={() => setWithErrors(false)}>
       <p>{type === 'success' ? 'Success!' : 'Something went wrong :('}</p>
         <ul>
           {errorsArray.map((error, index) => {

@@ -22,7 +22,8 @@ const Login = ({ auth }) => {
 
   useEffect(() => {
     if (auth.user) {
-      if (prevUrl.includes('verify')) {
+      console.log('Test')
+      if (prevUrl.includes('verify') || prevUrl.includes('reset-password')) {
         Router.push('/')
       } else if (prevUrl && prevUrl !== `${window.location.origin}/login`) {
         Router.push(prevUrl)
