@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import InfoWindowContent from './InfoWindowContent'
 
-const IndexMap = ({ offers, findOnMap }) => {
+const IndexMap = ({ offers, findOnMap, height, small }) => {
 
   let map = null
   let infoWindow = null
@@ -63,9 +63,10 @@ const IndexMap = ({ offers, findOnMap }) => {
     }
 
     map = new window.google.maps.Map(mapRef.current, {
-      center: initailPosition,
-      zoom: cords ? 8 : 6,
-      mapTypeControl: false
+      center: small ? {lat: offers[0].lat, lng: offers[0].lng} : initailPosition,
+      zoom: cords ? 8 : small ? 15 : 6,
+      mapTypeControl: false,
+      disableDefaultUI: small ? true : false
     })
     offers.forEach(placeMarker)
     setMarkers(markersArray)
@@ -137,7 +138,7 @@ const IndexMap = ({ offers, findOnMap }) => {
       <style jsx>{`
         .map-wrapper {
           width: 100%;
-          height: 400px;
+          height: ${height}px;
         }
         .map {
           height: 100%;

@@ -1,4 +1,9 @@
 import findColor from '../../helpers/findColor'
+import dynamic from 'next/dynamic'
+const IndexMap = dynamic(
+  () => import('../googleMaps/IndexMap'),
+  {ssr: false}
+)
 
 const OfferDetails = ({ offer, thumb, isEmail }) => {
 
@@ -14,6 +19,9 @@ const OfferDetails = ({ offer, thumb, isEmail }) => {
         <div className="item-company">
           <h3>{offer.position_name}</h3>
         </div>
+      </div>
+      <div className="details-map">
+        <IndexMap small height={200} offers={[offer]} />
       </div>
       <div className="details-list">
         <ul>
@@ -39,6 +47,9 @@ const OfferDetails = ({ offer, thumb, isEmail }) => {
           padding: 30px 35px;
           font-size: 18px;
           color: #1f1f1f;
+        }
+        .details-map {
+          border-bottom: 1px solid #dadce7;
         }
         .details-list ul {
           list-style: none;

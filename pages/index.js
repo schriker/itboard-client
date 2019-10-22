@@ -79,7 +79,7 @@ render() {
         <div className="fullpage-wrapper">
           <Filters />
           <div className="mapplaceholder">
-            <IndexMap findOnMap={this.state.findOnMap} offers={this.props.offers} />
+            <IndexMap height={400} findOnMap={this.state.findOnMap} offers={this.props.offers} />
           </div>
             <div className="offers-wrapper">
               {offers}
