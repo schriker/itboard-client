@@ -106,7 +106,7 @@ const Meta = (props) => {
           margin: 15px 100px;
         }
         .white-box--content ul li {
-          line-height: 16px;
+          line-height: 20px;
           margin: 8px 0;
         }
         p {
@@ -361,7 +361,7 @@ const Meta = (props) => {
         }
         .captcha {
           font-size: 12px;
-          color: #cacaca;
+          color: #b5b5b5;
           padding: 0 !important;
         }
         .captcha a {

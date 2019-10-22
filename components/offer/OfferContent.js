@@ -1,6 +1,7 @@
 import useFileReader from '../../hooks/useFileReader'
 import OfferDetails from './OfferDetails'
 import OfferContactForm from './OfferContactForm'
+import OfferAgreements from './OfferAgreements'
 
 const OfferContent = ({ offer, preview, isSending, handleApply, apiMessage, type }) => {
   let thumb
@@ -18,6 +19,7 @@ const OfferContent = ({ offer, preview, isSending, handleApply, apiMessage, type
             </a>
           </div>
           <div dangerouslySetInnerHTML={{__html: offer.content}}></div>
+          <OfferAgreements agreements={offer.agreements} />
         </div>
         {isEmail && 
           <div id="offer-form" className="white-box white-box--content content">
