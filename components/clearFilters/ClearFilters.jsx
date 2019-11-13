@@ -67,7 +67,7 @@ const ClearFilters = ({ filtersNumber, clearFilters }) => {
             font-weight: 400;
           }
         `}</style>
-    </ClearBox> : null}
+      </ClearBox> : null}
     </PoseGroup>
   )
 }
