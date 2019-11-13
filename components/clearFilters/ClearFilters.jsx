@@ -1,4 +1,7 @@
 import posed, { PoseGroup } from 'react-pose'
+import { connect } from 'react-redux'
+import { clearFilters } from '../../store/actions/index'
+
 
 const ClearBox = posed.div({
   enter: {
@@ -24,13 +27,17 @@ const ClearBox = posed.div({
   }
 })
 
-const ClearFilters = ({ filtersNumber, clearFilters }) => {
+const ClearFilters = (props) => {
+
+  let filtersCount = 0
+  Object.entries(props.filters).forEach(([key, value]) => filtersCount += value.length)
+
   return (
     <PoseGroup animateOnMount={true}>
-      {!!filtersNumber ? 
-      <ClearBox key="clearBox" onClick={clearFilters} className="clearfilter">
+      {!!filtersCount ? 
+      <ClearBox key="clearBox" onClick={props.clearFilters} className="clearfilter">
         <div>
-          <i className="fas fa-times"></i><div>Clear filters:</div><span>{filtersNumber}</span>
+          <i className="fas fa-times"></i><div>Clear filters:</div><span>{filtersCount}</span>
         </div>
         <style jsx global>{`
           .clearfilter {
@@ -72,4 +79,12 @@ const ClearFilters = ({ filtersNumber, clearFilters }) => {
   )
 }
 
-export default ClearFilters
+const mapStateToProps = (state) => ({
+  filters: state.offers.filters
+})
+
+const mapDispatchToProps = (disptach) => ({
+  clearFilters: () => disptach(clearFilters())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClearFilters)

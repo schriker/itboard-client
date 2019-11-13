@@ -83,6 +83,22 @@ const OfferContactForm = ({ values,
         button {
           margin: 25px 0;
         }
+        @media (max-width: 1440px) {
+          .wrapper {
+            padding: 40px;
+          }
+          .captcha {
+            padding: 0 !important;
+          }
+        }
+        @media (max-width: 830px) {
+          .inputs {
+            grid-template-columns: 1fr;
+          }
+          .input-row {
+            margin-bottom: 0 !important;
+          }
+        }
       `}</style>
     </div>
   )

@@ -1,9 +1,8 @@
 import { connect } from 'react-redux'
 import { Fragment } from 'react'
-import { setLanguages, clearFilters } from '../../store/actions/index'
+import { setLanguages } from '../../store/actions/index'
 import SidebarItem from '../sidebar/SidebarItem'
 import { languagesArr as languages } from '../../helpers/consts'
-import ClearFilters from '../clearFilters/ClearFilters'
 import UserButtons from '../header/UserButtons'
 
 const Sidebar = (props) => {
@@ -11,34 +10,31 @@ const Sidebar = (props) => {
   let xDown = null                                                   
   let yDown = null
 
- const handleTouchStart = (evt) => {
+  const handleTouchStart = (evt) => {
     const firstTouch = evt.touches[0]                                 
     xDown = firstTouch.clientX                                 
     yDown = firstTouch.clientY                                    
   }                                               
 
-const handleTouchMove = (evt) => {
-    if ( ! xDown || ! yDown ) {
-        return
-    }
+  const handleTouchMove = (evt) => {
+      if ( ! xDown || ! yDown ) {
+          return
+      }
 
-    let xUp = evt.touches[0].clientX                                 
-    let yUp = evt.touches[0].clientY
+      let xUp = evt.touches[0].clientX                                 
+      let yUp = evt.touches[0].clientY
 
-    let xDiff = xDown - xUp
-    let yDiff = yDown - yUp
+      let xDiff = xDown - xUp
+      let yDiff = yDown - yUp
 
-    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
-        if ( xDiff > 0 ) {
-          props.hide()
-        }                      
-    } 
-    xDown = null
-    yDown = null                                           
-}
-
-  let filtersCount = 0
-  Object.entries(props.filters).forEach(([key, value]) => filtersCount += value.length)
+      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
+          if ( xDiff > 0 ) {
+            props.hide()
+          }                      
+      } 
+      xDown = null
+      yDown = null                                           
+  }
 
   const onClickHandler = (isSelected, language) => {
     isSelected ? removeLanguage(language) : addLanguage(language)
@@ -59,7 +55,6 @@ const handleTouchMove = (evt) => {
 
   return (
     <Fragment>
-      <ClearFilters  clearFilters={() => props.clearFilters()} filtersNumber={filtersCount} />
       <aside onTouchMove={handleTouchMove} onTouchStart={handleTouchStart}>
         <div className="hide-large">
           <UserButtons />
@@ -126,8 +121,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (disptach) => ({
-  setLanguage: (language) => disptach(setLanguages(language)),
-  clearFilters: () => disptach(clearFilters())
+  setLanguage: (language) => disptach(setLanguages(language))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

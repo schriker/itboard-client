@@ -9,6 +9,7 @@ const CustomFileInput = ({ field, form }) => {
       <style jsx>{`
         div {
           position: relative;
+          height: 150px;
         }
         input {
           visibility: hidden;

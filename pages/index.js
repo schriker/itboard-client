@@ -9,6 +9,7 @@ import { offersPerPage } from '../helpers/consts'
 import Filters from '../components/filters/Filters'
 import Pagination from '../components/pagination/Pagination'
 import NoResult from '../components/ui/NoResult'
+import ClearFilters from '../components/clearFilters/ClearFilters'
 const IndexMap = dynamic(
   () => import('../components/googleMaps/IndexMap'),
   {ssr: false}
@@ -78,6 +79,7 @@ render() {
       <Layout { ...layoutSetings }>
         <div className="fullpage-wrapper">
           <Filters />
+          <ClearFilters />
           <div className="mapplaceholder">
             <IndexMap height={400} findOnMap={this.state.findOnMap} offers={this.props.offers} />
           </div>

@@ -52,6 +52,14 @@ const OfferContent = ({ offer, preview, isSending, handleApply, apiMessage, type
           padding-bottom: 40px;
           margin-bottom: 20px;
         }
+        @media (max-width: 1440px) {
+          .content {
+            padding: 0;
+          }
+          .content-wrapper {
+            flex-direction: column-reverse;
+          }
+        }
         `}</style>
     </div>
   )

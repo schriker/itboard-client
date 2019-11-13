@@ -9,7 +9,6 @@ const OfferDetails = ({ offer, thumb, isEmail }) => {
 
   const color = findColor(offer.technology)
 
-
   return (
     <div className="white-box details">
       <div className="details-header">
@@ -109,6 +108,14 @@ const OfferDetails = ({ offer, thumb, isEmail }) => {
         .item-company {
           flex: 1 1 auto;
           text-align: center;
+        }
+        @media (max-width: 1440px) {
+          .details {
+            position: initial;
+            width: 100%;
+            margin: 0 0 20px 0;
+          }
+
         }
         `}</style>
     </div>

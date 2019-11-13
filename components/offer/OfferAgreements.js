@@ -25,6 +25,11 @@ const OfferAgreements = ({ agreements }) => {
           cursor: pointer;
           margin: 0 0 0 5px;
         }
+        @media (max-width: 1440px) {
+          div {
+            padding: 30px 40px;
+          }
+        }
         `}</style>
     </div>
   )

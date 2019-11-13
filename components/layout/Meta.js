@@ -367,6 +367,14 @@ const Meta = (props) => {
         .captcha a {
           color: #095beb;
         }
+        @media (max-width: 1440px) {
+          .white-box--content p {
+            padding: 0 40px !important;
+          }
+          .white-box--content ul {
+            margin: 15px 60px;
+          }
+        }
         @media (max-width: 1180px) {
           aside {
             position: fixed !important;
