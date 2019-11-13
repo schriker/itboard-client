@@ -64,7 +64,7 @@ const IndexMap = ({ offers, findOnMap, height, small }) => {
 
     map = new window.google.maps.Map(mapRef.current, {
       center: small ? {lat: offers[0].lat, lng: offers[0].lng} : initailPosition,
-      zoom: cords ? 8 : small ? 15 : 6,
+      zoom: cords ? 8 : small ? 12 : 6,
       mapTypeControl: false,
       disableDefaultUI: small ? true : false
     })

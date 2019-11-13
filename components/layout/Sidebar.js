@@ -3,6 +3,7 @@ import { setLanguages, clearFilters } from '../../store/actions/index'
 import SidebarItem from '../sidebar/SidebarItem'
 import { languagesArr as languages } from '../../helpers/consts'
 import ClearFilters from '../clearFilters/ClearFilters'
+import UserButtons from '../header/UserButtons'
 
 const Sidebar = (props) => {
   let filtersCount = 0
@@ -27,6 +28,9 @@ const Sidebar = (props) => {
 
   return (
     <aside>
+      <div className="hide-large">
+        <UserButtons />
+      </div>
       <ClearFilters clearFilters={() => props.clearFilters()} filtersNumber={filtersCount} />
       <i className="far fa-file-code"></i>
       <ul>
@@ -48,6 +52,7 @@ const Sidebar = (props) => {
           grid-area: sidebar;
           padding-top: 30px;
           overflow-y: hidden;
+          transition: all .2s ease;
         }
         aside > i:first-of-type {
           top: -65px;
@@ -56,7 +61,7 @@ const Sidebar = (props) => {
           position: absolute;
           font-size: 280px;
           color: #0c2d55;
-          z-index: 0;
+          z-index: -1;
         }
         .hide {
           position: absolute;
@@ -67,6 +72,16 @@ const Sidebar = (props) => {
           position: relative;
           z-index: 1;
           margin-bottom: 80px;
+        }
+        @media (max-width: 1180px) {
+          aside {
+            overflow-y: auto;
+            overflow-x: hidden;
+            left: ${props.show ? '0px' : '-300px'};
+          }
+          ul {
+            margin-bottom: 0;
+          }
         }
         `}</style>
     </aside>

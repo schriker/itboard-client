@@ -1,13 +1,17 @@
+import { useState } from 'react'
 import Meta from './Meta'
 import Header from './Header'
 import Sidebar from './Sidebar'
 
 const Layout = (props) => {
+
+  const [viewSidebar, setViewSidebar] = useState(false)
+
   return (
     <div className='main-wrapper'>
       <Meta { ...props.meta } />
-      <Header />
-      { props.withSidebar ? <Sidebar /> : null }
+      <Header toggleSidebar={() => setViewSidebar(!viewSidebar)} open={viewSidebar} />
+      { props.withSidebar ? <Sidebar show={viewSidebar}  /> : null }
       <main>
         {props.children}
       </main>
@@ -31,11 +35,6 @@ const Layout = (props) => {
       `}</style>
     </div>
   )
-}
-
-Layout.getInitialProps = async ({ req }) => {
-    console.log(req.cookies)
-    return {}
 }
 
 export default Layout

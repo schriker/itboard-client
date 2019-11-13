@@ -367,6 +367,35 @@ const Meta = (props) => {
         .captcha a {
           color: #095beb;
         }
+        @media (max-width: 1180px) {
+          aside {
+            position: fixed !important;
+            z-index: 4;
+            left: -300px;
+            width: 300px !important;
+            height: 100%;
+          }
+          .hide-medium {
+            display: none !important;
+          }
+          .show-medium {
+            display: block !important;
+          }
+        }
+        @media (min-width: 1180px) {
+            .hide-large {
+              display: none !important;
+            }
+          }
+        }
+        @media (max-width: 810px) {
+          .mapplaceholder {
+            height: 200px !important;
+          }
+          .map-wrapper {
+            height: 200px !important;
+          }
+        }
       `}</style>
     </Fragment>
   )

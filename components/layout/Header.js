@@ -1,29 +1,20 @@
-import Link from 'next/link'
+import UserButtons from '../header/UserButtons'
 import Logo from '../header/Logo'
 import Menu from '../header/Menu'
-import UserDropdown from '../header/UserDropdown'
-import { connect } from 'react-redux'
+import './hamburgers.css'
 
 const Header = (props) => {
-
-  let userButton = <Link href="/login">
-                        <a className="btn btn--blue"><i className="far fa-user"></i>Login</a>
-                    </Link>
-
-  if (props.auth.user) {
-    userButton = <UserDropdown />
-  }
-
   return (
     <header>
       <Logo />
       <Menu />
-      <div>
-        <Link href="/create-offer">
-          <a className="btn btn--yellow">Create Offer</a>
-        </Link>
-        <span> - or - </span>
-        {userButton}
+      <button onClick={props.toggleSidebar} className={`hamburger show-medium hamburger--squeeze ${props.open ? 'is-active' : ''}` } type="button">
+        <span className="hamburger-box">
+          <span className="hamburger-inner"></span>
+        </span>
+      </button>
+      <div className="hide-medium">
+        <UserButtons />
       </div>
       <style jsx>{`
         header {
@@ -39,7 +30,11 @@ const Header = (props) => {
           display: flex;
           align-items: center;
         }
-        span {
+        .hamburger {
+          display: none;
+          cursor: pointer;
+        }
+        .hide-medium span {
           white-space: nowrap;
           margin: 0 10px;
         }
@@ -48,8 +43,4 @@ const Header = (props) => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  auth: state.auth
-})
-
-export default connect(mapStateToProps)(Header)
+export default Header

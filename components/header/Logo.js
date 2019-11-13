@@ -12,7 +12,7 @@ const Logo = (props) => {
       </Link>
         <style jsx>{`
         div {
-            width: ${props.black ? '100%' : 'auto'} ;
+            width: ${props.black ? '100%' : 'auto'};
             display: flex;
             justify-content: center;
         }

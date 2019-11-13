@@ -66,7 +66,7 @@ const TipModal = ({ children, clickHandler, firstVisit }) => {
             display: flex;
             padding: 15px;
             flex-direction: column;
-            background-color: #f0f1f6;
+            background-color: #fff;
             white-space: nowrap;
           }
           .tipmodal div a {

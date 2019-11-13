@@ -6,30 +6,30 @@ const Menu = ({ router }) => {
   const links = [
     {
       text: 'About',
-      href: '/about'
+      href: ''
     },
     {
       text: 'Contact',
-      href: '/contact'
+      href: ''
     },
     {
       text: 'Help',
-      href: '/help'
+      href: ''
     },
     {
       text: 'Faq',
-      href: '/faq'
+      href: ''
     },
     {
       text: <i className="fab fa-facebook-f"></i>,
-      href: '/facebook'
+      href: ''
     }
   ]
 
   return (
     <ul>
       {links.map(link => (
-          <li key={link.href}>
+          <li key={link.text}>
             <Link href={link.href}>
               <a className={router.pathname === link.href ? 'active' : null}>{link.text}</a>
             </Link>

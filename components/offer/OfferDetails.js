@@ -49,6 +49,7 @@ const OfferDetails = ({ offer, thumb, isEmail }) => {
           color: #1f1f1f;
         }
         .details-map {
+          height: 201px;
           border-bottom: 1px solid #dadce7;
         }
         .details-list ul {
@@ -69,11 +70,14 @@ const OfferDetails = ({ offer, thumb, isEmail }) => {
           width: 25px;
         }
         .details-header {
+          position: relative;
+          z-index: 2;
           display: flex;
           padding: 5px;
-          height: 110px;
+          height: 100px;
           align-items: center;
           border-bottom: 1px solid #dadce7;
+          box-shadow: 0px 4px 5px 0px rgba(104,111,151,0.15);
         }
         .details-header h3 {
           font-size: 18px;
