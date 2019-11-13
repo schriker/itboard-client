@@ -27,7 +27,7 @@ const Sidebar = (props) => {
   }
 
   return (
-    <aside>
+    <aside draggable="true" onDrag={props.hide}>
       <div className="hide-large">
         <UserButtons />
       </div>
@@ -77,7 +77,7 @@ const Sidebar = (props) => {
           aside {
             overflow-y: auto;
             overflow-x: hidden;
-            left: ${props.show ? '0px' : '-300px'};
+            transform: translateX(${props.show ? '0px' : '-300px'});
           }
           ul {
             margin-bottom: 0;

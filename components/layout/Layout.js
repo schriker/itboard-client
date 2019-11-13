@@ -11,7 +11,7 @@ const Layout = (props) => {
     <div className='main-wrapper'>
       <Meta { ...props.meta } />
       <Header toggleSidebar={() => setViewSidebar(!viewSidebar)} open={viewSidebar} />
-      { props.withSidebar ? <Sidebar show={viewSidebar}  /> : null }
+      { props.withSidebar ? <Sidebar show={viewSidebar} hide={() => setViewSidebar(false)}  /> : null }
       <main>
         {props.children}
       </main>

@@ -371,7 +371,6 @@ const Meta = (props) => {
           aside {
             position: fixed !important;
             z-index: 4;
-            left: -300px;
             width: 300px !important;
             height: 100%;
           }
