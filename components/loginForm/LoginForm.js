@@ -89,6 +89,11 @@ const LoginForm = ({ errors,
             display: flex;
             justify-content: space-between;
           }
+          @media (max-width: 550px) {
+            .wrapper {
+              padding: 40px;
+            }
+          }
           `}</style>
       </div>
     </Fragment>

@@ -164,6 +164,9 @@ const Meta = (props) => {
           transition: all .1s ease-in-out; 
           outline: none;
         }
+        textarea {
+          margin-bottom: 30px;
+        }
         textarea:focus {
           border-color: #095beb;
         }

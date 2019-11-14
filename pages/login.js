@@ -60,6 +60,11 @@ const Login = ({ auth }) => {
             flex: 0 1 750px;
             padding: 60px 80px;
           }
+          @media (max-width: 550px) {
+            .wrapper {
+              padding: 40px;
+            }
+          }
         `}</style>
     </Layout>
   }

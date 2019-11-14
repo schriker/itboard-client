@@ -43,6 +43,11 @@ const UserEmail = ({ errors,
             flex: 0 1 600px;
             padding: 80px;
           }
+          @media (max-width: 550px) {
+            .wrapper {
+              padding: 40px;
+            }
+          }
           `}</style>
       </div>
     </Fragment>

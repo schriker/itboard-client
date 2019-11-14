@@ -104,6 +104,11 @@ const Filters = ({ setFilters, resetForm, offers }) => {
           .slider {
             width: 250px;
           }
+          @media (max-width: 550px) {
+            .filters__form {
+              flex-direction: column;
+            }
+          }
         `}
       </style>
     </div>

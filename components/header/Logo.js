@@ -39,6 +39,11 @@ const Logo = (props) => {
         .black span {
           color: #1f1f1f;
         }
+        @media (max-width: 550px) {
+          .black {
+            margin: 30px 0;
+          }
+        }
         `}</style>
     </div>
   )
