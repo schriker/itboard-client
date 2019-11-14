@@ -115,7 +115,17 @@ const OfferDetails = ({ offer, thumb, isEmail }) => {
             width: 100%;
             margin: 0 0 20px 0;
           }
-
+          @media (max-width: 550px) {
+          .details-salary {
+            padding: 15px;
+          }
+          .details-list ul {
+            padding: 15px;
+          }
+          .item-logo {
+            flex: 0 1 150px;
+          }
+        }
         }
         `}</style>
     </div>

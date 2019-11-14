@@ -32,6 +32,11 @@ const Layout = (props) => {
           align-items: start;
           padding-bottom: 100px;
         }
+        @media (max-width: 550px) {
+          main {
+            padding: 0;
+          }
+        }
       `}</style>
     </div>
   )

@@ -27,7 +27,7 @@ const Menu = ({ router }) => {
   ]
 
   return (
-    <ul>
+    <ul className="hide-mobile">
       {links.map(link => (
           <li key={link.text}>
             <Link href={link.href}>

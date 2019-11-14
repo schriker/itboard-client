@@ -38,6 +38,12 @@ const Header = (props) => {
           white-space: nowrap;
           margin: 0 10px;
         }
+        @media (max-width: 1180px) {
+          header {
+            justify-content: space-between;
+            padding: 15px;
+          }
+        }
         `}</style>
     </header>
   )

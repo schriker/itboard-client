@@ -76,6 +76,11 @@ class Offer extends React.Component {
             h2 {
               margin: 15px 0;
             }
+            @media (max-width: 550px) {
+              div {
+                padding: 0;
+              }
+            }
             `}</style>
         </div>
       </Layout>

@@ -96,6 +96,11 @@ render() {
             width: 100%;
             height: 400px;
           }
+          @media (max-width: 810px) {
+            .offers-wrapper {
+              padding: 0px;
+            }
+          }
           `}</style>
       </Layout>
     )

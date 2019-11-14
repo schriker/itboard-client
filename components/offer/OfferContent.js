@@ -60,6 +60,14 @@ const OfferContent = ({ offer, preview, isSending, handleApply, apiMessage, type
             flex-direction: column-reverse;
           }
         }
+        @media (max-width: 550px) {
+          .fullpage-wrapper {
+            padding: 0;
+          }
+          .logo {
+            margin: 10px 0;
+          }
+        }
         `}</style>
     </div>
   )

@@ -395,12 +395,22 @@ const Meta = (props) => {
             }
           }
         }
+        @media (max-width: 900px) {
+          .hide-tablet {
+            display: none !important;
+          }
+        }
         @media (max-width: 810px) {
           .mapplaceholder {
             height: 200px !important;
           }
           .map-wrapper {
             height: 200px !important;
+          }
+        }
+        @media (max-width: 550px) {
+          .hide-mobile {
+            display: none !important;
           }
         }
       `}</style>

@@ -30,7 +30,7 @@ const Notification = ({ open, close, type, children }) => {
   return (
     <PoseGroup animateOnMount>
       {open ? 
-        <Box key="box" className={`box white-box notification ${type}`}>
+        <Box key="box" className={`box white-box notification hide-mobile ${type}`}>
             <i onClick={close} className="fas fa-times-circle"></i>
             {children}
           <style jsx global>{`

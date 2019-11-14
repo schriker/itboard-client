@@ -24,31 +24,38 @@ const OfferListItem = ({ offer, preview, findOnMap, index, firstVisit }) => {
 
   return (
     <div className="item-wrapper">
-      <Link href={offerURl}><a></a></Link> 
+      <Link href={offerURl}><a></a></Link>
       <div className="item-logo">
         <img src={thumb} alt={offer.company_name}/>
       </div>
       <div className="item-company">
         <h3>{offer.position_name}{offer.remote && <span>Remote</span>}</h3>
         <div className="company-location">
-          <i className="far fa-building"></i>{offer.company_name}
-          <a  onClick={() => findOnMap({lat: offer.lat, lng: offer.lng})} data-tip="Show on map">
-            <i className="fas fa-map-marker-alt"></i>{offer.location}
+          <i className="far fa-building hide-tablet"></i><sapn className="hide-tablet">{offer.company_name}</sapn>
+          <a onClick={() => findOnMap({lat: offer.lat, lng: offer.lng})} data-tip="Show on map">
+            <i className="fas fa-map-marker-alt"></i>
+            <span className="offer-location-mobile">On map</span>
+            <span className="offer-location">{offer.location}</span>
             <ReactTooltip />
           </a>
           {index === 0 ? <TipModal firstVisit={firstVisit} clickHandler={tipModalClose}>Click on address to show it on map!</TipModal> : null}
         </div>
       </div>
       <div>
-      <div className="item-info">
-        <div className="item-salary">
-          {offer.salary_from} - {offer.salary_to} {offer.salary_currency}
-        </div>
-        <div className="item-details">
-        <i className="fas fa-chart-line"></i>{offer.experience_level}
-        <span>{ isNew ? 'New' : `${publishedTime} Day${publishedTime > 1 ? 's' : ''}` }</span>
+        <div className="item-info">
+          <div className="item-salary">
+            {offer.salary_from} - {offer.salary_to} {offer.salary_currency}
+          </div>
+          <div className="item-details">
+          <i className="fas fa-chart-line"></i>{offer.experience_level}
+          <span>{ isNew ? 'New' : `${publishedTime} Day${publishedTime > 1 ? 's' : ''}` }</span>
+          </div>
         </div>
       </div>
+      <div className="mobile-details">
+        {/* <div>{ isNew ? 'New' : `${publishedTime} Day${publishedTime > 1 ? 's' : ''}` }</div> */}
+        <div><i className="fas fa-chart-line"></i>{offer.experience_level}</div>
+        <div>{offer.salary_from} - {offer.salary_to} {offer.salary_currency}</div>
       </div>
       <style jsx>{`
         .item-wrapper {
@@ -107,6 +114,9 @@ const OfferListItem = ({ offer, preview, findOnMap, index, firstVisit }) => {
           float: left;
           display: flex;
         }
+        .offer-location-mobile {
+          display: none;
+        }
         .company-location > a {
           margin-left: 20px;
           position: relative;
@@ -148,6 +158,61 @@ const OfferListItem = ({ offer, preview, findOnMap, index, firstVisit }) => {
           background-color: ${isNew ? '#ffe600' : null};
           border-radius: 18px;
           margin-left: 20px;
+        }
+        .mobile-details {
+          display: none;
+        }
+        @media (max-width: 900px) {
+          .company-location a {
+            margin-left: 0;
+          }
+        }
+        @media (max-width: 810px) {
+          .item-details span {
+            padding: 4px 10px;
+          }
+        }
+        @media (max-width: 720px) {
+          .item-wrapper {
+            flex-wrap: wrap;
+            height: auto;
+          }
+          .offer-location {
+            display: none;
+          }
+          .mobile-details {
+            display: initial;
+            flex: 1 0 100%;
+            display: flex;
+            padding: 5px 10px;
+            margin: 10px 0 0 0;
+            color: #949494;
+            border-top: 1px solid #cccedd;
+            justify-content: space-between;
+          }
+          .offer-location-mobile {
+            display: initial;
+          }
+          .item-logo {
+            height: 100px;
+          }
+          .item-info {
+            display: none;
+          }
+          .item-company {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          .item-company h3 span {
+            display: none;
+          }
+        }
+        @media (max-width: 550px) {
+          .item-logo {
+            flex: 0 1 100px;
+            padding: 8px;
+          }
         }
       `}</style>
     </div>

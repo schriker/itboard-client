@@ -78,7 +78,7 @@ const Filters = ({ setFilters, resetForm, offers }) => {
             <Field onSetFilter={handleSetFilter} name="remote" component={CustomSelect} placeholder="Remote" options={['All', 'Remote Only', 'Office Only']}/>
           </div>
         </Form>
-        <div className="slider">
+        <div className="slider hide-tablet">
             <Slider currentValues={currentValues} setCurrentValues={setCurrentValues} handleSliderChange={handleSliderChange}  minmaxWage={minmaxWage} wagesRange={wagesRange}/>
         </div>
       </div>
