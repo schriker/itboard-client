@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Meta from './Meta'
 import Header from './Header'
 import Sidebar from './Sidebar'
@@ -6,12 +6,27 @@ import Sidebar from './Sidebar'
 const Layout = (props) => {
 
   const [viewSidebar, setViewSidebar] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const resizeHandler = () => {
+      const width = window.innerWidth
+      if (width <= 1180) {
+        setIsMobile(true)
+      } else {
+        setIsMobile(false)
+      }
+    }
+    window.addEventListener('resize', resizeHandler)
+    resizeHandler()
+    return () => window.removeEventListener('resize', resizeHandler)
+  }, [])
 
   return (
     <div className='main-wrapper'>
       <Meta { ...props.meta } />
       <Header toggleSidebar={() => setViewSidebar(!viewSidebar)} open={viewSidebar} />
-      { props.withSidebar ? <Sidebar show={viewSidebar} hide={() => setViewSidebar(false)}  /> : null }
+      { props.withSidebar || isMobile ? <Sidebar show={viewSidebar} hide={() => setViewSidebar(false)}  /> : null }
       <main>
         {props.children}
       </main>
