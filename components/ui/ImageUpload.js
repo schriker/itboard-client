@@ -29,6 +29,7 @@ const ImageUpload = ({ field, form }) => {
       .file-input {
         position: relative;
         grid-row: 1 / 5;
+        height: 280px;
       }
       `}</style>
   </div>

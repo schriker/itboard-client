@@ -43,7 +43,7 @@ const OfferContactForm = ({ values,
         <div className="inputs">
           <Field name="email" component={CustomInput} placeholder="Email" />
           <Field name="name" component={CustomInput} placeholder="Full name" />
-          <Field name="message" placeholder="Short introduction" component="textarea" />
+          <Field name="message" className="textarea" placeholder="Short introduction" component="textarea" />
           <Field name="cv" component={CustomFileInput} />
           <Field className="hide" name="captcha" />
         </div>

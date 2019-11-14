@@ -111,6 +111,15 @@ const DetailsForm = ({ values, errors, touched, isValidating, isSubmitting }) =>
         .agreements div:first-of-type {
           grid-column: 1 / 3;
         }
+        @media (max-width: 550px) {
+          .inputs {
+            padding: 40px;
+            grid-template-columns: 1fr;
+          }
+          .agreements div:first-of-type {
+            grid-column: 1;
+          }
+        }
         `}</style>
     </div>
   )

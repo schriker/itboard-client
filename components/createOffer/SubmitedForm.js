@@ -34,6 +34,11 @@ const SubmitedForm = ({ resetOffer }) => {
           font-size: 20px;
           line-height: 35px;
           }
+          @media (max-width: 550px) {
+            .wrapper {
+              padding: 40px;
+            }
+          }
         `}
       </style>
     </div>

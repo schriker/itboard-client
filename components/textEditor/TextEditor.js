@@ -95,10 +95,14 @@ const TextEditor = ({ onSubmit, raw }) => {
         <div className="row">
           <button className="btn btn--blue btn--blue-white" onClick={() => submit()}>Done</button>
         </div>
-        <style jsx>
-          {`
+        <style jsx>{`
             .row {
               padding: 40px 80px;
+            }
+            @media (max-width: 550px) {
+              .row {
+                padding: 40px;
+              }
             }
           `}
         </style>

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 const useFormError = (isSending, isValidating, formErrors, apiErrors) => {
   let errorsArray = Object.values(formErrors)
 
-  if (apiErrors.length > 0) {
+  if (apiErrors > 0) {
     errorsArray = [
       ...errorsArray,
       ...apiErrors

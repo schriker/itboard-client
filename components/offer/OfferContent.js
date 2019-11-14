@@ -21,7 +21,7 @@ const OfferContent = ({ offer, preview, isSending, handleApply, apiMessage, type
           <div dangerouslySetInnerHTML={{__html: offer.content}}></div>
           <OfferAgreements agreements={offer.agreements} />
         </div>
-        {isEmail && 
+        {isEmail && !preview && 
           <div id="offer-form" className="white-box white-box--content content">
             <OfferContactForm apiMessage={apiMessage} type={type} isSending={isSending} handleApply={handleApply} />
           </div>

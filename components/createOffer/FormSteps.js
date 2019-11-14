@@ -82,6 +82,11 @@ const FormSteps = ({ steps, currentStep }) => {
             color: #fff;
             background-color: #0069ff;
           }
+          @media (max-width: 550px) {
+            ul {
+              display: none;
+            }
+          }
       `}</style>
     </ul>
   )

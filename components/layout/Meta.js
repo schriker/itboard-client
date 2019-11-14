@@ -164,7 +164,7 @@ const Meta = (props) => {
           transition: all .1s ease-in-out; 
           outline: none;
         }
-        textarea {
+        .textarea {
           margin-bottom: 30px;
         }
         textarea:focus {
@@ -414,6 +414,12 @@ const Meta = (props) => {
         @media (max-width: 550px) {
           .hide-mobile {
             display: none !important;
+          }
+          .DraftEditor-editorContainer {
+            padding: 40px;
+          }
+          .public-DraftEditorPlaceholder-root {
+            font-size: 16px;
           }
         }
       `}</style>
