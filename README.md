@@ -28,7 +28,6 @@ Backend is also responsible things like:
 ## Stack
 
 * [NextJS](https://nextjs.org/)
-* [Vultr](https://vultr.com/) 
 * [NodeJS](https://nodejs.org/en/)
 * [MongoDB](https://www.mongodb.com/)
 * [Vultr](https://vultr.com/)
