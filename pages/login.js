@@ -25,7 +25,7 @@ const Login = ({ auth }) => {
       if (prevUrl.includes('verify') || prevUrl.includes('reset-password')) {
         Router.push('/')
       } else if (prevUrl && prevUrl !== `${window.location.origin}/login`) {
-        Router.push(prevUrl)
+        Router.push(prevUrl.replace(/(^\w+:|^)\/\//, '//'))
       } else {
         Router.push('/')
       }
