@@ -28,7 +28,7 @@ export const languagesArr = [
     color: '#f4b91a'
   },
   {
-    name: '.Net',
+    name: 'Net',
     color: '#0f509a'
   },
   {

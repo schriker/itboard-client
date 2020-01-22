@@ -31,11 +31,10 @@ const OfferListItem = ({ offer, preview, findOnMap, index, firstVisit }) => {
       <div className="item-company">
         <h3>{offer.position_name}{offer.remote && <span>Remote</span>}</h3>
         <div className="company-location">
-          <i className="far fa-building hide-tablet"></i><sapn className="hide-tablet">{offer.company_name}</sapn>
+          <i className="far fa-building hide-tablet"></i><span className="hide-tablet">{offer.company_name}</span>
           {!preview && <a onClick={() => findOnMap({lat: offer.lat, lng: offer.lng})} data-tip="Show on map">
             <i className="fas fa-map-marker-alt"></i>
-            <span className="offer-location-mobile">On map</span>
-            <span className="offer-location">{offer.location}</span>
+            <span className="offer-location">{offer.city}</span>
             <ReactTooltip />
           </a>}
           {index === 0 ? <TipModal firstVisit={firstVisit} clickHandler={tipModalClose}>Click on address to show it on map!</TipModal> : null}
@@ -175,9 +174,6 @@ const OfferListItem = ({ offer, preview, findOnMap, index, firstVisit }) => {
           .item-wrapper {
             flex-wrap: wrap;
             height: auto;
-          }
-          .offer-location {
-            display: none;
           }
           .mobile-details {
             display: initial;

@@ -41,11 +41,14 @@ const OfferContent = ({ offer, preview, isSending, handleApply, apiMessage, type
         }
         .logo {
           height: 80px;
-          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           margin: 50px 0;
         }
         img {
-          height: 100%;
+          height: auto;
+          max-height: 100%;
         }
         .content {
           flex: 1 1 100%;
