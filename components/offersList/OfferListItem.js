@@ -87,7 +87,7 @@ const OfferListItem = ({ offer, preview, findOnMap, index, firstVisit }) => {
           height: 100%;
           flex: 0 1 180px;
           display: flex;
-          padding: 10px 25px;
+          padding: 20px 25px;
           align-items: center;
           justify-content: center;
           border-left: 4px solid ${color};

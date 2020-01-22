@@ -7,7 +7,7 @@ const Header = (props) => {
   return (
     <header>
       <Logo />
-      <Menu />
+      {/* <Menu /> */}
       <button onClick={props.toggleSidebar} className={`hamburger show-medium hamburger--squeeze ${props.open ? 'is-active' : ''}` } type="button">
         <span className="hamburger-box">
           <span className="hamburger-inner"></span>
@@ -20,6 +20,7 @@ const Header = (props) => {
         header {
           display: flex;
           align-items: center;
+          justify-content: space-between;
           width: 100%;
           color: #a8b0bd;
           background-color: #1f1f1f;

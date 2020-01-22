@@ -24,12 +24,14 @@ const IndexMap = ({ offers, findOnMap, height, small }) => {
   }, [])
 
   useEffect(() => {
-    infoWindow = new window.google.maps.InfoWindow()
-    markers.forEach(marker => marker.setMap(null))
-    setMarkers([])
-    if (isMap) {
-      offers.forEach(placeMarker)
-      setMarkers(markersArray)
+    if (window.google) {
+      infoWindow = new window.google.maps.InfoWindow()
+      markers.forEach(marker => marker.setMap(null))
+      setMarkers([])
+      if (isMap) {
+        offers.forEach(placeMarker)
+        setMarkers(markersArray)
+      }
     }
   }, [offers])
 

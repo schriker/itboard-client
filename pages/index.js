@@ -12,7 +12,7 @@ import NoResult from '../components/ui/NoResult'
 import ClearFilters from '../components/clearFilters/ClearFilters'
 const IndexMap = dynamic(
   () => import('../components/googleMaps/IndexMap'),
-  {ssr: false}
+  { ssr: false }
 )
 
 class Index extends React.Component {
