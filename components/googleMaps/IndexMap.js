@@ -14,14 +14,15 @@ const IndexMap = ({ offers, findOnMap, height, small }) => {
 
   useEffect(() => {
     if (window.google) {
-    infoWindow = new window.google.maps.InfoWindow()
+      console.log('Render')
+      infoWindow = new window.google.maps.InfoWindow()
       if ('geolocation' in window.navigator) {
         window.navigator.geolocation.getCurrentPosition((position) => {
           initMap(position.coords)
         }, () => initMap())
       }
     }
-  }, [])
+  }, [window.google])
 
   useEffect(() => {
     if (window.google) {
