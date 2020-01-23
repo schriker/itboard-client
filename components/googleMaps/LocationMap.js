@@ -10,7 +10,7 @@ const LocationMap = ({ form, field }) => {
     if (window.google) {
       initMap()
     }
-  }, [])
+  }, [window.google])
 
   const initMap = () => {
     const map = new window.google.maps.Map(mapRef.current, {
