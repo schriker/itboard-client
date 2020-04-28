@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 
 const ContentForm = ({ submitOffer, newOfferContent, offer }) => {
 
-  const onSubmit = (content) => {
-    newOfferContent(content)
+  const onSubmit = (content, raw) => {
+    newOfferContent(content, raw)
     submitOffer()
   }
 
@@ -19,7 +19,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  newOfferContent: (content) => dispatch(newOfferContent(content)) 
+  newOfferContent: (content, raw) => dispatch(newOfferContent(content, raw)) 
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContentForm)

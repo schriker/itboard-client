@@ -1,6 +1,6 @@
-import Layout from '../components/layout/Layout'
-import Logo from '../components/header/Logo'
-import LoginForm from '../components/loginForm/LoginForm'
+import Layout from '../../components/layout/Layout'
+import Logo from '../../components/header/Logo'
+import LoginForm from '../../components/loginForm/LoginForm'
 import Router from 'next/router'
 import Cookies from 'js-cookie'
 import { connect } from 'react-redux'
@@ -23,11 +23,11 @@ const Login = ({ auth }) => {
   useEffect(() => {
     if (auth.user) {
       if (prevUrl.includes('verify') || prevUrl.includes('reset-password')) {
-        Router.push('/')
+        Router.push('/page/[page]', '/page/1')
       } else if (prevUrl && prevUrl !== `${window.location.origin}/login`) {
-        Router.push(prevUrl.replace(/(^\w+:|^)\/\//, '//'))
+        Router.back()
       } else {
-        Router.push('/')
+        Router.push('/page/[page]', '/page/1')
       }
     }
   }, [auth.user])
@@ -52,7 +52,7 @@ const Login = ({ auth }) => {
     <Layout {...layoutSettings}>
       <Logo black />
         <div className="white-box wrapper">
-          You are already loged in.
+          You are loged in.
         </div>
         <style jsx>{`
           .wrapper {

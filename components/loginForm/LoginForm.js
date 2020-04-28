@@ -66,7 +66,7 @@ const LoginForm = ({ errors,
             }
           <div className="links">
             <a onClick={() => setLoginMode(!loginMode)}>{loginMode ? "Create new account" : "Login form."}</a>
-            <Link href="/reset-password">
+            <Link href="/user/reset-password">
               <a>Forgot password?</a>
             </Link>
           </div>

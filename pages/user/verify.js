@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Router from 'next/router'
-import { authVerifiedReset } from '../store/actions/index'
-import api from '../helpers/axios'
-import Layout from '../components/layout/Layout'
-import Logo from '../components/header/Logo'
-import Notification from '../components/ui/Notifiaction'
+import { authVerifiedReset } from '../../store/actions/index'
+import api from '../../helpers/axios'
+import Layout from '../../components/layout/Layout'
+import Logo from '../../components/header/Logo'
+import Notification from '../../components/ui/Notifiaction'
 
 class Verify extends React.Component {
   static async getInitialProps({ query }) {
@@ -82,7 +82,7 @@ class Verify extends React.Component {
           <div>
             <p>{content}</p>
           </div>
-          {this.props.auth.verified && <button className="btn btn--blue btn--blue-white" type="button" onClick={() => Router.push('/login')}>Login</button>}
+          {this.props.auth.verified && <button className="btn btn--blue btn--blue-white" type="button" onClick={() => Router.push('/user/login')}>Login</button>}
           {!this.props.auth.verified && <button disabled={this.state.isSending} className="btn btn--blue btn--blue-white" type="submit" onClick={() => this.reSubmnitHandler()}>
             {this.state.isSending ? "Wait" : "Send it again"}
           </button>}

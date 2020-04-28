@@ -28,30 +28,30 @@ app
       app.render(req, res, actualPage)
     })
 
-    server.get('/verify', (req, res) => {
-      const actualPage = '/verify'
+    server.get('/offer/create', (req, res) => {
+      const actualPage = '/offer/create'
+      app.render(req, res, actualPage)
+    })
+
+    server.get('/user/login', (req, res) => {
+      const actualPage = '/user/login'
+      app.render(req, res, actualPage)
+    })
+
+    server.get('/user/verify', (req, res) => {
+      const actualPage = '/user/verify'
       const queryParams = { token: req.query.token }
       app.render(req, res, actualPage, queryParams)
     })
 
-    server.get('/login', (req, res) => {
-      const actualPage = '/login'
-      app.render(req, res, actualPage)
-    })
-
-    server.get('/create-offer', (req, res) => {
-      const actualPage = '/create-offer'
-      app.render(req, res, actualPage)
-    })
-
-    server.get('/reset-password', (req, res) => {
-      const actualPage = '/reset-password'
+    server.get('/user/reset-password', (req, res) => {
+      const actualPage = '/user/reset-password'
       const queryParams = { token: req.query.token }
       app.render(req, res, actualPage, queryParams)
     })
 
-    server.get('/dashboard', (req, res) => {
-      const actualPage = '/dashboard'
+    server.get('/user/dashboard', (req, res) => {
+      const actualPage = '/user/dashboard'
       app.render(req, res, actualPage)
     })
 

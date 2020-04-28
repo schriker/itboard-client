@@ -1,10 +1,10 @@
 import React from 'react'
-import api from '../helpers/axios'
+import api from '../../helpers/axios'
 import { connect } from 'react-redux'
-import UserEmail from '../components/resetPassword/UserEmail'
-import NewPassword from '../components/resetPassword/NewPassword'
-import Layout from '../components/layout/Layout'
-import Logo from '../components/header/Logo'
+import UserEmail from '../../components/resetPassword/UserEmail'
+import NewPassword from '../../components/resetPassword/NewPassword'
+import Layout from '../../components/layout/Layout'
+import Logo from '../../components/header/Logo'
 
 class ResetPassword extends React.Component {
   static async getInitialProps({ query }) {
@@ -105,7 +105,7 @@ class ResetPassword extends React.Component {
     if (this.props.auth.user) {
       form = <div className="wrapper white-box">
               <div>
-                You are already loged in.
+                You are loged in.
               </div>
               <style jsx>{`
               .wrapper {

@@ -14,7 +14,7 @@ const UserDropdown = (props) => {
         <div className="arrow-up"></div>
         <ul className="white-box">
           <li>
-            <Link href="/dashboard">
+            <Link href="/user/dashboard">
               <a>Dashboard</a>
             </Link>
           </li>

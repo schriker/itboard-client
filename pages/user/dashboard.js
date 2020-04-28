@@ -1,7 +1,7 @@
 import React from 'react'
-import Layout from '../components/layout/Layout'
-import Protect from './protect'
-import api from '../helpers/axios'
+import Layout from '../../components/layout/Layout'
+import Protect from '../protect'
+import api from '../../helpers/axios'
 
 class Dashboard extends React.Component {
 

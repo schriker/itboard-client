@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 const UserButtons = (props) => {
 
-  let userButton = <Link href="/login">
+  let userButton = <Link href="/user/login">
                     <a className="btn btn--blue"><i className="far fa-user"></i>Login</a>
                   </Link>
 
@@ -14,7 +14,7 @@ const UserButtons = (props) => {
 
   return (
     <div>
-      <Link href="/create-offer">
+      <Link href="/offer/create">
         <a className="btn btn--yellow">Create Offer</a>
       </Link>
       <span> - or - </span>

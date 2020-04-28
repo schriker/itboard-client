@@ -16,7 +16,7 @@ const TextEditor = ({ onSubmit, raw }) => {
     setLoaded(true)
   })
   
-  const [editorState, setEditorState] = useState(raw || EditorState.createEmpty())
+  const [editorState, setEditorState] = useState(raw ? EditorState.createWithContent(raw) : EditorState.createEmpty())
   const editorRef = useRef()
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const TextEditor = ({ onSubmit, raw }) => {
       setWithErrors(true)
     } else {
       const html = stateToHTML(editorState.getCurrentContent())
-      onSubmit(html)
+      onSubmit(html, currentContent)
     }
 
   }

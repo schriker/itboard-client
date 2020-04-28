@@ -1,7 +1,7 @@
 const SummaryBar = ({ editOffer, submitOffer, isSending }) => {
   return (
     <div className="bar">
-      <p className="hide-tablet">This is preview of your offer. Now you can save it or edit.</p>
+      <p className="hide-tablet">This is preview of your offer. You can save it or edit.</p>
       <div>
         {!isSending && <button onClick={() => editOffer()} className="btn btn--blue">Edit</button>}
         <button disabled={isSending} onClick={() => submitOffer()} className="btn btn--yellow">{isSending ? "Wait" : "Save"}</button>
@@ -24,9 +24,14 @@ const SummaryBar = ({ editOffer, submitOffer, isSending }) => {
         p {
           color: #fff;
           font-size: 16px;
+          margin: 0;
         }
         button:last-of-type {
           margin-left: 20px;
+        }
+        button:disabled {
+          color: #fff;
+          border: 2px solid #fff;
         }
         @media (max-width: 900px) {
           justify-content: center;

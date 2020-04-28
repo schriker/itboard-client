@@ -1,12 +1,12 @@
 import React from 'react'
-import Protect from './protect'
-import Layout from '../components/layout/Layout'
-import Logo from '../components/header/Logo'
-import FormSteps from '../components/createOffer/FormSteps'
-import DetailsForm from '../components/createOffer/DetailsForm'
-import ContentForm from '../components/createOffer/ContentForm'
-import PreviewForm from '../components/createOffer/PreviewForm'
-import SubmitedForm from '../components/createOffer/SubmitedForm'
+import Protect from '../protect'
+import Layout from '../../components/layout/Layout'
+import Logo from '../../components/header/Logo'
+import FormSteps from '../../components/createOffer/FormSteps'
+import DetailsForm from '../../components/createOffer/DetailsForm'
+import ContentForm from '../../components/createOffer/ContentForm'
+import PreviewForm from '../../components/createOffer/PreviewForm'
+import SubmitedForm from '../../components/createOffer/SubmitedForm'
 
 class CreateOffer extends React.Component {
 
