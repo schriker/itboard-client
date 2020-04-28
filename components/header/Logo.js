@@ -4,7 +4,7 @@ import LogoSVG from '../../static/logo.svg'
 const Logo = (props) => {
   return(
     <div>
-      <Link href="/" as="/"> 
+      <Link href="/page/[page]" as="/page/1"> 
         <a className={props.black ? 'black' : null}>
           <LogoSVG />
           <span>Board</span>

@@ -1,17 +1,17 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import { connect } from 'react-redux'
-import Layout from '../components/layout/Layout'
-import { fetchOffers } from '../store/actions/index'
-import { filter } from '../helpers/offerFilters'
-import OfferListItem from '../components/offersList/OfferListItem'
-import { offersPerPage } from '../helpers/consts'
-import Filters from '../components/filters/Filters'
-import Pagination from '../components/pagination/Pagination'
-import NoResult from '../components/ui/NoResult'
-import ClearFilters from '../components/clearFilters/ClearFilters'
+import Layout from '../../components/layout/Layout'
+import { fetchOffers } from '../../store/actions/index'
+import { filter } from '../../helpers/offerFilters'
+import OfferListItem from '../../components/offersList/OfferListItem'
+import { offersPerPage } from '../../helpers/consts'
+import Filters from '../../components/filters/Filters'
+import Pagination from '../../components/pagination/Pagination'
+import NoResult from '../../components/ui/NoResult'
+import ClearFilters from '../../components/clearFilters/ClearFilters'
 const IndexMap = dynamic(
-  () => import('../components/googleMaps/IndexMap'),
+  () => import('../../components/googleMaps/IndexMap'),
   { ssr: false }
 )
 
@@ -49,7 +49,7 @@ render() {
       },
       withSidebar: true
     }
-
+    
     let offers = null
     let lastPage = null
     let firsItem = (this.props.page * offersPerPage) - offersPerPage

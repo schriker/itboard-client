@@ -13,11 +13,11 @@ const UserDropdown = (props) => {
       <div className="dropdown">
         <div className="arrow-up"></div>
         <ul className="white-box">
-          {/* <li>
+          <li>
             <Link href="/dashboard">
               <a>Dashboard</a>
             </Link>
-          </li> */}
+          </li>
           <li>
             <a onClick={() => props.logout()}>Logout</a>
           </li>

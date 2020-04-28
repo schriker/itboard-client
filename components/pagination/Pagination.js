@@ -3,17 +3,17 @@ const Pagination = ({ currentPage, lastPage }) => {
   return (
     <nav>
       <ul>
-        <li className={currentPage > 1 ? '' : 'disabled'}><Link href={`/?page=${currentPage - 1}`}><a rel="prev">Prev</a></Link></li>
+        <li className={currentPage > 1 ? '' : 'disabled'}><Link href="/page/[page]" as={`/page/${currentPage - 1}`}><a rel="prev">Prev</a></Link></li>
         {[...Array(lastPage)]
           .map((i, index) => 
             <li key={index}>
-              <Link href={`/?page=${index + 1}`}>
+              <Link href="/page/[page]" as={`/page/${index + 1}`}>
                 <a className={index + 1 === currentPage ? 'active' : ''}>{index + 1}</a>
               </Link>
             </li>
           )
         }
-        <li className={currentPage !== lastPage ? '' : 'disabled'}><Link href={`/?page=${currentPage + 1}`}><a rel="next">Next</a></Link></li>
+        <li className={currentPage !== lastPage ? '' : 'disabled'}><Link href="/page/[page]" as={`/page/${currentPage + 1}`}><a rel="next">Next</a></Link></li>
       </ul>
       <style jsx>{`
         nav {

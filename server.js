@@ -14,15 +14,18 @@ app
     server.use(cookieParser())
 
     server.get('/', (req, res) => {
-      const actualPage = '/index'
-      const queryParams = { page: req.query.page }
-      app.render(req, res, actualPage, queryParams)
+      const actualPage = '/page/1'
+      app.render(req, res, actualPage)
     })
 
-    server.get('/offer', (req, res) => {
-      const actualPage = '/offer'
-      const queryParams = { id: req.query.id }
-      app.render(req, res, actualPage, queryParams)
+    server.get('/page/:page', (req, res) => {
+      const actualPage = `/page/${req.params.page}`
+      app.render(req, res, actualPage)
+    })
+
+    server.get('/offer/:id', (req, res) => {
+      const actualPage = `/offer/${req.params.id}`
+      app.render(req, res, actualPage)
     })
 
     server.get('/verify', (req, res) => {
@@ -45,6 +48,11 @@ app
       const actualPage = '/reset-password'
       const queryParams = { token: req.query.token }
       app.render(req, res, actualPage, queryParams)
+    })
+
+    server.get('/dashboard', (req, res) => {
+      const actualPage = '/dashboard'
+      app.render(req, res, actualPage)
     })
 
     server.get('*', (req, res) => {

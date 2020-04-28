@@ -11,10 +11,9 @@ const OfferListItem = ({ offer, preview, findOnMap, index, firstVisit }) => {
   const todaysDate = new Date()
   const createdAt = new Date(offer.created_at)
   const publishedTime = Math.floor((todaysDate - createdAt) / (1000*60*60*24))
-  
   const color = findColor(offer.technology)
   const isNew = preview || publishedTime < 1 ? true : false 
-  const offerURl = preview ? '#' : `/offer?id=${offer._id}`
+  const offerURl = preview ? '#' : `/offer/${offer.slug}`
   
   preview ? thumb = useFileReader(offer.company_logo) : thumb = offer.company_logo
 
@@ -24,7 +23,7 @@ const OfferListItem = ({ offer, preview, findOnMap, index, firstVisit }) => {
 
   return (
     <div className="item-wrapper">
-      <Link href={offerURl}><a></a></Link>
+      <Link href="/offer/[id]" as={offerURl}><a></a></Link>
       <div className="item-logo">
         <img src={thumb} alt={offer.company_name}/>
       </div>
@@ -103,7 +102,7 @@ const OfferListItem = ({ offer, preview, findOnMap, index, firstVisit }) => {
         }
         .item-company h3 {
           font-weight: 400;
-          font-size: 18px;
+          font-size: 20px;
           color: #1f1f1f;
           margin-bottom: 12px;
         }

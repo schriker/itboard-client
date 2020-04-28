@@ -1,8 +1,8 @@
 import React from 'react'
-import Layout from '../components/layout/Layout'
-import OfferContent from '../components/offer/OfferContent'
-import api from '../helpers/axios'
-import NoResult from '../components/ui/NoResult'
+import Layout from '../../components/layout/Layout'
+import OfferContent from '../../components/offer/OfferContent'
+import api from '../../helpers/axios'
+import NoResult from '../../components/ui/NoResult'
 
 class Offer extends React.Component {
 
@@ -43,7 +43,7 @@ class Offer extends React.Component {
       if (err.response.status === 404) {
         msg = 'User with that email dosen\'t exist!'
       } else if (err.response.status === 429) {
-        msg = 'You have to wait 15min. to retry.'
+        msg = 'It looks like you\'ve already apply for this job.'
       }
       this.setState({
         isSending: false,

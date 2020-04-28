@@ -3,7 +3,7 @@ import Router from 'next/router'
 const InfoWindowContent = ({ offer }) => {
 
   return (
-    <div onClick={() => Router.push(`/offer?id=${offer._id}`)} id="infowindow" className="map-info-window">
+    <div onClick={() => Router.push(`/offer/[id]`, `/offer/${offer.slug}`)} id="infowindow" className="map-info-window">
       <div className="map-info-window__logo">
         <img src={offer.company_logo} alt={offer.company_name} />
       </div>

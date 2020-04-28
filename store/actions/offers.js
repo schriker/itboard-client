@@ -4,7 +4,7 @@ import { authFailed } from './index'
 import Router from 'next/router'
 
 export const setLanguages = (payload) => {
-  Router.push('/')
+  Router.push('/page/[page]', '/page/1')
   return {
   type: actionTypes.SET_LANGUAGES,
   payload
@@ -12,7 +12,7 @@ export const setLanguages = (payload) => {
 }
 
 export const setFilters = (payload) => {
-  Router.push('/')
+  Router.push('/page/[page]', '/page/1')
   return {
     type: actionTypes.SET_FILTERS,
     payload
@@ -20,7 +20,7 @@ export const setFilters = (payload) => {
 }
 
 export const clearFilters = () => {
-  Router.push('/')
+  Router.push('/page/[page]', '/page/1')
   return {
     type: actionTypes.CLEAR_FILTERS
   }
