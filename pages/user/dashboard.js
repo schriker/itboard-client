@@ -30,11 +30,12 @@ class Dashboard extends React.Component {
     }
   }
 
+  
   render() {
     const layoutSetings = {
       meta: {
       },
-      withSidebar: true
+      withSidebar: false
     }
     return(
       <Layout { ...layoutSetings }>
