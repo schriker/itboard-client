@@ -22,14 +22,15 @@ jobs:
           name: Deploy Over SSH
           command: |
             ssh $SSH_USER@$SSH_HOST "sudo bash deploy_it.sh"
+
 workflows:
   version: 2
   build-and-deploy:
     jobs:
       - build
       - deploy:
-        requires:
-          - build # only deploy once build job has completed
-        filters:
-          branches:
-            only: master # only deploy on the master branch
+          requires:
+            - build # only deploy once build job has completed
+          filters:
+            branches:
+              only: master # only deploy on the master branch
