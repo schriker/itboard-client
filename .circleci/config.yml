@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  build-and-test:
+  build:
     executor:
       name: node/default
     steps:
@@ -11,7 +11,24 @@ jobs:
           steps:
             - run: npm install
             - run: npm run build
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - add_ssh_keys:
+        fingerprints:
+          - "03:7f:51:6d:8b:92:99:86:37:11:92:7e:0e:c9:10:8c"
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh $SSH_USER@$SSH_HOST "sudo bash deploy_it.sh"
 workflows:
-    build-and-test:
+    build-and-deploy:
       jobs:
-        - build-and-test
+        - build
+      - deploy:
+        requires:
+          - build # only deploy once build job has completed
+        filters:
+          branches:
+            only: master # only deploy on the master branch
