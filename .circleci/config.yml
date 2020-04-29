@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
@@ -10,7 +10,7 @@ jobs:
       - node/with-cache:
           steps:
             - run: npm install
-            # - run: npm run build
+            - run: npm run build
   deploy:
     machine:
       enabled: true
@@ -24,7 +24,7 @@ jobs:
             ssh $SSH_USER@$SSH_HOST "sudo bash deploy_it.sh"
 
 workflows:
-  version: 2
+  version: 2.1
   build-and-deploy:
     jobs:
       - build
