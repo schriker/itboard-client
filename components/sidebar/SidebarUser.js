@@ -9,6 +9,11 @@ const SidebarUser = ({ router }) => {
       href: '/user/dashboard',
     },
     {
+      text: 'Archived offers',
+      icon: 'fa-archive',
+      href: '/user/archive',
+    },
+    {
       text: 'Settings',
       icon: 'fa-cog',
       href: '/user/settings',
