@@ -35,7 +35,7 @@ class Dashboard extends React.Component {
     const layoutSetings = {
       meta: {
       },
-      withSidebar: false
+      withUserSidebar: true
     }
     return(
       <Layout { ...layoutSetings }>

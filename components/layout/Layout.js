@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import Meta from './Meta'
 import Header from './Header'
-import Sidebar from './Sidebar'
+import Sidebar from '../sidebar/Sidebar'
+import SidebarHome from '../sidebar/SidebarHome'
+import SidebarUser from '../sidebar/SidebarUser'
 
 const Layout = (props) => {
-
   const [viewSidebar, setViewSidebar] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
@@ -23,21 +24,32 @@ const Layout = (props) => {
   }, [])
 
   return (
-    <div className='main-wrapper'>
-      <Meta { ...props.meta } />
-      <Header toggleSidebar={() => setViewSidebar(!viewSidebar)} open={viewSidebar} />
-      { props.withSidebar || isMobile ? <Sidebar show={viewSidebar} hide={() => setViewSidebar(false)}  /> : null }
-      <main>
-        {props.children}
-      </main>
-      <style  jsx>{`
+    <div className="main-wrapper">
+      <Meta {...props.meta} />
+      <Header
+        toggleSidebar={() => setViewSidebar(!viewSidebar)}
+        open={viewSidebar}
+      />
+      {(props.withSidebar || isMobile) && !props.withUserSidebar ? (
+        <Sidebar show={viewSidebar} hide={() => setViewSidebar(false)}>
+          <SidebarHome />
+        </Sidebar>
+      ) : null}
+      {props.withUserSidebar ? (
+        <Sidebar show={viewSidebar} hide={() => setViewSidebar(false)}>
+          <SidebarUser />
+        </Sidebar>
+      ) : null}
+      <main>{props.children}</main>
+      <style jsx>{`
         .main-wrapper {
           display: grid;
-          grid-template-areas: "header header"
-          "sidebar main";
+          grid-template-areas:
+            'header header'
+            'sidebar main';
           grid-template-columns: min-content 1fr;
           grid-template-rows: 70px auto;
-        }  
+        }
         main {
           width: 100%;
           flex-wrap: wrap;
